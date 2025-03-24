@@ -1,0 +1,51 @@
+{
+  "actors": {
+    "unregistered": [
+      {
+        "name": "Người dùng mới",
+        "useCases": ["Đăng ký tài khoản mới"]
+      },
+      {
+        "name": "Người dùng",
+        "useCases": [
+          "Xem danh sách sản phẩm",
+          "Tìm kiếm sản phẩm",
+          "Xem chi tiết sản phẩm",
+          "Xem đánh giá",
+          "Responsive Design",
+          "Thông báo và Tương tác"
+        ]
+      }
+    ],
+    "registered": [
+      {
+        "name": "Người dùng đã đăng ký",
+        "useCases": ["Đăng nhập"]
+      },
+      {
+        "name": "Người dùng đã đăng nhập",
+        "useCases": [
+          "Quản lý hồ sơ",
+          "Đăng xuất",
+          "Thêm sản phẩm vào giỏ",
+          "Cập nhật giỏ hàng",
+          "Xem tổng giá trị",
+          "Tạo đơn hàng",
+          "Thanh toán",
+          "Quản lý đơn hàng",
+          "Xem lịch sử đơn hàng"
+        ]
+      },
+      {
+        "name": "Người dùng đã mua sản phẩm",
+        "useCases": ["Đánh giá sản phẩm"]
+      }
+    ],
+    "admin": [
+      {
+        "name": "Quản trị viên",
+        "useCases": ["Quản lý sản phẩm (Admin)", "Quản lý đơn hàng (Admin)"]
+      }
+    ]
+  }
+}
