@@ -24,50 +24,55 @@ export const Icons = {
 const Navbar = () => {
   return (
     <>
-      <header className="bg-white border-2 border-b-sky-500/50 sticky top-0 z-50 py-3 bg-white/70 backdrop-blur-md">
+      <header className="bg-white relative sticky top-0 z-50 py-3 bg-white/70 backdrop-blur-md">
+        <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-sky-800 to-transparent"></div>
         <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between gap-7 text-lightColor">
           {/* Mobile Menu */}
-          <div className="w-auto md:w-1/3 flex items-center justify-start gap-2.5 md:gap-0">
+          <div className="w-auto md:w-1/3 flex justify-start gap-2.5 md:gap-0">
             <Sheet className="flex items-center">
               <SheetTrigger className="mr-1 lg:hidden ">
                 <Menu className="h-6 w-6" />
               </SheetTrigger>
               <SheetContent side="left">
-                <NavigationMenu orientation="vertical" className="w-full">
-                  <NavigationMenuList className="flex-col space-y-4">
-                    <NavigationMenuItem>
-                      <NavigationMenuLink href="/" className="font-medium">
-                        Home
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <NavigationMenuLink
-                        href="/products"
-                        className="font-medium"
-                      >
-                        Products
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <NavigationMenuLink href="/blog" className="font-medium">
-                        Blog
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <NavigationMenuLink href="/faq" className="font-medium">
-                        FAQ
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <NavigationMenuLink
-                        href="/contact"
-                        className="font-medium"
-                      >
-                        Contact Us
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
+                <div className="p-4">
+                  <Brand className={'ml-0'} />
+                  <NavigationMenu orientation="vertical" className="w-full">
+                    <NavigationMenuList
+                      className={"flex-col justify-start items-start my-4"}
+                    >
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          href="/blog"
+                          className="font-medium"
+                        >
+                          Blog
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          href="/blog"
+                          className="font-medium"
+                        >
+                          Blog
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                      <NavigationMenuItem>
+                        <NavigationMenuLink href="/faq" className="font-medium">
+                          FAQ
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          href="/contact"
+                          className="font-medium"
+                        >
+                          Contact Us
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
+                  </NavigationMenu>
+                </div>
               </SheetContent>
             </Sheet>
 
