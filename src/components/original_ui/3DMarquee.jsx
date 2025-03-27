@@ -1,8 +1,22 @@
 "use client";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
+import image1 from "@/assets/images/image-1.png";
+import image2 from "@/assets/images/image-2.png";
+import image3 from "@/assets/images/image-3.png";
+import image4 from "@/assets/images/image-4.png";
+import image5 from "@/assets/images/image-5.png";
+import image from "@/assets/images/image.png";
+import frame from "@/assets/images/Frame 26086938.png";
 
 export function ThreeDMarqueeDemo() {
   const images = [
+    image1,
+    image2,
+    image3,
+    image4,
+    image5,
+    image,
+    frame,
     "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",
     "https://assets.aceternity.com/animated-modal.png",
     "https://assets.aceternity.com/animated-testimonials.webp",
@@ -34,10 +48,11 @@ export function ThreeDMarqueeDemo() {
     "https://assets.aceternity.com/vortex.png",
     "https://assets.aceternity.com/wobble-card.png",
     "https://assets.aceternity.com/world-map.webp",
+    "https://assets.aceternity.com/wobble-card.png",
   ];
   return (
     <>
-      <div className="mx-auto max-w-7xl  bg-gray-950/5  ring-neutral-700/10 dark:bg-neutral-800">
+      <div className="mx-auto bg-gray-950/5 ring ring-neutral-700/10 dark:bg-neutral-800">
         <ThreeDMarquee images={images} />
       </div>
     </>

@@ -1,6 +1,12 @@
 import * as React from "react";
 
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -12,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 export function CarouselSize({ images, className }) {
   return (
-    <div className={cn('',className)}>
+    <div className={cn("", className)}>
       <Carousel
         opts={{
           align: "start",
@@ -20,13 +26,20 @@ export function CarouselSize({ images, className }) {
         className="w-full"
       >
         <CarouselContent>
-          {Array.from({ length: 11 }).map((_, index) => (
-            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+          {images.map((i, index) => (
+            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
               <div className="p-1">
                 <Card>
+                  <CardHeader>
+                    <CardTitle>
+                      <img src={i} />
+                    </CardTitle>
+                    <CardDescription>Card Description</CardDescription>
+                  </CardHeader>
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <span className="text-3xl font-semibold">{index + 1}</span>
                   </CardContent>
+                  <></>
                 </Card>
               </div>
             </CarouselItem>
