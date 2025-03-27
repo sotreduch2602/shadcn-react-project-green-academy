@@ -1,6 +1,11 @@
 import { ThreeDMarqueeDemo } from "@/components/original_ui/3DMarquee";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  GitCompareArrowsIcon,
+  ShieldCheckIcon,
+  TruckIcon,
+} from "lucide-react";
 
 import image1 from "@/assets/images/image-1.png";
 import image2 from "@/assets/images/image-2.png";
@@ -9,14 +14,21 @@ import image4 from "@/assets/images/image-4.png";
 import image5 from "@/assets/images/image-5.png";
 import image from "@/assets/images/image.png";
 import frame from "@/assets/images/Frame 26086938.png";
-import CarouselSize from "@/components/original_ui/CarouselSize";
+
+import { BrandImages } from "@/assets/brand_devices";
+
+import CategoryCarousel from "@/components/original_ui/CategoryCarousel";
+import CarouselSizeSale from "@/components/original_ui/CarouselSizeSale";
+import ProductCard from "@/components/original_ui/ProductCard";
 
 const ImagesList = [image1, image2, image3, image4, image5, image, frame];
+const CategoriesList = [image1, image2, image3, image4, image5];
+const NewProductList = [image1, image2, image3, image4];
 
 const Homepage = () => {
   return (
     <>
-      <div className="max-w-screen mx-auto relative">
+      <section className="max-w-screen mx-auto relative">
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4">
           <h2 className="text-7xl font-black text-white drop-shadow-lg">
             Tech Shop
@@ -35,9 +47,15 @@ const Homepage = () => {
         <div className="relative z-0">
           <ThreeDMarqueeDemo />
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-screen-xl  mx-auto px-4 py-4 my-6 bg-[#063A88] rounded-2xl">
+      <section className="max-w-screen-xl mx-auto px-4 my-6">
+        <div className="grid grid-cols-2 lg:grid-cols-5">
+          <CategoryCarousel images={CategoriesList} />
+        </div>
+      </section>
+
+      <section className="max-w-screen-xl  mx-auto px-4 py-4 my-6 bg-[#063A88] rounded-2xl">
         <div className="grid grid-cols-3">
           <div className="col-span-1 p-4 flex flex-col items-center h-full mt-8 py-8">
             <div className="flex flex-col items-center justify-center gap-8 text-white w-full">
@@ -56,10 +74,138 @@ const Homepage = () => {
           </div>
 
           <div className="col-span-2">
-            <CarouselSize className="px-13" images={ImagesList} />
+            <CarouselSizeSale className="px-13" images={ImagesList} />
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="max-w-screen-xl mx-auto  my-6">
+        <div className="flex items-center justify-between border-b-2 pb-6">
+          <h2 className="text-4xl font-medium">New Product</h2>
+          <Button
+            variant="ghost1"
+            effect="expandIcon"
+            icon={ArrowRight}
+            iconPlacement="right"
+          >
+            View all
+          </Button>
+        </div>
+
+        {/* ! Remember create component NewProductList */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4  mx-10 mt-3">
+          {NewProductList.map((item, index) => (
+            <ProductCard
+              className={"m-2"}
+              key={index}
+              image={item}
+              title={"title"}
+              description={"items[index].description"}
+              salePrice={123}
+              originalPrice={123}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-screen-xl mx-auto  my-6">
+        <div className="flex items-center justify-between border-b-2 pb-6">
+          <h2 className="text-4xl font-medium">Best Sellers</h2>
+          <Button
+            variant="ghost1"
+            effect="expandIcon"
+            icon={ArrowRight}
+            iconPlacement="right"
+          >
+            View all
+          </Button>
+        </div>
+
+        {/* ! Remember create component NewProductList */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4  mx-10 mt-3">
+          {NewProductList.map((item, index) => (
+            <ProductCard
+              className={"m-2"}
+              key={index}
+              image={item}
+              title={"title"}
+              description={"items[index].description"}
+              salePrice={123}
+              originalPrice={123}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-screen-xl mx-auto mt-10 lg:mt-8 bg-[#f8f8fa] p-5 lg:p-7 rounded-md">
+        <div className="flex items-center gap-5 justify-between mb-10">
+          <h2 className="font-semibold text-2xl">Shop By Brands</h2>
+          <Button
+            variant="ghost1"
+            effect="expandIcon"
+            icon={ArrowRight}
+            iconPlacement="right"
+            className="text-sm font-semibold tracking-wide"
+          >
+            View all
+          </Button>
+        </div>
+
+        <div className="flex items-center gap-2.5 justify-between">
+          {BrandImages.map((i, index) => (
+            <a key={index} className="bg-white w-48 h-24 flex items-center justify-center rounded-md overflow-hidden hover:shadow-lg">
+              <img alt="brandImage" src={i}></img>
+            </a>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16 p-2  shadow-sm shadow-shop_light_green/20 py-5">
+          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600">
+            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
+              <TruckIcon className="size-8" />
+            </span>
+            <div className="text-sm">
+              <p className="text-black/80 font-bold capitalize">
+                Free Delivery
+              </p>
+              <p className="text-gray-300">Free shipping over $100</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600">
+            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
+              <GitCompareArrowsIcon className="size-8" />
+            </span>
+            <div className="text-sm">
+              <p className="text-black/80 font-bold capitalize">
+                Free Delivery
+              </p>
+              <p className="text-gray-300">Free shipping over $100</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600">
+            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
+              <GitCompareArrowsIcon className="size-8" />
+            </span>
+            <div className="text-sm">
+              <p className="text-black/80 font-bold capitalize">
+                Customer Support
+              </p>
+              <p className="text-gray-300">Friendly 27/7 customer support</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600">
+            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
+              <ShieldCheckIcon className="size-8" />
+            </span>
+            <div className="text-sm">
+              <p className="text-black/80 font-bold capitalize">
+                Money Back guarantee
+              </p>
+              <p className="text-gray-300">Quality checked by our team</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };

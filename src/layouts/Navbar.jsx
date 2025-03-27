@@ -86,20 +86,18 @@ const Navbar = () => {
             <NavigationMenu>
               <NavigationMenuList className="flex justify-center gap-8">
                 <NavigationMenuItem>
-                  <Button variant="link" effect="hoverUnderline">
-                    <NavigationMenuLink href="/" className="font-medium">
-                      Home
-                    </NavigationMenuLink>
-                  </Button>
+                  <NavigationMenuLink
+                    href="/"
+                    className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                  >
+                    Home
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Button variant="link" effect="hoverUnderline">
-                    <NavigationMenuTrigger className="font-medium">
-                      Products
-                    </NavigationMenuTrigger>
-                  </Button>
-
+                  <NavigationMenuTrigger className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100">
+                    Products
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid gap-3 p-6 w-[450px]">
                       <div className="flex items-center gap-4">
@@ -133,30 +131,30 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Button variant="link" effect="hoverUnderline">
-                    <NavigationMenuLink href="/" className="font-medium">
-                      Blog
-                    </NavigationMenuLink>
-                  </Button>
+                  <NavigationMenuLink
+                    href="/blog"
+                    className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                  >
+                    Blog
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Button variant="link" effect="hoverUnderline">
-                    <NavigationMenuLink href="/" className="font-medium">
-                      Home
-                    </NavigationMenuLink>
-                  </Button>
+                  <NavigationMenuLink
+                    href="/faq"
+                    className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                  >
+                    FAQ
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Button variant="link" effect="hoverUnderline">
-                    <NavigationMenuLink
-                      href="/contact"
-                      className="font-medium whitespace-nowrap"
-                    >
-                      Contact Us
-                    </NavigationMenuLink>
-                  </Button>
+                  <NavigationMenuLink
+                    href="/contact"
+                    className="font-medium whitespace-nowrap relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                  >
+                    Contact Us
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>

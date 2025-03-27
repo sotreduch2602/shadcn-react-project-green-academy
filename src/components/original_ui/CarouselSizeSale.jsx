@@ -10,8 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import ProductCard from "./ProductCard";
 
-const CarouselSize = ({ images, className, products }) => {
-  // Default product data if not provided
+const CarouselSizeSale = ({ images, className, products }) => {
   const defaultProducts = [
     {
       title: "Logitech G502 Gaming Mouse",
@@ -21,7 +20,6 @@ const CarouselSize = ({ images, className, products }) => {
     },
   ];
 
-  // Use provided products or default to the sample product repeated for each image
   const items = products || images.map(() => defaultProducts[0]);
   return (
     <div className={cn("", className)}>
@@ -53,4 +51,4 @@ const CarouselSize = ({ images, className, products }) => {
   );
 };
 
-export default CarouselSize;
+export default CarouselSizeSale;
