@@ -24,7 +24,7 @@ export const Icons = {
 const Navbar = () => {
   return (
     <>
-      <header className="bg-white relative sticky top-0 z-50 py-3 bg-white/70 backdrop-blur-md">
+      <header className="sticky top-0 z-50 py-3 bg-white/70 backdrop-blur-md">
         <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-sky-800 to-transparent"></div>
         <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between gap-7 text-lightColor">
           {/* Mobile Menu */}
@@ -35,7 +35,7 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="left">
                 <div className="p-4">
-                  <Brand className={'ml-0'} />
+                  <Brand className={"ml-0"} />
                   <NavigationMenu orientation="vertical" className="w-full">
                     <NavigationMenuList
                       className={"flex-col justify-start items-start my-4"}
@@ -91,7 +91,9 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="font-medium">
+                    Products123
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid gap-3 p-6 w-[450px]">
                       <div className="flex items-center gap-4">
