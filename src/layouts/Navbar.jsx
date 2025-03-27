@@ -14,6 +14,7 @@ import SearchIcon from "@/assets/navbar/search.svg";
 import CartIcon from "@/assets/navbar/bag.svg";
 import UserIcon from "@/assets/navbar/profile.svg";
 import { Outlet } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export const Icons = {
   search: SearchIcon,
@@ -85,15 +86,20 @@ const Navbar = () => {
             <NavigationMenu>
               <NavigationMenuList className="flex justify-center gap-8">
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/" className="font-medium">
-                    Home
-                  </NavigationMenuLink>
+                  <Button variant="link" effect="hoverUnderline">
+                    <NavigationMenuLink href="/" className="font-medium">
+                      Home
+                    </NavigationMenuLink>
+                  </Button>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-medium">
-                    Products123
-                  </NavigationMenuTrigger>
+                  <Button variant="link" effect="hoverUnderline">
+                    <NavigationMenuTrigger className="font-medium">
+                      Products
+                    </NavigationMenuTrigger>
+                  </Button>
+
                   <NavigationMenuContent>
                     <div className="grid gap-3 p-6 w-[450px]">
                       <div className="flex items-center gap-4">
@@ -127,24 +133,30 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/blog" className="font-medium">
-                    Blog
-                  </NavigationMenuLink>
+                  <Button variant="link" effect="hoverUnderline">
+                    <NavigationMenuLink href="/" className="font-medium">
+                      Blog
+                    </NavigationMenuLink>
+                  </Button>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/faq" className="font-medium">
-                    FAQ
-                  </NavigationMenuLink>
+                  <Button variant="link" effect="hoverUnderline">
+                    <NavigationMenuLink href="/" className="font-medium">
+                      Home
+                    </NavigationMenuLink>
+                  </Button>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuLink
-                    href="/contact"
-                    className="font-medium whitespace-nowrap"
-                  >
-                    Contact Us
-                  </NavigationMenuLink>
+                  <Button variant="link" effect="hoverUnderline">
+                    <NavigationMenuLink
+                      href="/contact"
+                      className="font-medium whitespace-nowrap"
+                    >
+                      Contact Us
+                    </NavigationMenuLink>
+                  </Button>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>

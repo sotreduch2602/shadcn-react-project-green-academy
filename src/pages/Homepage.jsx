@@ -1,6 +1,6 @@
 import { ThreeDMarqueeDemo } from "@/components/original_ui/3DMarquee";
-import { CarouselSize } from "@/components/original_ui/Carousel";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 import image1 from "@/assets/images/image-1.png";
 import image2 from "@/assets/images/image-2.png";
@@ -9,6 +9,7 @@ import image4 from "@/assets/images/image-4.png";
 import image5 from "@/assets/images/image-5.png";
 import image from "@/assets/images/image.png";
 import frame from "@/assets/images/Frame 26086938.png";
+import CarouselSize from "@/components/original_ui/CarouselSize";
 
 const ImagesList = [image1, image2, image3, image4, image5, image, frame];
 
@@ -38,12 +39,22 @@ const Homepage = () => {
 
       <div className="max-w-screen-xl  mx-auto px-4 py-4 my-6 bg-[#063A88] rounded-2xl">
         <div className="grid grid-cols-3">
-          <div className="col-span-1 p-4">
-            <div className="flex flex-col items-center justify-center gap-8 text-white">
-              <h2 className="text-5xl">Categories</h2>
-              <span className="text-4xl">Shop now!</span>
+          <div className="col-span-1 p-4 flex flex-col items-center h-full mt-8 py-8">
+            <div className="flex flex-col items-center justify-center gap-8 text-white w-full">
+              <h2 className="text-5xl text-center">Products On Sale</h2>
+              <span className="text-4xl text-center">Shop now!</span>
             </div>
+
+            <Button
+              className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500 mt-12 text-md"
+              effect="expandIcon"
+              icon={ArrowRight}
+              iconPlacement="right"
+            >
+              Explore more
+            </Button>
           </div>
+
           <div className="col-span-2">
             <CarouselSize className="px-13" images={ImagesList} />
           </div>

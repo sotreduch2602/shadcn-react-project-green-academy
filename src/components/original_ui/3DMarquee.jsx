@@ -8,7 +8,7 @@ import image5 from "@/assets/images/image-5.png";
 import image from "@/assets/images/image.png";
 import frame from "@/assets/images/Frame 26086938.png";
 
-export function ThreeDMarqueeDemo() {
+export const ThreeDMarqueeDemo = () => {
   const images = [
     image1,
     image2,
@@ -57,4 +57,4 @@ export function ThreeDMarqueeDemo() {
       </div>
     </>
   );
-}
+};
