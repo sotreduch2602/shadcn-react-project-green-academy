@@ -21,8 +21,6 @@ const ProductCard = ({
     ((originalPrice - salePrice) / originalPrice) * 100
   );
 
-  console.log(discountPercentage);
-
   return (
     <Card className={cn("relative overflow-hidden", className)}>
       {/* Sale Badge */}

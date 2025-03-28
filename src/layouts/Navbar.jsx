@@ -43,22 +43,25 @@ const Navbar = () => {
                     >
                       <NavigationMenuItem>
                         <NavigationMenuLink
+                          href="/"
+                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                        >
+                          Products
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
                           href="/blog"
-                          className="font-medium"
+                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
                           Blog
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                       <NavigationMenuItem>
                         <NavigationMenuLink
-                          href="/blog"
-                          className="font-medium"
+                          href="/faq"
+                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
-                          Blog
-                        </NavigationMenuLink>
-                      </NavigationMenuItem>
-                      <NavigationMenuItem>
-                        <NavigationMenuLink href="/faq" className="font-medium">
                           FAQ
                         </NavigationMenuLink>
                       </NavigationMenuItem>
@@ -66,7 +69,7 @@ const Navbar = () => {
                       <NavigationMenuItem>
                         <NavigationMenuLink
                           href="/contact"
-                          className="font-medium"
+                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
                           Contact Us
                         </NavigationMenuLink>
@@ -95,39 +98,28 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100">
+                  {/* <NavigationMenuTrigger className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100">
                     Products
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-3 p-6 w-[450px]">
-                      <div className="flex items-center gap-4">
-                        <img
-                          src="/placeholder-image-1.jpg"
-                          alt="Product 1"
-                          className="h-16 w-16 rounded-md object-cover"
-                        />
-                        <div>
-                          <h4 className="text-sm font-medium">Product 1</h4>
-                          <p className="text-sm text-muted-foreground">
-                            Description for Product 1
-                          </p>
-                        </div>
+                  <NavigationMenuContent className={'flex justify-center'}>
+                    <div className="grid grid-cols-3 gap-3 p-6 w-[600px]">
+                      <div className="col-span-1 flex flex-col items-center justify-center">
+                        <a>Mobiles Phone</a>
+                        <a>Mobiles Phone</a>
+                        <a>Mobiles Phone</a>
+                        <a>Mobiles Phone</a>
+                        <a>Mobiles Phone</a>
+                        <a>Mobiles Phone</a>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <img
-                          src="/placeholder-image-2.jpg"
-                          alt="Product 2"
-                          className="h-16 w-16 rounded-md object-cover"
-                        />
-                        <div>
-                          <h4 className="text-sm font-medium">Product 2</h4>
-                          <p className="text-sm text-muted-foreground">
-                            Description for Product 2
-                          </p>
-                        </div>
-                      </div>
+                      <div className="col-span-2">asd</div>
                     </div>
-                  </NavigationMenuContent>
+                  </NavigationMenuContent> */}
+                  <NavigationMenuLink
+                    href="/products"
+                    className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                  >
+                    Products
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>

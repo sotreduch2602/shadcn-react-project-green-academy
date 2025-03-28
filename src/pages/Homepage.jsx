@@ -2,8 +2,9 @@ import { ThreeDMarqueeDemo } from "@/components/original_ui/3DMarquee";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
-  GitCompareArrowsIcon,
-  HeadsetIcon,
+  Clock12Icon,
+  LucideComputer,
+  MapPin,
   ShieldCheckIcon,
   TruckIcon,
 } from "lucide-react";
@@ -15,12 +16,14 @@ import image4 from "@/assets/images/image-4.png";
 import image5 from "@/assets/images/image-5.png";
 import image from "@/assets/images/image.png";
 import frame from "@/assets/images/Frame 26086938.png";
-
 import { BrandImages } from "@/assets/brand_devices";
 
 import CategoryCarousel from "@/components/original_ui/CategoryCarousel";
 import CarouselSizeSale from "@/components/original_ui/CarouselSizeSale";
 import ProductCard from "@/components/original_ui/ProductCard";
+import ShopByBrandIcon from "@/components/original_ui/ShopByBrandIcon";
+import BlogCard from "@/components/original_ui/BlogCard";
+import Footer from "@/layouts/Footer";
 
 const ImagesList = [image1, image2, image3, image4, image5, image, frame];
 const CategoriesList = [image1, image2, image3, image4, image5];
@@ -82,7 +85,7 @@ const Homepage = () => {
 
       <section className="max-w-screen-xl mx-auto  my-6">
         <div className="flex items-center justify-between border-b-2 pb-6">
-          <h2 className="text-4xl font-medium">New Product</h2>
+          <h2 className="text-3xl font-medium">New Product</h2>
           <Button
             variant="ghost1"
             effect="expandIcon"
@@ -111,7 +114,7 @@ const Homepage = () => {
 
       <section className="max-w-screen-xl mx-auto  my-6">
         <div className="flex items-center justify-between border-b-2 pb-6">
-          <h2 className="text-4xl font-medium">Best Sellers</h2>
+          <h2 className="text-3xl font-medium">Best Sellers</h2>
           <Button
             variant="ghost1"
             effect="expandIcon"
@@ -123,7 +126,7 @@ const Homepage = () => {
         </div>
 
         {/* ! Remember create component NewProductList */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4  mx-10 mt-3">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
           {NewProductList.map((item, index) => (
             <ProductCard
               className={
@@ -154,9 +157,9 @@ const Homepage = () => {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2.5 justify-between">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2.5 justify-between">
           {BrandImages.map((i, index) => (
-            <div key={index}>
+            <div key={index} className="col-span-1 flex justify-center">
               <a className="bg-white w-48 h-24 flex items-center justify-center rounded-md overflow-hidden group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl">
                 <img
                   alt="brandImage"
@@ -169,63 +172,29 @@ const Homepage = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16 p-2 shadow-sm shadow-shop_light_green/20 py-5">
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
-            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
-              <TruckIcon className="size-10" />
-            </span>
-            <div className="text-md">
-              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
-                Free Delivery
-              </p>
-              <p className="text-sky-700 font-medium transition-colors duration-300">
-                Free shipping over $100
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
-            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
-              <GitCompareArrowsIcon className="size-10" />
-            </span>
-            <div className="text-md">
-              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
-                Easy Returns
-              </p>
-              <p className="text-sky-700 font-medium transition-colors duration-300">
-                Easy return policy
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 group text-black hover:text-sky-600 transition-colors duration-300">
-            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
-              <HeadsetIcon className="size-10" />
-            </span>
-            <div className="text-md">
-              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
-                Customer Support
-              </p>
-              <p className="text-sky-700 font-medium transition-colors duration-300">
-                Friendly 24/7 customer support
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
-            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
-              <ShieldCheckIcon className="size-10" />
-            </span>
-            <div className="text-sm">
-              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
-                Money Back guarantee
-              </p>
-              <p className="text-sky-700 font-medium transition-colors duration-300">
-                Quality checked by our team
-              </p>
-            </div>
-          </div>
+          <ShopByBrandIcon></ShopByBrandIcon>
         </div>
       </section>
+
+      <section className="max-w-screen-xl mx-auto my-6">
+        <div className="flex items-center justify-between border-b-2 pb-6">
+          <h2 className="text-3xl font-medium">Our Blog</h2>
+          <Button
+            variant="ghost1"
+            effect="expandIcon"
+            icon={ArrowRight}
+            iconPlacement="right"
+          >
+            View all
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+          <BlogCard></BlogCard>
+        </div>
+      </section>
+
+      <Footer></Footer>
     </>
   );
 };
