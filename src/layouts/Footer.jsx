@@ -43,9 +43,12 @@ const Footer = () => {
 
         <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <a>
-              <h2 className="text-2xl text-shop_dark_green font-black tracking-wider uppercase hover:text-shop_light_green hoverEffect group font-sans">
-                TechShop
+            <a className="cursor-pointer">
+              <h2 className="text-2xl text-orange-600 font-black tracking-wider uppercase group font-sans hover:text-sky-900 transition-colors duration-300">
+                Tech
+                <span className="text-sky-900 group-hover:text-green transition-colors duration-300">
+                  Shop
+                </span>
               </h2>
             </a>
             <p className="text-gray-600 text-sm">

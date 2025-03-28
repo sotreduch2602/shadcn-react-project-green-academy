@@ -8,13 +8,13 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 import Brand from "@/components/original_ui/brand";
 
 import SearchIcon from "@/assets/navbar/search.svg";
 import CartIcon from "@/assets/navbar/bag.svg";
 import UserIcon from "@/assets/navbar/profile.svg";
 import { Outlet } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 
 export const Icons = {
   search: SearchIcon,
@@ -36,7 +36,9 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="left">
                 <div className="p-4">
-                  <Brand className={"ml-0"} />
+                  <Link to="/">
+                    <Brand className={"ml-0"} />
+                  </Link>
                   <NavigationMenu orientation="vertical" className="w-full">
                     <NavigationMenuList
                       className={"flex-col justify-start items-start my-4"}
@@ -81,7 +83,9 @@ const Navbar = () => {
             </Sheet>
 
             {/* Brand */}
-            <Brand />
+            <Link to="/">
+              <Brand />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -98,22 +102,6 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  {/* <NavigationMenuTrigger className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100">
-                    Products
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className={'flex justify-center'}>
-                    <div className="grid grid-cols-3 gap-3 p-6 w-[600px]">
-                      <div className="col-span-1 flex flex-col items-center justify-center">
-                        <a>Mobiles Phone</a>
-                        <a>Mobiles Phone</a>
-                        <a>Mobiles Phone</a>
-                        <a>Mobiles Phone</a>
-                        <a>Mobiles Phone</a>
-                        <a>Mobiles Phone</a>
-                      </div>
-                      <div className="col-span-2">asd</div>
-                    </div>
-                  </NavigationMenuContent> */}
                   <NavigationMenuLink
                     href="/products"
                     className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
