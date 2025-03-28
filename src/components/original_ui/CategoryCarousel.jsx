@@ -10,7 +10,12 @@ const CategoryCarousel = ({ images }) => {
   return (
     <>
       {images.map((i, index) => (
-        <Card key={index} className={"mx-2"}>
+        <Card
+          key={index}
+          className={
+            "mx-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 hover:scale-105"
+          }
+        >
           <CardHeader>
             <CardTitle className="flex items-center justify-center">
               <div className="size-[112px] flex items-center justify-center">

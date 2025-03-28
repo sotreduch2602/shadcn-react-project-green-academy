@@ -32,7 +32,7 @@ const CarouselSizeSale = ({ images, className, products }) => {
         <CarouselContent>
           {images.map((image, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-1">
+              <div>
                 <ProductCard
                   image={image}
                   title={items[index].title}

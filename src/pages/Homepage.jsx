@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
   GitCompareArrowsIcon,
+  HeadsetIcon,
   ShieldCheckIcon,
   TruckIcon,
 } from "lucide-react";
@@ -93,11 +94,11 @@ const Homepage = () => {
         </div>
 
         {/* ! Remember create component NewProductList */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4  mx-10 mt-3">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
           {NewProductList.map((item, index) => (
             <ProductCard
-              className={"m-2"}
               key={index}
+              className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
               image={item}
               title={"title"}
               description={"items[index].description"}
@@ -125,7 +126,9 @@ const Homepage = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4  mx-10 mt-3">
           {NewProductList.map((item, index) => (
             <ProductCard
-              className={"m-2"}
+              className={
+                "m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
+              }
               key={index}
               image={item}
               title={"title"}
@@ -153,55 +156,72 @@ const Homepage = () => {
 
         <div className="flex items-center gap-2.5 justify-between">
           {BrandImages.map((i, index) => (
-            <a key={index} className="bg-white w-48 h-24 flex items-center justify-center rounded-md overflow-hidden hover:shadow-lg">
-              <img alt="brandImage" src={i}></img>
-            </a>
+            <div key={index}>
+              <a className="bg-white w-48 h-24 flex items-center justify-center rounded-md overflow-hidden group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl">
+                <img
+                  alt="brandImage"
+                  src={i}
+                  className="max-w-[80%] h-auto transition-transform duration-300 ease-in-out group-hover:scale-110"
+                />
+              </a>
+            </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16 p-2  shadow-sm shadow-shop_light_green/20 py-5">
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600">
-            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
-              <TruckIcon className="size-8" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16 p-2 shadow-sm shadow-shop_light_green/20 py-5">
+          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
+            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
+              <TruckIcon className="size-10" />
             </span>
-            <div className="text-sm">
-              <p className="text-black/80 font-bold capitalize">
+            <div className="text-md">
+              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
                 Free Delivery
               </p>
-              <p className="text-gray-300">Free shipping over $100</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600">
-            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
-              <GitCompareArrowsIcon className="size-8" />
-            </span>
-            <div className="text-sm">
-              <p className="text-black/80 font-bold capitalize">
-                Free Delivery
+              <p className="text-sky-700 font-medium transition-colors duration-300">
+                Free shipping over $100
               </p>
-              <p className="text-gray-300">Free shipping over $100</p>
             </div>
           </div>
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600">
-            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
-              <GitCompareArrowsIcon className="size-8" />
+
+          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
+            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
+              <GitCompareArrowsIcon className="size-10" />
             </span>
-            <div className="text-sm">
-              <p className="text-black/80 font-bold capitalize">
+            <div className="text-md">
+              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
+                Easy Returns
+              </p>
+              <p className="text-sky-700 font-medium transition-colors duration-300">
+                Easy return policy
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 group text-black hover:text-sky-600 transition-colors duration-300">
+            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
+              <HeadsetIcon className="size-10" />
+            </span>
+            <div className="text-md">
+              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
                 Customer Support
               </p>
-              <p className="text-gray-300">Friendly 27/7 customer support</p>
+              <p className="text-sky-700 font-medium transition-colors duration-300">
+                Friendly 24/7 customer support
+              </p>
             </div>
           </div>
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600">
-            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
-              <ShieldCheckIcon className="size-8" />
+
+          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
+            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
+              <ShieldCheckIcon className="size-10" />
             </span>
             <div className="text-sm">
-              <p className="text-black/80 font-bold capitalize">
+              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
                 Money Back guarantee
               </p>
-              <p className="text-gray-300">Quality checked by our team</p>
+              <p className="text-sky-700 font-medium transition-colors duration-300">
+                Quality checked by our team
+              </p>
             </div>
           </div>
         </div>
