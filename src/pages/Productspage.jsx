@@ -16,6 +16,8 @@ import {
   Headphones,
   Watch,
   Briefcase,
+  ArrowRightIcon,
+  ShoppingBag,
 } from "lucide-react"; // Import icons from lucide-react
 
 const ProductsPage = () => {
@@ -197,7 +199,10 @@ const ProductsPage = () => {
                         </div>
                       </div>
                       <div className="w-full h-12 flex items-center">
-                        <Button effect="gooeyLeft">Add to Cart</Button>
+                        <Button variant="skyblue" effect="shineHover">
+                          <ShoppingBag />
+                          Add to Card
+                        </Button>
                       </div>
                     </div>
                   </div>

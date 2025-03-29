@@ -18,6 +18,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         ghost1: "hover:transparent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        skyblue: "bg-sky-700 text-white hover:bg-sky-700/90",
       },
       effect: {
         expandIcon: "group gap-0 relative",
