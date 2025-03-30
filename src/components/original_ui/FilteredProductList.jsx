@@ -1,6 +1,6 @@
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button"; // Import the Button component
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Laptop,
   Smartphone,
@@ -12,6 +12,7 @@ import {
   ShoppingBag,
 } from "lucide-react"; // Import icons from lucide-react
 import axios from "axios";
+import { CategoriesContext } from "@/contexts/CategoriesContext";
 
 const iconComponents = {
   Laptop: Laptop,
@@ -26,15 +27,13 @@ const FilteredProductList = () => {
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [priceRange, setPriceRange] = useState([20, 80]);
   const [categoriesList, setCategoriesList] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const { selectCategory, setSelectCategory } = useContext(CategoriesContext);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/categories")
       .then((res) => setCategoriesList(res.data));
   }, []);
-
-  console.log(categoriesList);
 
   const renderIcon = (iconName) => {
     const IconComponent = iconComponents[iconName];
@@ -48,7 +47,10 @@ const FilteredProductList = () => {
     setPriceRange(value);
   };
   const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
+    setSelectCategory(category);
+  };
+  const handleResetCategorySelect = () => {
+    setSelectCategory({});
   };
 
   return (
@@ -59,34 +61,34 @@ const FilteredProductList = () => {
           <div className="grid grid-cols-2 gap-2 mt-2 space-y-1">
             {categoriesList.map((category) => (
               <Button
-                key={category.name}
+                key={category.category_id}
                 variant={
-                  selectedCategory === category.name ? "default" : "outline"
+                  selectCategory.name === category.name ? "default" : "outline"
                 }
                 className={`w-full text-left flex items-center gap-2 ${
-                  selectedCategory === category.name
+                  selectCategory.name === category.name
                     ? "bg-sky-700 text-white"
                     : "text-gray-700"
                 }`}
-                onClick={() => handleCategorySelect(category.name)}
+                onClick={() => handleCategorySelect(category)}
               >
                 <span className="w-5 h-5">{renderIcon(category.icon)}</span>
                 {category.name}
               </Button>
             ))}
           </div>
-          {selectedCategory && (
+          {selectCategory && (
             <Button
               variant="link"
               className="w-full mt-3 text-gray-700"
-              onClick={() => setSelectedCategory(null)}
+              onClick={() => handleResetCategorySelect()}
             >
               Reset Category
             </Button>
           )}
         </div>
 
-        <div className="w-full bg-white p-5">
+        <div className="w-full bg-white p-  5">
           <h2 className="text-base font-black">Brands</h2>
           <div className="grid grid-cols-2 gap-2 mt-2 space-y-1">
             {["Apple", "Samsung", "Sony", "Canon", "Huawei", "Lenovo"].map(
@@ -138,7 +140,10 @@ const FilteredProductList = () => {
           {/* FilteredProductList */}
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-              <div className="text-sm border-[1px] rounded-md border-sky-950/20 group bg-white">
+              <div
+                key={index}
+                className="text-sm border-[1px] rounded-md border-sky-950/20 group bg-white"
+              >
                 <div className="relative group overflow-hidden rounded-md bg-[#f6f6f6]">
                   <a>
                     <img

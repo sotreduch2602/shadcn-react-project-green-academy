@@ -26,12 +26,15 @@ import ShopByBrandIcon from "@/components/original_ui/ShopByBrandIcon";
 import BlogCard from "@/components/original_ui/BlogCard";
 import Footer from "@/layouts/Footer";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const ImagesList = [image1, image2, image3, image4, image5, image, frame];
 const CategoriesList = [image1, image2, image3, image4, image5, image6];
 const NewProductList = [image1, image2, image3, image4];
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="max-w-screen mx-auto relative">
@@ -46,6 +49,7 @@ const Homepage = () => {
           <Button
             effect="shineHover"
             className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500"
+            onClick={() => navigate("/products")} // Replaced "as={Link}" with "onClick"
           >
             Explore more
           </Button>
@@ -74,6 +78,7 @@ const Homepage = () => {
               effect="expandIcon"
               icon={ArrowRight}
               iconPlacement="right"
+              onClick={() => navigate("/products")}
             >
               Explore more
             </Button>

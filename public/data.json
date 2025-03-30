@@ -40,7 +40,7 @@
       "name": "Phones",
       "description": "Mobile phones and accessories",
       "icon": "Smartphone",
-      "imageURL": "assets/images/categories/phones.jpg",
+      "imageURL": "/assets/images/categories/phones2.png",
       "created_at": "2024-01-01 00:00:00"
     },
     {
@@ -48,7 +48,7 @@
       "name": "Laptops",
       "description": "Notebooks and laptop computers",
       "icon": "Laptop",
-      "imageURL": "assets/images/categories/laptops.png",
+      "imageURL": "/assets/images/categories/laptops.png",
       "created_at": "2024-01-01 00:00:00"
     },
     {
@@ -56,7 +56,7 @@
       "name": "Cameras",
       "description": "Digital cameras and photography equipment",
       "icon": "Camera",
-      "imageURL": "assets/images/categories/cameras.png",
+      "imageURL": "/assets/images/categories/cameras.png",
       "created_at": "2024-01-01 00:00:00"
     },
     {
@@ -64,7 +64,7 @@
       "name": "Headphones",
       "description": "Audio headphones and earbuds",
       "icon": "Headphones",
-      "imageURL": "@/assets/images/categories/headphones.jpg",
+      "imageURL": "/assets/images/categories/headphones.jpg",
       "created_at": "2024-01-01 00:00:00"
     },
     {
@@ -72,7 +72,7 @@
       "name": "Watches",
       "description": "Smart watches and wearables",
       "icon": "Watch",
-      "imageURL": "@/assets/images/categories/watches.png",
+      "imageURL": "/assets/images/categories/watches.png",
       "created_at": "2024-01-01 00:00:00"
     },
     {
@@ -80,7 +80,7 @@
       "name": "Accessories",
       "description": "Various tech accessories and gadgets",
       "icon": "Briefcase",
-      "imageURL": "@/assets/images/categories/cameras.png",
+      "imageURL": "/assets/images/categories/accessories2.png",
       "created_at": "2024-01-01 00:00:00"
     }
   ],

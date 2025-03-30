@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -6,21 +6,24 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import axios from "axios";
+import { CategoriesContext } from "@/contexts/CategoriesContext";
+import { useNavigate } from "react-router-dom";
 
 const CategoryCarousel = () => {
-  const [categoriesList, setCategoriesList] = useState([]);
+  const navigate = useNavigate();
+  const { categoriesList, selectCategory, setSelectCategory } =
+    useContext(CategoriesContext);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/categories")
-      .then((res) => setCategoriesList(res.data));
-  }, []);
+  const MoveToFilteredCategories = (category) => {
+    setSelectCategory(category);
+    navigate("/products");
+  };
 
   return (
     <>
       {categoriesList.map((category) => (
         <Card
+          onClick={() => MoveToFilteredCategories(category)}
           key={category.category_id}
           className={
             "m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 hover:scale-105"
