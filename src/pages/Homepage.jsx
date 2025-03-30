@@ -16,6 +16,7 @@ import image4 from "@/assets/images/image-4.png";
 import image5 from "@/assets/images/image-5.png";
 import image from "@/assets/images/image.png";
 import frame from "@/assets/images/Frame 26086938.png";
+import image6 from "@/assets/images/top-view-virtual-reality-simulator-with-laptop.jpg";
 import { BrandImages } from "@/assets/brand_devices";
 
 import CategoryCarousel from "@/components/original_ui/CategoryCarousel";
@@ -24,9 +25,10 @@ import ProductCard from "@/components/original_ui/ProductCard";
 import ShopByBrandIcon from "@/components/original_ui/ShopByBrandIcon";
 import BlogCard from "@/components/original_ui/BlogCard";
 import Footer from "@/layouts/Footer";
+import axios from "axios";
 
 const ImagesList = [image1, image2, image3, image4, image5, image, frame];
-const CategoriesList = [image1, image2, image3, image4, image5];
+const CategoriesList = [image1, image2, image3, image4, image5, image6];
 const NewProductList = [image1, image2, image3, image4];
 
 const Homepage = () => {
@@ -54,7 +56,7 @@ const Homepage = () => {
       </section>
 
       <section className="max-w-screen-xl mx-auto px-4 my-6">
-        <div className="grid grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-3 lg:grid-cols-6">
           <CategoryCarousel images={CategoriesList} />
         </div>
       </section>
