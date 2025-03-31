@@ -13,6 +13,7 @@ import {
 } from "lucide-react"; // Import icons from lucide-react
 import axios from "axios";
 import { CategoriesContext } from "@/contexts/CategoriesContext";
+import { BrandsContext } from "@/contexts/BrandContext";
 
 const iconComponents = {
   Laptop: Laptop,
@@ -24,25 +25,31 @@ const iconComponents = {
 };
 
 const FilteredProductList = () => {
-  const [selectedBrand, setSelectedBrand] = useState(null);
   const [priceRange, setPriceRange] = useState([20, 80]);
   const [categoriesList, setCategoriesList] = useState([]);
+  const [brandsList, setBrandsList] = useState([]);
   const { selectCategory, setSelectCategory } = useContext(CategoriesContext);
+  const { selectBrand, setSelectBrand } = useContext(BrandsContext);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/categories")
-      .then((res) => setCategoriesList(res.data));
+    Promise.all([
+      axios.get("http://localhost:3000/categories"),
+      axios.get("http://localhost:3000/brands"),
+    ])
+      .then(([categoriesRes, brandsRes]) => {
+        setCategoriesList(categoriesRes.data);
+        setBrandsList(brandsRes.data);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+  console.log(brandsList);
 
   const renderIcon = (iconName) => {
     const IconComponent = iconComponents[iconName];
     return IconComponent ? <IconComponent size={20} /> : null;
   };
 
-  const handleBrandSelect = (brand) => {
-    setSelectedBrand(brand);
-  };
   const handlePriceChange = (value) => {
     setPriceRange(value);
   };
@@ -51,6 +58,14 @@ const FilteredProductList = () => {
   };
   const handleResetCategorySelect = () => {
     setSelectCategory({});
+  };
+
+  const handleBrandSelect = (brand) => {
+    setSelectBrand(brand);
+    console.log(selectBrand);
+  };
+  const handleResetBrandSelect = () => {
+    setSelectBrand({});
   };
 
   return (
@@ -88,31 +103,29 @@ const FilteredProductList = () => {
           )}
         </div>
 
-        <div className="w-full bg-white p-  5">
+        <div className="w-full bg-white p-5">
           <h2 className="text-base font-black">Brands</h2>
           <div className="grid grid-cols-2 gap-2 mt-2 space-y-1">
-            {["Apple", "Samsung", "Sony", "Canon", "Huawei", "Lenovo"].map(
-              (brand) => (
-                <Button
-                  key={brand}
-                  variant={selectedBrand === brand ? "default" : "outline"}
-                  className={`w-full text-left ${
-                    selectedBrand === brand
-                      ? "bg-sky-700 text-white"
-                      : "text-gray-700"
-                  }`}
-                  onClick={() => handleBrandSelect(brand)}
-                >
-                  {brand}
-                </Button>
-              )
-            )}
+            {brandsList.map((brand) => (
+              <Button
+                key={brand.brand_id}
+                variant={selectBrand.name === brand.name ? "default" : "outline"}
+                className={`w-full text-left ${
+                  selectBrand.name === brand.name
+                    ? "bg-sky-700 text-white"
+                    : "text-gray-700"
+                }`}
+                onClick={() => handleBrandSelect(brand)}
+              >
+                {brand}
+              </Button>
+            ))}
           </div>
-          {selectedBrand && (
+          {selectBrand.name && (
             <Button
               variant="link"
               className="w-full mt-3 text-gray-700"
-              onClick={() => setSelectedBrand(null)}
+              onClick={() => setSelectedBrand({})}
             >
               Reset Brand
             </Button>

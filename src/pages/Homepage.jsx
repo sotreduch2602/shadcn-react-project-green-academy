@@ -17,7 +17,6 @@ import image5 from "@/assets/images/image-5.png";
 import image from "@/assets/images/image.png";
 import frame from "@/assets/images/Frame 26086938.png";
 import image6 from "@/assets/images/top-view-virtual-reality-simulator-with-laptop.jpg";
-import { BrandImages } from "@/assets/brand_devices";
 
 import CategoryCarousel from "@/components/original_ui/CategoryCarousel";
 import CarouselSizeSale from "@/components/original_ui/CarouselSizeSale";
@@ -26,6 +25,8 @@ import ShopByBrandIcon from "@/components/original_ui/ShopByBrandIcon";
 import BlogCard from "@/components/original_ui/BlogCard";
 import Footer from "@/layouts/Footer";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { BrandsContext } from "@/contexts/BrandContext";
 
 const ImagesList = [image1, image2, image3, image4, image5, image, frame];
 const CategoriesList = [image1, image2, image3, image4, image5, image6];
@@ -33,6 +34,12 @@ const NewProductList = [image1, image2, image3, image4];
 
 const Homepage = () => {
   const navigate = useNavigate();
+  const { BrandLists, setSelectBrand } = useContext(BrandsContext);
+
+  function MoveToProductsPageWithBrand(brand) {
+    setSelectBrand(brand);
+    navigate("/products");
+  }
 
   return (
     <>
@@ -164,12 +171,16 @@ const Homepage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2.5 justify-between">
-          {BrandImages.map((i, index) => (
-            <div key={index} className="col-span-1 flex justify-center">
+          {BrandLists.map((brand, index) => (
+            <div
+              key={index}
+              className="col-span-1 flex justify-center cursor-pointer"
+              onClick={() => MoveToProductsPageWithBrand(brand)}
+            >
               <a className="bg-white w-48 h-24 flex items-center justify-center rounded-md overflow-hidden group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl">
                 <img
                   alt="brandImage"
-                  src={i}
+                  src={brand.logo}
                   className="max-w-[80%] h-auto transition-transform duration-300 ease-in-out group-hover:scale-110"
                 />
               </a>

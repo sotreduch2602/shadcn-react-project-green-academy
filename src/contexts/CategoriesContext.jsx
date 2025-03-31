@@ -15,7 +15,12 @@ export const CategoriesProvider = ({ children }) => {
       .then((res) => setCategoriesList(res.data));
   }, []);
 
-  const value = { categoriesList, selectCategory, setSelectCategory };
+  const value = {
+    categoriesList,
+    setCategoriesList,
+    selectCategory,
+    setSelectCategory,
+  };
   return (
     <CategoriesContext.Provider value={value}>
       {children}
