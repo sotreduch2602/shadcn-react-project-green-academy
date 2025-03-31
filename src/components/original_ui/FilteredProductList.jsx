@@ -1,5 +1,5 @@
 import { Slider } from "@/components/ui/slider";
-import { Button } from "@/components/ui/button"; // Import the Button component
+import { Button } from "@/components/ui/button";
 import { useContext, useEffect, useState } from "react";
 import {
   Laptop,
@@ -8,9 +8,8 @@ import {
   Headphones,
   Watch,
   Briefcase,
-  ArrowRightIcon,
   ShoppingBag,
-} from "lucide-react"; // Import icons from lucide-react
+} from "lucide-react";
 import axios from "axios";
 import { CategoriesContext } from "@/contexts/CategoriesContext";
 import { BrandsContext } from "@/contexts/BrandContext";
@@ -43,37 +42,24 @@ const FilteredProductList = () => {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-  console.log(brandsList);
-
   const renderIcon = (iconName) => {
     const IconComponent = iconComponents[iconName];
     return IconComponent ? <IconComponent size={20} /> : null;
   };
 
-  const handlePriceChange = (value) => {
-    setPriceRange(value);
-  };
-  const handleCategorySelect = (category) => {
-    setSelectCategory(category);
-  };
-  const handleResetCategorySelect = () => {
-    setSelectCategory({});
-  };
+  const handleCategorySelect = (category) => setSelectCategory(category);
+  const handleResetCategorySelect = () => setSelectCategory({});
 
-  const handleBrandSelect = (brand) => {
-    setSelectBrand(brand);
-    console.log(selectBrand);
-  };
-  const handleResetBrandSelect = () => {
-    setSelectBrand({});
-  };
+  const handleBrandSelect = (brand) => setSelectBrand(brand);
+  const handleResetBrandSelect = () => setSelectBrand({});
 
   return (
     <div className="flex flex-col md:flex-row gap-5 border-t border-t-[#1b5a7e]/50">
-      <div className="md:sticky md:top-20 md:self-start md:h-[calc(100vh-160px)] md:overflow-y-auto md:min-w-64 pb-5 scrollbar-hide border-r border-r-[#1b5a7e]/50 ">
+      <div className="md:sticky md:top-20 md:self-start md:h-[calc(100vh-160px)] md:overflow-y-auto md:min-w-64 pb-5 scrollbar-hide border-r border-r-[#1b5a7e]/50">
+        {/* Categories */}
         <div className="w-full bg-white p-5">
           <h2 className="text-base font-black">Categories</h2>
-          <div className="grid grid-cols-2 gap-2 mt-2 space-y-1">
+          <div className="grid grid-cols-2 gap-2 mt-2">
             {categoriesList.map((category) => (
               <Button
                 key={category.category_id}
@@ -92,24 +78,27 @@ const FilteredProductList = () => {
               </Button>
             ))}
           </div>
-          {selectCategory && (
+          {selectCategory.name && (
             <Button
               variant="link"
               className="w-full mt-3 text-gray-700"
-              onClick={() => handleResetCategorySelect()}
+              onClick={handleResetCategorySelect}
             >
               Reset Category
             </Button>
           )}
         </div>
 
+        {/* Brands */}
         <div className="w-full bg-white p-5">
           <h2 className="text-base font-black">Brands</h2>
-          <div className="grid grid-cols-2 gap-2 mt-2 space-y-1">
+          <div className="grid grid-cols-2 gap-2 mt-2">
             {brandsList.map((brand) => (
               <Button
                 key={brand.brand_id}
-                variant={selectBrand.name === brand.name ? "default" : "outline"}
+                variant={
+                  selectBrand.name === brand.name ? "default" : "outline"
+                }
                 className={`w-full text-left ${
                   selectBrand.name === brand.name
                     ? "bg-sky-700 text-white"
@@ -117,7 +106,7 @@ const FilteredProductList = () => {
                 }`}
                 onClick={() => handleBrandSelect(brand)}
               >
-                {brand}
+                {brand.name}
               </Button>
             ))}
           </div>
@@ -125,21 +114,22 @@ const FilteredProductList = () => {
             <Button
               variant="link"
               className="w-full mt-3 text-gray-700"
-              onClick={() => setSelectedBrand({})}
+              onClick={handleResetBrandSelect}
             >
               Reset Brand
             </Button>
           )}
         </div>
 
+        {/* Price Range */}
         <div className="w-full bg-white p-5">
           <h2 className="text-base font-black">Price</h2>
-          <div className="grid gap-2 mt-2 space-y-1">
+          <div className="grid gap-2 mt-2">
             <Slider
               defaultValue={priceRange}
               max={100}
               step={1}
-              onValueChange={handlePriceChange}
+              onValueChange={setPriceRange}
             />
             <div className="flex justify-between text-sm text-gray-600">
               <span>${priceRange[0]}</span>
@@ -148,9 +138,10 @@ const FilteredProductList = () => {
           </div>
         </div>
       </div>
+
+      {/* Product List */}
       <div className="flex-1 pt-5">
         <div className="h-[calc(100vh-160px)] overflow-y-auto pr-2 scrollbar-hide">
-          {/* FilteredProductList */}
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
               <div
@@ -164,7 +155,7 @@ const FilteredProductList = () => {
                       alt="productImage"
                       loading="lazy"
                       src="https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format"
-                    ></img>
+                    />
                   </a>
                 </div>
                 <div className="p-3 flex flex-col gap-2">
@@ -191,7 +182,7 @@ const FilteredProductList = () => {
                   <div className="w-full h-12 flex items-center">
                     <Button variant="skyblue" effect="shineHover">
                       <ShoppingBag />
-                      Add to Card
+                      Add to Cart
                     </Button>
                   </div>
                 </div>
