@@ -69,7 +69,7 @@ const Homepage = () => {
           </span>
           <Button
             effect="shineHover"
-            className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500"
+            className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500 cursor-pointer"
             onClick={() => navigate("/products")} // Replaced "as={Link}" with "onClick"
           >
             Explore more
@@ -95,7 +95,7 @@ const Homepage = () => {
             </div>
 
             <Button
-              className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500 mt-12 text-md"
+              className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500 mt-12 text-md cursor-pointer"
               effect="expandIcon"
               icon={ArrowRight}
               iconPlacement="right"
@@ -148,6 +148,8 @@ const Homepage = () => {
             effect="expandIcon"
             icon={ArrowRight}
             iconPlacement="right"
+            onClick={() => navigate("/products")}
+            className="cursor-pointer"
           >
             View all
           </Button>
@@ -164,7 +166,7 @@ const Homepage = () => {
               image={item.images[0]}
               title={item.name}
               description={item.description}
-              salePrice={undefined}
+              salePrice={item.salePrice}
               originalPrice={item.price}
             />
           ))}
@@ -179,7 +181,8 @@ const Homepage = () => {
             effect="expandIcon"
             icon={ArrowRight}
             iconPlacement="right"
-            className="text-sm font-semibold tracking-wide"
+            className="text-sm font-semibold tracking-wide cursor-pointer"
+            onClick={() => navigate("/products")}
           >
             View all
           </Button>
@@ -216,14 +219,15 @@ const Homepage = () => {
             effect="expandIcon"
             icon={ArrowRight}
             iconPlacement="right"
-            onClick={() => navigate('/products')}
+            onClick={() => navigate("/products")}
+            className="cursor-pointer"
           >
             View all
           </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
-          <BlogCard></BlogCard>
+          <BlogCard className='cursor-pointer'></BlogCard>
         </div>
       </section>
 

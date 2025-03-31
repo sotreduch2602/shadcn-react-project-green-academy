@@ -141,7 +141,6 @@
       "isBestSellerProduct": 0,
       "stock": 50,
       "images": [
-        "http://img.bbystatic.com/BestBuy_US/images/products/4390/43900_sa.jpg",
         "https://img.lazcdn.com/g/p/9951cd21504b3fa9fcc370367518ee39.png_720x720q80.png_.webp",
         "https://img.lazcdn.com/g/p/60ca40637446944b0fe4d3675ddf099d.jpg_720x720q80.jpg_.webp"
       ],
@@ -182,6 +181,21 @@
         "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7lgs3yd7"
       ],
       "created_at": "2024-01-01 09:00:00"
+    },
+    {
+      "product_id": 4,
+      "name": "Samsung 65-inch 4K Smart TV",
+      "category_id": 6,
+      "brand_id": 2,
+      "description": "Ultra HD 4K Smart TV with HDR and built-in streaming apps",
+      "price": 1199.99,
+      "isNewProduct": 1,
+      "isBestSellerProduct": 1,
+      "stock": 25,
+      "images": [
+        "https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format"
+      ],
+      "created_at": "2024-01-01 10:00:00"
     }
   ],
   "carts": [
