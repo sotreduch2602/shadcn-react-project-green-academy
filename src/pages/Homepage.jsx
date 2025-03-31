@@ -25,8 +25,7 @@ import ProductCard from "@/components/original_ui/ProductCard";
 import ShopByBrandIcon from "@/components/original_ui/ShopByBrandIcon";
 import BlogCard from "@/components/original_ui/BlogCard";
 import Footer from "@/layouts/Footer";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ImagesList = [image1, image2, image3, image4, image5, image, frame];
 const CategoriesList = [image1, image2, image3, image4, image5, image6];

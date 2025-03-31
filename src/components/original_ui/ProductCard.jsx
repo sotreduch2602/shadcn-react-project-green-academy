@@ -32,7 +32,7 @@ const ProductCard = ({
 
       <CardHeader>
         <CardTitle className="flex items-center justify-center">
-          <div className=" flex items-center justify-center">
+          <div className=" flex items-center justify-center h-[154px]">
             <img
               src={image}
               alt={title}
