@@ -10,6 +10,7 @@ import Blogpage from "./pages/Blogpage";
 import FAQpage from "./pages/FAQpage";
 import Contactpage from "./pages/Contactpage";
 import LoginPage from "./pages/user/Loginpage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App() {
   return (
@@ -22,7 +23,12 @@ function App() {
               <Routes>
                 <Route path="/" element={<Navbar />}>
                   <Route index element={<Homepage />} />
-                  <Route path="products" element={<ProductsPage />} />
+
+                  <Route path="products">
+                    <Route index element={<ProductsPage />} />
+                    <Route path="detail" element={<ProductDetailPage />} />
+                  </Route>
+
                   <Route path="blog" element={<Blogpage />} />
                   <Route path="faq" element={<FAQpage />} />
                   <Route path="contact" element={<Contactpage />} />
