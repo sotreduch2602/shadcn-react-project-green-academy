@@ -17,14 +17,18 @@ const ProductCard = ({
   salePrice,
   className,
 }) => {
-  const discountPercentage = Math.round(
-    ((originalPrice - salePrice) / originalPrice) * 100
-  );
+  let discountPercentage;
+
+  if (salePrice) {
+    discountPercentage = Math.round(
+      ((originalPrice - salePrice) / originalPrice) * 100
+    );
+  }
 
   return (
     <Card className={cn("relative overflow-hidden", className)}>
       {/* Sale Badge */}
-      {discountPercentage != 0 && (
+      {discountPercentage && (
         <div className="absolute top-0 right-0 bg-red-500 text-white px-3 py-1 rounded-bl-lg font-bold z-10">
           -{discountPercentage}%
         </div>
@@ -49,11 +53,15 @@ const ProductCard = ({
         </CardDescription>
 
         <div className="flex items-center gap-2 mt-2">
-          <span className="text-red-500 font-bold">${salePrice}</span>
-          {discountPercentage != 0 && (
-            <span className="text-gray-400 line-through text-sm">
-              ${originalPrice}
-            </span>
+          {discountPercentage ? (
+            <>
+              <span className="text-red-500 font-bold">${salePrice}</span>
+              <span className="text-gray-400 line-through text-sm">
+                ${originalPrice}
+              </span>
+            </>
+          ) : (
+            <span className="text-sky-700 font-bold">${originalPrice}</span>
           )}
         </div>
       </CardContent>

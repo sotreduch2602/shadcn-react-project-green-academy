@@ -6,9 +6,9 @@ const BlogCard = () => {
       {BlogImages.map((image, index) => (
         <div
           key={index}
-          className="rounded-md overflow-hidden border border-shop_dark_green/10 hover:border-shop_dark_green hover:shadow-lg transition-all duration-300"
+          className="rounded-md overflow-hidden border border-black/10 hover:border-shop_dark_green hover:shadow-lg transition-all duration-300"
         >
-          <a href={`/blog/post-${index + 1}`}>
+          <a href={`/blog`}>
             <img
               alt={`Blog post ${index + 1}`}
               loading="lazy"
@@ -34,7 +34,7 @@ const BlogCard = () => {
 
             <a
               className="text-base font-bold tracking-wide mt-5 line-clamp-2 hover:text-shop_dark_green hoverEffect"
-              href="/blog/office-rental-agency-or-direct-which-is-best-when-renting-an-office-in-london"
+              href="/blog"
             >
               Office rental agency or direct? Which is best when renting an
               office in London?

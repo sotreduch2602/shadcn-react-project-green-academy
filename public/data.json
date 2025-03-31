@@ -136,11 +136,14 @@
       "brand_id": 1,
       "description": "Apple's latest flagship smartphone with advanced features",
       "price": 999.99,
+      "salePrice": 49.99,
+      "isNewProduct": 1,
+      "isBestSellerProduct": 0,
       "stock": 50,
       "images": [
-        "iphone-15-pro.jpg",
-        "iphone-15-pro-side.jpg",
-        "iphone-15-pro-back.jpg"
+        "http://img.bbystatic.com/BestBuy_US/images/products/4390/43900_sa.jpg",
+        "https://img.lazcdn.com/g/p/9951cd21504b3fa9fcc370367518ee39.png_720x720q80.png_.webp",
+        "https://img.lazcdn.com/g/p/60ca40637446944b0fe4d3675ddf099d.jpg_720x720q80.jpg_.webp"
       ],
       "created_at": "2024-01-01 08:00:00"
     },
@@ -151,11 +154,14 @@
       "brand_id": 2,
       "description": "Premium Android smartphone with AI capabilities",
       "price": 899.99,
+      "salePrice": null,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 0,
       "stock": 45,
       "images": [
-        "samsung-s24.jpg",
-        "samsung-s24-side.jpg",
-        "samsung-s24-back.jpg"
+        "https://img.lazcdn.com/g/ff/kf/Sbd47103074b741c3a906d00bc691b18ey.jpg_720x720q80.jpg_.webp",
+        "https://img.lazcdn.com/g/ff/kf/S9894a79e195245e2b102421f8a2e0c43H.jpg_720x720q80.jpg_.webp",
+        "https://img.lazcdn.com/g/ff/kf/Sedfd50ff0c5a45d18a02142a1566da04K.jpg_720x720q80.jpg_.webp"
       ],
       "created_at": "2024-01-01 08:30:00"
     },
@@ -166,11 +172,14 @@
       "brand_id": 1,
       "description": "Powerful laptop for professionals",
       "price": 1499.99,
+      "salePrice": 49.99,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 1,
       "stock": 30,
       "images": [
-        "macbook-pro-m3.jpg",
-        "macbook-pro-m3-open.jpg",
-        "macbook-pro-m3-side.jpg"
+        "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7lfdji5d@resize_w450_nl",
+        "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7ldyz27d@resize_w450_nl",
+        "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7lgs3yd7"
       ],
       "created_at": "2024-01-01 09:00:00"
     }

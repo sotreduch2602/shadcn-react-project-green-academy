@@ -27,19 +27,34 @@ import Footer from "@/layouts/Footer";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { BrandsContext } from "@/contexts/BrandContext";
+import { ProductsContext } from "@/contexts/ProductContext";
+import axios from "axios";
 
 const ImagesList = [image1, image2, image3, image4, image5, image, frame];
-const CategoriesList = [image1, image2, image3, image4, image5, image6];
-const NewProductList = [image1, image2, image3, image4];
 
 const Homepage = () => {
   const navigate = useNavigate();
   const { BrandLists, setSelectBrand } = useContext(BrandsContext);
+  const { ProductLists, setProductLists } = useContext(ProductsContext);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/products")
+      .then((res) => setProductLists(res.data));
+  }, []);
 
   function MoveToProductsPageWithBrand(brand) {
     setSelectBrand(brand);
     navigate("/products");
   }
+
+  const filterNewProductsList = ProductLists.filter(
+    (product) => product.isNewProduct === 1
+  );
+
+  const filterBestProductsList = ProductLists.filter(
+    (product) => product.isBestSellerProduct === 1
+  );
 
   return (
     <>
@@ -67,7 +82,7 @@ const Homepage = () => {
 
       <section className="max-w-screen-xl mx-auto px-4 my-6">
         <div className="grid grid-cols-3 lg:grid-cols-6">
-          <CategoryCarousel images={CategoriesList} />
+          <CategoryCarousel />
         </div>
       </section>
 
@@ -91,7 +106,7 @@ const Homepage = () => {
           </div>
 
           <div className="col-span-2">
-            <CarouselSizeSale className="px-13" images={ImagesList} />
+            <CarouselSizeSale className="px-13" />
           </div>
         </div>
       </section>
@@ -111,15 +126,15 @@ const Homepage = () => {
 
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
-          {NewProductList.map((item, index) => (
+          {filterNewProductsList.map((item, index) => (
             <ProductCard
               key={index}
               className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
-              image={item}
-              title={"title"}
-              description={"items[index].description"}
-              salePrice={123}
-              originalPrice={123}
+              image={item.images[0]}
+              title={item.name}
+              description={item.description}
+              salePrice={item.salePrice}
+              originalPrice={item.price}
             />
           ))}
         </div>
@@ -140,17 +155,17 @@ const Homepage = () => {
 
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
-          {NewProductList.map((item, index) => (
+          {filterBestProductsList.map((item) => (
             <ProductCard
               className={
                 "m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
               }
-              key={index}
-              image={item}
-              title={"title"}
-              description={"items[index].description"}
-              salePrice={123}
-              originalPrice={123}
+              key={item.product_id}
+              image={item.images[0]}
+              title={item.name}
+              description={item.description}
+              salePrice={undefined}
+              originalPrice={item.price}
             />
           ))}
         </div>
@@ -201,6 +216,7 @@ const Homepage = () => {
             effect="expandIcon"
             icon={ArrowRight}
             iconPlacement="right"
+            onClick={() => navigate('/products')}
           >
             View all
           </Button>

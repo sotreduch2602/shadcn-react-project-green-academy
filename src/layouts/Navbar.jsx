@@ -15,6 +15,7 @@ import SearchIcon from "@/assets/navbar/search.svg";
 import CartIcon from "@/assets/navbar/bag.svg";
 import UserIcon from "@/assets/navbar/profile.svg";
 import { Outlet } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
 
 export const Icons = {
   search: SearchIcon,
@@ -142,21 +143,34 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="w-auto md:w-1/3 flex items-center justify-end gap-5">
-            <img
-              src={Icons.search}
-              alt="Search"
-              className="size-8 cursor-pointer"
-            />
-            <img
-              src={Icons.cart}
-              alt="Cart"
-              className="w-6 h-6 cursor-pointer"
-            />
-            <img
-              src={Icons.user}
-              alt="User"
-              className="size-9 cursor-pointer"
-            />
+            <div>
+              <img
+                src={Icons.search}
+                alt="Search"
+                className="size-8 cursor-pointer"
+              />
+            </div>
+
+            <div className="relative">
+              <img
+                src={Icons.cart}
+                alt="Cart"
+                className="w-6 h-6 cursor-pointer"
+              />
+              <Badge className=" absolute -top-2 -right-2 bg-red-500 text-white text px-1.5 py-0.5 rounded-full">
+                0
+              </Badge>
+            </div>
+
+            <div>
+              <a href="/login">
+                <img
+                  src={Icons.user}
+                  alt="User"
+                  className="size-9 cursor-pointer"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </header>
