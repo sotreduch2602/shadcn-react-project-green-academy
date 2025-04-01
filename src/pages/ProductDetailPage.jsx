@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Truck, RotateCcw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ProductDetailPage = () => {
+  let id = useParams();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [productSelected, setProductSelected] = useState(null);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/products/").then((res) => {
+      const productFound = res.data.find((p) => p.product_id == id);
+      setProductSelected(productFound);
+    });
+  }, [id]);
+
+  console.log(productSelected);
 
   const product = {
     name: '43" Class TU7000 Series Crystal UHD 4K Smart TV',

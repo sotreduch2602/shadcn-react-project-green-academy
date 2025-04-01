@@ -26,7 +26,7 @@ function App() {
 
                   <Route path="products">
                     <Route index element={<ProductsPage />} />
-                    <Route path="detail" element={<ProductDetailPage />} />
+                    <Route path="detail/:id" element={<ProductDetailPage />} />
                   </Route>
 
                   <Route path="blog" element={<Blogpage />} />
