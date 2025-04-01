@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Heart, Share2, Truck, RotateCcw } from "lucide-react";
+import { Truck, RotateCcw } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ProductDetailPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -29,7 +30,6 @@ const ProductDetailPage = () => {
   };
 
   const handleAddToCart = () => {
-    // Implement add to cart functionality
     console.log("Added to cart");
   };
 
@@ -108,9 +108,15 @@ const ProductDetailPage = () => {
                   value={quantity}
                   onChange={(e) => setQuantity(parseInt(e.target.value))}
                   min="1"
+                  className="text-center"
                 />
               </div>
-              <Button onClick={handleAddToCart} className="flex-1">
+              <Button
+                onClick={handleAddToCart}
+                variant="skyblue"
+                effect="ringHoverSky"
+                className="flex-1"
+              >
                 Add to Cart
               </Button>
             </div>
@@ -138,6 +144,67 @@ const ProductDetailPage = () => {
               </div>
             </div>
           </Card>
+        </div>
+      </div>
+      <div className="w-full max-screen-xl mb-10">
+        <div className="border-2 border-sky-700/10 rounded-md">
+          <Tabs defaultValue="description" className="w-full p-3">
+            <TabsList className="w-full grid grid-cols-3 bg-gray-100/50">
+              <TabsTrigger value="description">Description</TabsTrigger>
+              <TabsTrigger value="additional">
+                Additional Information
+              </TabsTrigger>
+              <TabsTrigger value="reviews">Reviews</TabsTrigger>
+            </TabsList>
+            <TabsContent value="description" className="mt-6">
+              <div className="text-gray-600 space-y-4">
+                <p>
+                  In ducimus quod sed eum repellendus ea fugiat. Pariatur ut
+                  illo at iure harum. Molestiae a itaque voluptas explicabo
+                  praesentium. Possimus omnis aut architecto et. Repellendus ab
+                  ipsa in non doloremque tenetur est doloremque.
+                </p>
+                <p>
+                  Quam in facere soluta consequatur voluptatem beatae
+                  asperiores. Qui quia itaque illo eos quibusdam voluptatem et.
+                  Est aut deserunt iste. Et ipsum eius ut odit deleniti.
+                </p>
+                <p>
+                  Officia praesentium ipsam perferendis possimus ex culpa
+                  voluptatem dolore. Aut id sit et vitae. Quis unde doloremque
+                  quisquam facere. In qui eos est voluptatem repudiandae
+                  blanditiis consequatur.
+                </p>
+              </div>
+            </TabsContent>
+            <TabsContent value="additional" className="mt-6">
+              <div className="text-gray-600">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="font-semibold mb-2">Weight</h3>
+                    <p>2.5 kg</p>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="font-semibold mb-2">Dimensions</h3>
+                    <p>100 × 20 × 70 cm</p>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="font-semibold mb-2">Materials</h3>
+                    <p>Aluminum, Glass</p>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="font-semibold mb-2">Color</h3>
+                    <p>Black, Silver</p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="reviews" className="mt-6">
+              <div className="text-gray-600">
+                <p className="text-lg">No reviews yet.</p>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
