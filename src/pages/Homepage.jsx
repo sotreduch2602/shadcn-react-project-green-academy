@@ -115,10 +115,12 @@ const Homepage = () => {
 
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
-          {filterNewProductsList.map((item, index) => (
-            <a onClick={() => navigate(`/products/detail/${item.product_id}`)}>
+          {filterNewProductsList.map((item) => (
+            <a
+              key={item.product_id}
+              onClick={() => navigate(`/products/detail/${item.product_id}`)}
+            >
               <ProductCard
-                key={index}
                 className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
                 image={item.images[0]}
                 title={item.name}
@@ -149,12 +151,12 @@ const Homepage = () => {
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
           {filterBestProductsList.map((item) => (
-            <a>
+            <a
+              key={item.product_id}
+              onClick={() => navigate(`/products/detail/${item.product_id}`)}
+            >
               <ProductCard
-                className={
-                  "m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
-                }
-                key={item.product_id}
+                className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
                 image={item.images[0]}
                 title={item.name}
                 description={item.description}

@@ -12,6 +12,7 @@ import Contactpage from "./pages/Contactpage";
 import LoginPage from "./pages/user/Loginpage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { UserProvider } from "./contexts/user/UserContext";
+import ProfilePage from "./pages/user/ProfilePage";
 
 function App() {
   return (
@@ -25,7 +26,6 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Navbar />}>
                     <Route index element={<Homepage />} />
-
                     <Route path="products">
                       <Route index element={<ProductsPage />} />
                       <Route
@@ -33,7 +33,7 @@ function App() {
                         element={<ProductDetailPage />}
                       />
                     </Route>
-
+                    <Route path="profile" element={<ProfilePage />} />
                     <Route path="blog" element={<Blogpage />} />
                     <Route path="faq" element={<FAQpage />} />
                     <Route path="contact" element={<Contactpage />} />

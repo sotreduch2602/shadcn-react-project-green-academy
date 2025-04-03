@@ -1,15 +1,21 @@
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, User, Settings, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import Brand from "@/components/original_ui/brand";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 import SearchIcon from "@/assets/navbar/search.svg";
 import CartIcon from "@/assets/navbar/bag.svg";
@@ -26,6 +32,7 @@ export const Icons = {
 };
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
   return (
     <>
@@ -167,17 +174,41 @@ const Navbar = () => {
 
             <div>
               {currentUser ? (
-                <img
-                  src={Icons.user}
-                  alt="User"
-                  className="w-6 h-6 cursor-pointer"
-                />
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="focus:outline-none">
+                    <img
+                      src={Icons.user}
+                      alt="User"
+                      className="w-9 h-9 cursor-pointer hover:opacity-80 transition-opacity"
+                    />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-48" align="end">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      className="cursor-pointer"
+                      onClick={() => navigate("/profile")}
+                    >
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <Settings className="mr-2 h-4 w-4" />
+                      <span>Settings</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="cursor-pointer text-red-600">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
                 <Link
                   to="/login"
                   className="pb-2 font-medium whitespace-nowrap relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  <a>Sign In</a>
+                  Sign In
                 </Link>
               )}
             </div>

@@ -27,13 +27,16 @@ export function LoginForm({ className, ...props }) {
   const handleLogin = (e) => {
     e.preventDefault();
     const userFound = userLists.find(
-      (userList) =>
-        userList.email === user.email && userList.password === user.password
+      (u) => u.email === user.email && u.password === user.password
     );
+
+    console.log(userFound);
+    
+
     if (userFound) {
       setCurrentUser(userFound);
       alert("Login successful!");
-      navigate("/home");
+      navigate("/");
     } else {
       alert("Invalid email or password");
     }
