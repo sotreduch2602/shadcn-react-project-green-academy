@@ -16,6 +16,8 @@ import CartIcon from "@/assets/navbar/bag.svg";
 import UserIcon from "@/assets/navbar/profile.svg";
 import { Outlet } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
+import { useContext } from "react";
+import { UserContext } from "@/contexts/user/UserContext";
 
 export const Icons = {
   search: SearchIcon,
@@ -24,6 +26,7 @@ export const Icons = {
 };
 
 const Navbar = () => {
+  const { currentUser } = useContext(UserContext);
   return (
     <>
       <header className="sticky top-0 z-50 py-3 bg-white/70 backdrop-blur-md">
@@ -163,13 +166,20 @@ const Navbar = () => {
             </div>
 
             <div>
-              <a href="/login">
+              {currentUser ? (
                 <img
                   src={Icons.user}
                   alt="User"
-                  className="size-9 cursor-pointer"
+                  className="w-6 h-6 cursor-pointer"
                 />
-              </a>
+              ) : (
+                <Link
+                  to="/login"
+                  className="pb-2 font-medium whitespace-nowrap relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                >
+                  <a>Sign In</a>
+                </Link>
+              )}
             </div>
           </div>
         </div>

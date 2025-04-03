@@ -9,15 +9,6 @@ import {
   TruckIcon,
 } from "lucide-react";
 
-import image1 from "@/assets/images/image-1.png";
-import image2 from "@/assets/images/image-2.png";
-import image3 from "@/assets/images/image-3.png";
-import image4 from "@/assets/images/image-4.png";
-import image5 from "@/assets/images/image-5.png";
-import image from "@/assets/images/image.png";
-import frame from "@/assets/images/Frame 26086938.png";
-import image6 from "@/assets/images/top-view-virtual-reality-simulator-with-laptop.jpg";
-
 import CategoryCarousel from "@/components/original_ui/CategoryCarousel";
 import CarouselSizeSale from "@/components/original_ui/CarouselSizeSale";
 import ProductCard from "@/components/original_ui/ProductCard";
@@ -29,8 +20,6 @@ import { useContext, useEffect, useState } from "react";
 import { BrandsContext } from "@/contexts/BrandContext";
 import { ProductsContext } from "@/contexts/ProductContext";
 import axios from "axios";
-
-const ImagesList = [image1, image2, image3, image4, image5, image, frame];
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -127,15 +116,17 @@ const Homepage = () => {
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
           {filterNewProductsList.map((item, index) => (
-            <ProductCard
-              key={index}
-              className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
-              image={item.images[0]}
-              title={item.name}
-              description={item.description}
-              salePrice={item.salePrice}
-              originalPrice={item.price}
-            />
+            <a onClick={() => navigate(`/products/detail/${item.product_id}`)}>
+              <ProductCard
+                key={index}
+                className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
+                image={item.images[0]}
+                title={item.name}
+                description={item.description}
+                salePrice={item.salePrice}
+                originalPrice={item.price}
+              />
+            </a>
           ))}
         </div>
       </section>
@@ -158,17 +149,19 @@ const Homepage = () => {
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
           {filterBestProductsList.map((item) => (
-            <ProductCard
-              className={
-                "m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
-              }
-              key={item.product_id}
-              image={item.images[0]}
-              title={item.name}
-              description={item.description}
-              salePrice={item.salePrice}
-              originalPrice={item.price}
-            />
+            <a>
+              <ProductCard
+                className={
+                  "m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
+                }
+                key={item.product_id}
+                image={item.images[0]}
+                title={item.name}
+                description={item.description}
+                salePrice={item.salePrice}
+                originalPrice={item.price}
+              />
+            </a>
           ))}
         </div>
       </section>
@@ -227,7 +220,7 @@ const Homepage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
-          <BlogCard className='cursor-pointer'></BlogCard>
+          <BlogCard className="cursor-pointer"></BlogCard>
         </div>
       </section>
 

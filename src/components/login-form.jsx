@@ -2,8 +2,43 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { UserContext } from "@/contexts/user/UserContext";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function LoginForm({ className, ...props }) {
+  const navigate = useNavigate();
+  const { setCurrentUser } = useContext(UserContext);
+  const [userLists, setUserLists] = useState([]);
+  const [user, setUser] = useState({ email: "", password: "" });
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/users").then((res) => {
+      setUserLists(res.data);
+    });
+  }, []);
+
+  const handleOnChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(user);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const userFound = userLists.find(
+      (userList) =>
+        userList.email === user.email && userList.password === user.password
+    );
+    if (userFound) {
+      setCurrentUser(userFound);
+      alert("Login successful!");
+      navigate("/home");
+    } else {
+      alert("Invalid email or password");
+    }
+  };
+
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
@@ -19,7 +54,14 @@ export function LoginForm({ className, ...props }) {
           <Label className={"text-sky-700"} htmlFor="email">
             Email
           </Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
+          <Input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Sign in your email"
+            onChange={handleOnChange}
+            required
+          />
         </div>
         <div className="grid gap-3">
           <div className="flex items-center">
@@ -33,9 +75,18 @@ export function LoginForm({ className, ...props }) {
               Forgot your password?
             </a>
           </div>
-          <Input id="password" type="password" required />
+          <Input
+            id="password"
+            type="password"
+            name="password"
+            onChange={handleOnChange}
+            required
+          />
         </div>
-        <Button type="submit" className="w-full bg-sky-700 hover:bg-orange-500" >
+        <Button
+          onClick={handleLogin}
+          className="w-full bg-sky-700 hover:bg-orange-500"
+        >
           Login
         </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
@@ -46,7 +97,10 @@ export function LoginForm({ className, ...props }) {
       </div>
       <div className="text-center text-sm">
         Don't have an account?{" "}
-        <a href="#" className="underline underline-offset-4 text-sky-700  font-medium">
+        <a
+          href="#"
+          className="underline underline-offset-4 text-sky-700  font-medium"
+        >
           Sign up
         </a>
       </div>

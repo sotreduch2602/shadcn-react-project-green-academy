@@ -1,9 +1,6 @@
-import { GalleryVerticalEnd } from "lucide-react";
-
 import { LoginForm } from "@/components/login-form";
 import Brand from "@/components/original_ui/brand";
 import { ThreeDMarqueeDemo } from "@/components/original_ui/3DMarquee";
-import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   return (

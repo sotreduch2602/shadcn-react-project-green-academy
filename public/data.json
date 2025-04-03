@@ -3,7 +3,7 @@
     {
       "user_id": 1,
       "username": "admin",
-      "password": "hashed_password_123",
+      "password": "123",
       "fullname": "Admin",
       "email": "admin@example.com",
       "date_of_birth": "1/1/1990",
@@ -289,7 +289,7 @@
         "username": "John Doe"
       },
       "product_id": 1,
-      "rating": 5,
+      "rating": 3,
       "comment": "Excellent phone! The camera quality is amazing.",
       "created_at": "2024-01-20 16:45:00"
     },

@@ -11,34 +11,40 @@ import FAQpage from "./pages/FAQpage";
 import Contactpage from "./pages/Contactpage";
 import LoginPage from "./pages/user/Loginpage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import { UserProvider } from "./contexts/user/UserContext";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <CategoriesProvider>
-          <BrandsProvider>
-            <ProductsProvider>
-              <ScrollToTop />
-              <Routes>
-                <Route path="/" element={<Navbar />}>
-                  <Route index element={<Homepage />} />
+        <UserProvider>
+          <CategoriesProvider>
+            <BrandsProvider>
+              <ProductsProvider>
+                <ScrollToTop />
+                <Routes>
+                  <Route path="/" element={<Navbar />}>
+                    <Route index element={<Homepage />} />
 
-                  <Route path="products">
-                    <Route index element={<ProductsPage />} />
-                    <Route path="detail/:id" element={<ProductDetailPage />} />
+                    <Route path="products">
+                      <Route index element={<ProductsPage />} />
+                      <Route
+                        path="detail/:id"
+                        element={<ProductDetailPage />}
+                      />
+                    </Route>
+
+                    <Route path="blog" element={<Blogpage />} />
+                    <Route path="faq" element={<FAQpage />} />
+                    <Route path="contact" element={<Contactpage />} />
                   </Route>
 
-                  <Route path="blog" element={<Blogpage />} />
-                  <Route path="faq" element={<FAQpage />} />
-                  <Route path="contact" element={<Contactpage />} />
-                </Route>
-
-                <Route path="login" element={<LoginPage />}></Route>
-              </Routes>
-            </ProductsProvider>
-          </BrandsProvider>
-        </CategoriesProvider>
+                  <Route path="login" element={<LoginPage />}></Route>
+                </Routes>
+              </ProductsProvider>
+            </BrandsProvider>
+          </CategoriesProvider>
+        </UserProvider>
       </BrowserRouter>
     </div>
   );

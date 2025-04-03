@@ -9,38 +9,25 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const ProductDetailPage = () => {
-  let id = useParams();
+  let { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [productSelected, setProductSelected] = useState(null);
+  const [productSelected, setProductSelected] = useState();
+  const [reviewsList, setReviewsList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/products/").then((res) => {
-      const productFound = res.data.find((p) => p.product_id == id);
-      setProductSelected(productFound);
+    axios.get(`http://localhost:3000/products`).then((res) => {
+      // console.log(res.data.find((p) => p.product_id == id));
+      setProductSelected(res.data.find((p) => p.product_id == id));
     });
   }, [id]);
 
-  console.log(productSelected);
-
-  const product = {
-    name: '43" Class TU7000 Series Crystal UHD 4K Smart TV',
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex unde illum expedita dolores aut nostrum, quidem placeat laborum neque, beatae perspiciatis atque, sint tempore aliquid molestiae consequatur eum darum.",
-    price: 1599.0,
-    originalPrice: 1678.95,
-    rating: 5,
-    reviews: 120,
-    inStock: true,
-    images: [
-      "https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format",
-      "https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format",
-      "https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format",
-      "https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format",
-      "https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format",
-      "https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format",
-    ],
-  };
+  useEffect(() => {
+    axios.get(`http://localhost:3000/reviews`).then((res) => {
+      // console.log(res.data.filter((r) => r.product_id == id));
+      setReviewsList(res.data.filter((r) => r.product_id == id));
+    });
+  }, [id]);
 
   const handleAddToCart = () => {
     console.log("Added to cart");
@@ -53,16 +40,16 @@ const ProductDetailPage = () => {
           {/* Product Images */}
           <div className="w-full max-h-[550px] min-h-[450px] border border-darkColor/10 rounded-md group overflow-hidden">
             <img
-              src={product.images[selectedImage]}
-              alt={product.name}
+              src={productSelected?.images[selectedImage]}
+              alt={productSelected?.name}
               width={700}
               height={700}
               className="w-full h-96 max-h-[550px] min-h-[500px] object-contain group-hover:scale-110 hoverEffect rounded-md "
             />
           </div>
 
-          <div className="grid grid-cols-6 gap-2 h-20 md:h-24">
-            {product.images.map((image, index) => (
+          <div className="grid grid-cols-5 lg:grid-cols-6  gap-2 h-20 md:h-24">
+            {productSelected?.images.map((image, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedImage(index)}
@@ -83,27 +70,32 @@ const ProductDetailPage = () => {
         {/* Product Info */}
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <div>
-            <h1 className="text-3xl font-bold">{product.name}</h1>
+            <h1 className="text-3xl font-bold">{productSelected?.name}</h1>
             <div className="flex items-center gap-2 mt-2">
-              <div className="flex text-yellow-400">
-                {"★".repeat(product.rating)}
-              </div>
               <span className="text-sm text-gray-500">
-                ({product.reviews} reviews)
+                ({reviewsList.length} reviews)
               </span>
             </div>
           </div>
 
           <div className="flex items-baseline gap-4">
-            <span className="text-3xl font-bold text-primary">
-              ${product.price.toFixed(2)}
-            </span>
-            <span className="text-lg text-gray-500 line-through">
-              ${product.originalPrice.toFixed(2)}
-            </span>
+            {productSelected?.salePrice ? (
+              <>
+                <span className="text-3xl font-bold text-primary">
+                  ${productSelected?.salePrice}
+                </span>
+                <span className="text-lg text-gray-500 line-through">
+                  ${productSelected?.price}
+                </span>
+              </>
+            ) : (
+              <span className="text-3xl font-bold text-primary">
+                ${productSelected?.price}
+              </span>
+            )}
           </div>
 
-          {product.inStock ? (
+          {productSelected?.stock ? (
             <Badge variant="success" className="bg-green-100 text-green-800">
               In Stock
             </Badge>
@@ -111,7 +103,7 @@ const ProductDetailPage = () => {
             <Badge variant="destructive">Out of Stock</Badge>
           )}
 
-          <p className="text-gray-600">{product.description}</p>
+          <p className="text-gray-600">{productSelected?.description}</p>
 
           <div className="space-y-4">
             <div className="flex items-center gap-4">
@@ -171,23 +163,7 @@ const ProductDetailPage = () => {
             </TabsList>
             <TabsContent value="description" className="mt-6">
               <div className="text-gray-600 space-y-4">
-                <p>
-                  In ducimus quod sed eum repellendus ea fugiat. Pariatur ut
-                  illo at iure harum. Molestiae a itaque voluptas explicabo
-                  praesentium. Possimus omnis aut architecto et. Repellendus ab
-                  ipsa in non doloremque tenetur est doloremque.
-                </p>
-                <p>
-                  Quam in facere soluta consequatur voluptatem beatae
-                  asperiores. Qui quia itaque illo eos quibusdam voluptatem et.
-                  Est aut deserunt iste. Et ipsum eius ut odit deleniti.
-                </p>
-                <p>
-                  Officia praesentium ipsam perferendis possimus ex culpa
-                  voluptatem dolore. Aut id sit et vitae. Quis unde doloremque
-                  quisquam facere. In qui eos est voluptatem repudiandae
-                  blanditiis consequatur.
-                </p>
+                <p>{productSelected?.description};</p>
               </div>
             </TabsContent>
             <TabsContent value="additional" className="mt-6">
@@ -213,8 +189,75 @@ const ProductDetailPage = () => {
               </div>
             </TabsContent>
             <TabsContent value="reviews" className="mt-6">
-              <div className="text-gray-600">
-                <p className="text-lg">No reviews yet.</p>
+              <div>
+                {reviewsList.length > 0 ? (
+                  <div className="space-y-4">
+                    {reviewsList.map((review, index) => (
+                      <div
+                        key={index}
+                        className="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                      >
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 rounded-full bg-sky-100 flex items-center justify-center">
+                              <span className="text-sky-600 font-semibold">
+                                {review.user.username}
+                              </span>
+                            </div>
+                            <div>
+                              <p className="font-semibold">{review.username}</p>
+                              <div className="flex items-center gap-2">
+                                <div className="flex text-yellow-400">
+                                  {[...Array(5)].map((_, i) => (
+                                    <svg
+                                      key={i}
+                                      className={`w-4 h-4 ${
+                                        i < (review.rating || 5)
+                                          ? "fill-current"
+                                          : "fill-gray-300"
+                                      }`}
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                  ))}
+                                </div>
+                                <span className="text-sm text-gray-500">
+                                  {new Date(
+                                    review.created_at
+                                  ).toLocaleDateString()}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-gray-700 ml-13">{review.comment}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-gray-600">
+                    <p className="text-lg">No reviews yet.</p>
+                  </div>
+                )}
+              </div>
+              <div className="mt-2 p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-lg font-semibold mb-4">Leave a Review</h3>
+                <form className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <label>Rating 1-5</label>
+                    <Input type="number" min="1" max="5" className="w-24" />
+                  </div>
+                  <textarea
+                    rows={4}
+                    placeholder="Your Review"
+                    className="w-full p-2 border rounded-md resize-none"
+                  ></textarea>
+                  <Button variant="skyblue" effect="ringHoverSky">
+                    Submit Review
+                  </Button>
+                </form>
               </div>
             </TabsContent>
           </Tabs>

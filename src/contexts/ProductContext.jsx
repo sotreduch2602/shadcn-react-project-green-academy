@@ -15,6 +15,8 @@ export const ProductsProvider = ({ children }) => {
       .then((res) => setProductLists(res.data));
   }, []);
 
+  console.log("RefreshProductLists");
+
   const value = {
     ProductLists,
     setProductLists,

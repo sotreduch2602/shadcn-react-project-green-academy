@@ -14,6 +14,7 @@ import axios from "axios";
 import { CategoriesContext } from "@/contexts/CategoriesContext";
 import { BrandsContext } from "@/contexts/BrandContext";
 import { ProductsContext } from "@/contexts/ProductContext";
+import { useNavigate } from "react-router-dom";
 
 const iconComponents = {
   Laptop: Laptop,
@@ -25,12 +26,14 @@ const iconComponents = {
 };
 
 const FilteredProductList = () => {
-  const [priceRange, setPriceRange] = useState([20, 80]);
+  const navigate = useNavigate();
+  const [priceRange, setPriceRange] = useState([0, 999]);
   const [categoriesList, setCategoriesList] = useState([]);
   const [brandsList, setBrandsList] = useState([]);
   const { selectCategory, setSelectCategory } = useContext(CategoriesContext);
   const { selectBrand, setSelectBrand } = useContext(BrandsContext);
-  const { ProductLists, setProductLists } = useContext(ProductsContext);
+  const { ProductLists } = useContext(ProductsContext);
+  const [filteredProductList, setFilteredProductList] = useState([]);
 
   useEffect(() => {
     Promise.all([
@@ -43,6 +46,36 @@ const FilteredProductList = () => {
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+  useEffect(() => {
+    setFilteredProductList(ProductLists); // Start with the full product list
+
+    if (selectCategory.name) {
+      setFilteredProductList((prev) =>
+        prev.filter((item) => item.category_id === selectCategory.category_id)
+      );
+    }
+
+    if (selectBrand.name) {
+      setFilteredProductList((prev) =>
+        prev.filter((item) => item.brand_id === selectBrand.brand_id)
+      );
+    }
+
+    if (priceRange) {
+      setFilteredProductList((prev) =>
+        prev.filter(
+          (item) =>
+            (item.salePrice || item.price) >= priceRange[0] &&
+            (item.salePrice || item.price) <= priceRange[1]
+        )
+      );
+    }
+  }, [selectCategory, selectBrand, priceRange, ProductLists]);
+
+  // console.log(filteredProductList);
+
+  // Also depend on ProductLists to refresh when it updates
 
   const renderIcon = (iconName) => {
     const IconComponent = iconComponents[iconName];
@@ -129,7 +162,7 @@ const FilteredProductList = () => {
           <div className="grid gap-2 mt-2">
             <Slider
               defaultValue={priceRange}
-              max={100}
+              max={2000}
               step={1}
               onValueChange={setPriceRange}
             />
@@ -145,7 +178,7 @@ const FilteredProductList = () => {
       <div className="flex-1 pt-5">
         <div className="h-[calc(100vh-160px)] overflow-y-auto pr-2 scrollbar-hide">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
-            {ProductLists.map((item) => {
+            {filteredProductList.map((item) => {
               let discountPercentage;
 
               if (item.salePrice) {
@@ -158,6 +191,9 @@ const FilteredProductList = () => {
                 <div
                   key={item.product_id}
                   className="text-sm border-[1px] rounded-md border-sky-950/20 group bg-white"
+                  onClick={() =>
+                    navigate(`/products/detail/${item.product_id}`)
+                  }
                 >
                   <div className="relative group overflow-hidden rounded-md bg-[#f6f6f6]">
                     {/* Sale Badge */}
