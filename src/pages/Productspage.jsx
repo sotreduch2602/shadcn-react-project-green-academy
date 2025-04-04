@@ -4,28 +4,33 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Footer from "@/layouts/Footer";
+import { ChevronRight } from "lucide-react";
 
 const ProductsPage = () => {
   return (
     <>
       <section className="max-w-screen-xl mx-auto px-4 mt-5">
         <div className="mx-0">
-          <Breadcrumb>
+          <Breadcrumb className="mb-8 ml-4">
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink className={"text-[18px]"} href="/">
+                <BreadcrumbLink
+                  href="#"
+                  className=""
+                >
                   Home
                 </BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator className={"size-4"} />
+              <ChevronRight className="h-4 w-4 " />
               <BreadcrumbItem>
-                <BreadcrumbPage className={"text-[18px]"}>
+                <BreadcrumbLink
+                  href="#"
+                  className=""
+                >
                   Products
-                </BreadcrumbPage>
+                </BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

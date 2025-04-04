@@ -13,37 +13,40 @@ import LoginPage from "./pages/user/Loginpage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { UserProvider } from "./contexts/user/UserContext";
 import ProfilePage from "./pages/user/ProfilePage";
+import { CartProvider } from "./contexts/CartContext";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <UserProvider>
-          <CategoriesProvider>
-            <BrandsProvider>
-              <ProductsProvider>
-                <ScrollToTop />
-                <Routes>
-                  <Route path="/" element={<Navbar />}>
-                    <Route index element={<Homepage />} />
-                    <Route path="products">
-                      <Route index element={<ProductsPage />} />
-                      <Route
-                        path="detail/:id"
-                        element={<ProductDetailPage />}
-                      />
+          <CartProvider>
+            <CategoriesProvider>
+              <BrandsProvider>
+                <ProductsProvider>
+                  <ScrollToTop />
+                  <Routes>
+                    <Route path="/" element={<Navbar />}>
+                      <Route index element={<Homepage />} />
+                      <Route path="products">
+                        <Route index element={<ProductsPage />} />
+                        <Route
+                          path="detail/:id"
+                          element={<ProductDetailPage />}
+                        />
+                      </Route>
+                      <Route path="profile" element={<ProfilePage />} />
+                      <Route path="blog" element={<Blogpage />} />
+                      <Route path="faq" element={<FAQpage />} />
+                      <Route path="contact" element={<Contactpage />} />
                     </Route>
-                    <Route path="profile" element={<ProfilePage />} />
-                    <Route path="blog" element={<Blogpage />} />
-                    <Route path="faq" element={<FAQpage />} />
-                    <Route path="contact" element={<Contactpage />} />
-                  </Route>
 
-                  <Route path="login" element={<LoginPage />}></Route>
-                </Routes>
-              </ProductsProvider>
-            </BrandsProvider>
-          </CategoriesProvider>
+                    <Route path="login" element={<LoginPage />}></Route>
+                  </Routes>
+                </ProductsProvider>
+              </BrandsProvider>
+            </CategoriesProvider>
+          </CartProvider>
         </UserProvider>
       </BrowserRouter>
     </div>

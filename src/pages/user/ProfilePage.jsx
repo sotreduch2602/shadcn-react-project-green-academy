@@ -5,7 +5,6 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -13,26 +12,19 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import {
-  Bell,
   ChevronRight,
-  DollarSign,
-  Edit2,
-  Gift,
-  Headphones,
-  Heart,
   Home,
   Key,
   LogOut,
   Mail,
-  MapPin,
   Phone,
-  Shield,
   ShoppingBag,
   User,
   UserCog,
 } from "lucide-react";
-import React from "react";
+import React, { useContext } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { UserContext } from "@/contexts/user/UserContext";
 
 // Data for sidebar navigation items
 const sidebarNavItems = [
@@ -47,55 +39,48 @@ const sidebarNavItems = [
     label: "Orders",
     value: "orders",
   },
-  {
-    icon: LogOut,
-    label: "Log out",
-    value: "logout",
-    isLogout: true,
-  },
 ];
 
 // Data for personal information fields
-const personalInfoFields = [
-  {
-    id: "fullName",
-    label: "Full name",
-    icon: User,
-    value: "Jimmy Smith",
-  },
-  {
-    id: "phone",
-    label: "Phone number",
-    icon: Phone,
-    value: "+12345678910",
-  },
-  {
-    id: "address",
-    label: "Address",
-    icon: Home,
-    value: "HubSpot, 25 First Street, Cambridge MA 02141, United States",
-  },
-  {
-    id: "email",
-    label: "E-mail Address",
-    icon: Mail,
-    value: "Jimmy.smith1996@gmail.com",
-  },
-  {
-    id: "password",
-    label: "Password",
-    icon: Key,
-    value: "*********",
-  },
-  {
-    id: "postalCode",
-    label: "Postal code",
-    icon: MapPin,
-    value: "Postal code",
-  },
-];
 
 export default function ProfilePage() {
+  const { currentUser } = useContext(UserContext);
+
+  console.log("currentUser", currentUser?.id);
+
+  const personalInfoFields = [
+    {
+      id: "fullname",
+      label: "Full name",
+      icon: User,
+      value: currentUser?.fullname,
+    },
+    {
+      id: "phone",
+      label: "Phone number",
+      icon: Phone,
+      value: currentUser?.phone,
+    },
+    {
+      id: "address",
+      label: "Address",
+      icon: Home,
+      value: currentUser?.address,
+    },
+    {
+      id: "email",
+      label: "E-mail Address",
+      icon: Mail,
+      value: currentUser?.email,
+    },
+    {
+      id: "password",
+      label: "Password",
+      icon: Key,
+      value: currentUser?.password,
+    },
+  ];
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 mt-5">
       <div className="bg-white flex flex-row justify-center w-full">
@@ -190,28 +175,21 @@ export default function ProfilePage() {
                               <div className="flex items-center gap-2">
                                 <field.icon className="w-6 h-6" />
                                 <div className="w-[296px] text-base text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">
-                                  {field.value}
+                                  {field.label === "Password"
+                                    ? "********"
+                                    : field.value}
                                 </div>
                               </div>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-6 w-6 p-0"
-                              >
-                                <Edit2 className="h-6 w-6" />
-                              </Button>
                             </CardContent>
                           </Card>
                         ))}
                       </div>
                     </section>
                   </TabsContent>
-                  <TabsContent value="payment-instalments">
-                    <h2>Payment & Instalments Content</h2>
+                  <TabsContent value="orders">
+                    <h2>Payment & Installments Content</h2>
                   </TabsContent>
                 </div>
-
-                {/* Add other TabsContent components for each tab */}
               </Tabs>
             </div>
           </div>

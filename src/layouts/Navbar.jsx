@@ -24,6 +24,7 @@ import { Outlet } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { useContext } from "react";
 import { UserContext } from "@/contexts/user/UserContext";
+import { CartContext } from "@/contexts/CartContext";
 
 export const Icons = {
   search: SearchIcon,
@@ -34,6 +35,8 @@ export const Icons = {
 const Navbar = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
+  const { cartCount } = useContext(CartContext);
+
   return (
     <>
       <header className="sticky top-0 z-50 py-3 bg-white/70 backdrop-blur-md">
@@ -168,7 +171,7 @@ const Navbar = () => {
                 className="w-6 h-6 cursor-pointer"
               />
               <Badge className=" absolute -top-2 -right-2 bg-red-500 text-white text px-1.5 py-0.5 rounded-full">
-                0
+                {cartCount}
               </Badge>
             </div>
 

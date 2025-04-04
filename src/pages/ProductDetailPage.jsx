@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Truck, RotateCcw } from "lucide-react";
+import { Truck, RotateCcw, ChevronRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from "@/components/ui/breadcrumb";
 
 const ProductDetailPage = () => {
   let { id } = useParams();
@@ -35,7 +36,24 @@ const ProductDetailPage = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto px-4">
-      <div className="flex flex-col md:flex-row gap-10 py-10">
+      <div className="mt-6">
+        <Breadcrumb className="mb-8 ml-4">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#" className="">
+                Home
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <ChevronRight className="h-4 w-4 " />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#" className="">
+                Products
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+      <div className="flex flex-col md:flex-row gap-10 pb-10">
         <div className="w-full md:w-1/2 space-y-2 md:space-y-4">
           {/* Product Images */}
           <div className="w-full max-h-[550px] min-h-[450px] border border-darkColor/10 rounded-md group overflow-hidden">
