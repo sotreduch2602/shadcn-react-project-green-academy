@@ -164,7 +164,7 @@ const Navbar = () => {
               />
             </div>
 
-            <div className="relative">
+            <div className="relative" onClick={() => navigate("/cart")}>
               <img
                 src={Icons.cart}
                 alt="Cart"

@@ -14,6 +14,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import { UserProvider } from "./contexts/user/UserContext";
 import ProfilePage from "./pages/user/ProfilePage";
 import { CartProvider } from "./contexts/CartContext";
+import CartList from "./pages/CartList";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                           element={<ProductDetailPage />}
                         />
                       </Route>
+                      <Route path="cart" element={<CartList />} />
                       <Route path="profile" element={<ProfilePage />} />
                       <Route path="blog" element={<Blogpage />} />
                       <Route path="faq" element={<FAQpage />} />

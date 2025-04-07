@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,7 +7,13 @@ import { Truck, RotateCcw, ChevronRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from "@/components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+} from "@/components/ui/breadcrumb";
+import { CartContext } from "@/contexts/CartContext";
 
 const ProductDetailPage = () => {
   let { id } = useParams();
@@ -15,6 +21,7 @@ const ProductDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [productSelected, setProductSelected] = useState();
   const [reviewsList, setReviewsList] = useState([]);
+  const { addItemToCart } = useContext(CartContext);
 
   useEffect(() => {
     axios.get(`http://localhost:3000/products`).then((res) => {
@@ -31,7 +38,9 @@ const ProductDetailPage = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    console.log("Added to cart");
+    if (productSelected) {
+      addItemToCart(productSelected,quantity)
+    }
   };
 
   return (

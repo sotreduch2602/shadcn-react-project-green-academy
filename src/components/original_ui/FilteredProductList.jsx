@@ -15,6 +15,7 @@ import { CategoriesContext } from "@/contexts/CategoriesContext";
 import { BrandsContext } from "@/contexts/BrandContext";
 import { ProductsContext } from "@/contexts/ProductContext";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "@/contexts/CartContext";
 
 const iconComponents = {
   Laptop: Laptop,
@@ -34,6 +35,7 @@ const FilteredProductList = () => {
   const { selectBrand, setSelectBrand } = useContext(BrandsContext);
   const { ProductLists } = useContext(ProductsContext);
   const [filteredProductList, setFilteredProductList] = useState([]);
+  const { addItemToCart } = useContext(CartContext);
 
   useEffect(() => {
     Promise.all([
@@ -72,10 +74,6 @@ const FilteredProductList = () => {
       );
     }
   }, [selectCategory, selectBrand, priceRange, ProductLists]);
-
-  // console.log(filteredProductList);
-
-  // Also depend on ProductLists to refresh when it updates
 
   const renderIcon = (iconName) => {
     const IconComponent = iconComponents[iconName];
@@ -191,9 +189,6 @@ const FilteredProductList = () => {
                 <div
                   key={item.product_id}
                   className="text-sm border-[1px] rounded-md border-sky-950/20 group bg-white"
-                  onClick={() =>
-                    navigate(`/products/detail/${item.product_id}`)
-                  }
                 >
                   <div className="relative group overflow-hidden rounded-md bg-[#f6f6f6]">
                     {/* Sale Badge */}
@@ -203,7 +198,11 @@ const FilteredProductList = () => {
                       </div>
                     )}
 
-                    <a>
+                    <a
+                      onClick={() =>
+                        navigate(`/products/detail/${item.product_id}`)
+                      }
+                    >
                       <img
                         className="w-full h-64 object-contain overflow-hidden transition-transform bg-shop_light_bg duration-500 group-hover:scale-105"
                         alt="productImage"
@@ -244,7 +243,11 @@ const FilteredProductList = () => {
                       </div>
                     </div>
                     <div className="w-full h-12 flex items-center">
-                      <Button variant="skyblue" effect="shineHover">
+                      <Button
+                        variant="skyblue"
+                        effect="shineHover"
+                        onClick={() => addItemToCart(item, 1)}
+                      >
                         <ShoppingBag />
                         Add to Cart
                       </Button>
