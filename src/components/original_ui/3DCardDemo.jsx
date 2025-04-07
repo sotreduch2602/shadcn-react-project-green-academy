@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 import { Button } from "../ui/button";
 

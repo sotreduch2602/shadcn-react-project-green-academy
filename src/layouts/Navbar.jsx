@@ -25,6 +25,7 @@ import { Badge } from "@/components/ui/badge";
 import { useContext } from "react";
 import { UserContext } from "@/contexts/user/UserContext";
 import { CartContext } from "@/contexts/CartContext";
+import SearchBarDialog from "@/components/original_ui/SearchBarDialog";
 
 export const Icons = {
   search: SearchIcon,
@@ -157,11 +158,7 @@ const Navbar = () => {
           {/* Icons */}
           <div className="w-auto md:w-1/3 flex items-center justify-end gap-5">
             <div>
-              <img
-                src={Icons.search}
-                alt="Search"
-                className="size-8 cursor-pointer"
-              />
+              <SearchBarDialog icon={Icons.search} />
             </div>
 
             <div className="relative" onClick={() => navigate("/cart")}>
