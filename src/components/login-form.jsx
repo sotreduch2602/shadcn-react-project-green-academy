@@ -21,7 +21,6 @@ export function LoginForm({ className, ...props }) {
 
   const handleOnChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
   };
 
   const handleLogin = (e) => {
@@ -29,9 +28,6 @@ export function LoginForm({ className, ...props }) {
     const userFound = userLists.find(
       (u) => u.email === user.email && u.password === user.password
     );
-
-    console.log(userFound);
-    
 
     if (userFound) {
       setCurrentUser(userFound);

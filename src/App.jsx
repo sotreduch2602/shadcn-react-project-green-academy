@@ -15,6 +15,7 @@ import { UserProvider } from "./contexts/user/UserContext";
 import ProfilePage from "./pages/user/ProfilePage";
 import { CartProvider } from "./contexts/CartContext";
 import CartList from "./pages/CartList";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
@@ -36,8 +37,12 @@ function App() {
                           element={<ProductDetailPage />}
                         />
                       </Route>
-                      <Route path="cart" element={<CartList />} />
-                      <Route path="profile" element={<ProfilePage />} />
+
+                      <Route element={<ProtectedRoute />}>
+                        <Route path="cart" element={<CartList />} />
+                        <Route path="profile" element={<ProfilePage />} />
+                      </Route>
+
                       <Route path="blog" element={<Blogpage />} />
                       <Route path="faq" element={<FAQpage />} />
                       <Route path="contact" element={<Contactpage />} />

@@ -1,14 +1,19 @@
 import { ThreeDCardDemo } from "@/components/original_ui/3DCardDemo";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { CartContext } from "@/contexts/CartContext";
 import Footer from "@/layouts/Footer";
 import { Minus, Plus, ShoppingBag, Trash } from "lucide-react";
 import { useContext } from "react";
 
 const CartList = () => {
-  const { cartItems, removeItemToCart, clearItemFromCart, addItemToCart } =
-    useContext(CartContext);
+  const {
+    cartItems,
+    removeItemToCart,
+    clearItemFromCart,
+    clearAllItemsFromCart,
+    addItemToCart,
+    cartTotal,
+  } = useContext(CartContext);
 
   return (
     <div className="max-w-screen-xl mx-auto px-4">
@@ -49,9 +54,22 @@ const CartList = () => {
                       </div>
                     </div>
                     <div className="flex flex-col items-start justify-between h-36 md:h-44 p-0.5 md:p-1">
-                      <span className="text-black font-bold text-lg">
-                        {item.price}
-                      </span>
+                      <div className="flex flex-col items-end">
+                        {item.salePrice ? (
+                          <>
+                            <span className="text-black font-bold text-lg">
+                              ${item.salePrice}
+                            </span>
+                            <span className="text-gray-500 text-sm line-through">
+                              ${item.price}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-black font-bold text-lg">
+                            ${item.price}
+                          </span>
+                        )}
+                      </div>
                       <div className="flex items-center gap-1 pb-1 text-base">
                         <Button
                           variant="outline"
@@ -75,6 +93,48 @@ const CartList = () => {
                   </div>
                 </div>
               ))}
+
+              <div className="">
+                <Button
+                  variant="destructive"
+                  className="mx-8 my-2 cursor-pointer text-white hover:bg-red-600/80 transition-colors duration-200"
+                  onClick={clearAllItemsFromCart}
+                >
+                  Reset Cart
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Cart Summary Section */}
+          <div className="my-8 lg:mt-0">
+            <div className="border bg-white rounded-md p-4">
+              <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
+
+              <div className="space-y-3">
+                <div className="flex justify-between text-base">
+                  <span className="text-gray-600">Subtotal</span>
+                  <span className="font-medium">${cartTotal.toFixed(2)}</span>
+                </div>
+
+                <div className="flex justify-between text-base">
+                  <span className="text-gray-600">Shipping</span>
+                  <span className="font-medium">Free</span>
+                </div>
+
+                <div className="h-px bg-gray-200 my-4"></div>
+
+                <div className="flex justify-between text-base font-semibold">
+                  <span>Total</span>
+                  <span className="text-shop_dark_green">
+                    ${cartTotal.toFixed(2)}
+                  </span>
+                </div>
+              </div>
+
+              <Button className="w-full mt-6  text-white">
+                Proceed to Checkout
+              </Button>
             </div>
           </div>
         </div>
