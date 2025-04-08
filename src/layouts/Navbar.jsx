@@ -35,8 +35,13 @@ export const Icons = {
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const { cartCount } = useContext(CartContext);
+
+  const handleLogOut = () => {
+    setCurrentUser(null);
+    navigate("/");
+  };
 
   return (
     <>
@@ -192,12 +197,11 @@ const Navbar = () => {
                       <User className="mr-2 h-4 w-4" />
                       <span>Profile</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      <Settings className="mr-2 h-4 w-4" />
-                      <span>Settings</span>
-                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="cursor-pointer text-red-600">
+                    <DropdownMenuItem
+                      className="cursor-pointer text-red-600"
+                      onClick={handleLogOut}
+                    >
                       <LogOut className="mr-2 h-4 w-4" />
                       <span>Log out</span>
                     </DropdownMenuItem>
