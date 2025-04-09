@@ -13,20 +13,22 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Search, ShoppingBag, X } from "lucide-react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import FilteredProductList from "./FilteredProductList";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "@/contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const SearchBarDialog = ({ icon }) => {
+  const navigate = useNavigate();
   const [productsList, setProductsList] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchField, setSearchField] = useState();
+  const { addItemToCart } = useContext(CartContext);
 
   useEffect(() => {
     axios.get("http://localhost:3000/products").then((res) => {
       setProductsList(res.data);
       setFilteredProducts(res.data);
     });
-    console.log(productsList);
   }, []);
 
   const handleSearchProducts = (e) => {
@@ -48,6 +50,7 @@ const SearchBarDialog = ({ icon }) => {
     setSearchField(value);
     console.log(searchField);
   };
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -104,12 +107,19 @@ const SearchBarDialog = ({ icon }) => {
                 key={product.id}
                 className="flex flex-col sm:flex-row items-start sm:items-center p-3 sm:p-4 lg:p-5 border-b"
               >
-                <a className="shrink-0 mb-3 sm:mb-0">
-                  <img
-                    src={product.images[0]}
-                    className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 border border-black/20 rounded-lg overflow-hidden"
-                  />
-                </a>
+                <AlertDialogTrigger asChild>
+                  <a
+                    className="shrink-0 mb-3 sm:mb-0"
+                    onClick={() =>
+                      navigate(`/products/detail/${product.product_id}`)
+                    }
+                  >
+                    <img
+                      src={product.images[0]}
+                      className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 border border-black/20 rounded-lg overflow-hidden"
+                    />
+                  </a>
+                </AlertDialogTrigger>
                 <div className="flex-1 w-full sm:px-4 lg:px-6">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <a className="flex-1">
@@ -135,7 +145,10 @@ const SearchBarDialog = ({ icon }) => {
                     </div>
                   </div>
                   <div className="mt-2 sm:mt-3">
-                    <Button className="w-full sm:w-auto h-9 sm:h-10 bg-sky-700 text-white rounded-md hover:bg-sky-800 transition-all">
+                    <Button
+                      onClick={() => addItemToCart(product, 1)}
+                      className="w-full sm:w-auto h-9 sm:h-10 bg-sky-700 text-white rounded-md hover:bg-sky-800 transition-all"
+                    >
                       <ShoppingBag className="h-4 w-4 sm:h-5 sm:w-5 text-white mr-2" />
                       <span className="text-sm">Add to Cart</span>
                     </Button>
