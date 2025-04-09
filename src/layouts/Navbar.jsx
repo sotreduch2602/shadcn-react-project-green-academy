@@ -26,6 +26,7 @@ import { useContext } from "react";
 import { UserContext } from "@/contexts/user/UserContext";
 import { CartContext } from "@/contexts/CartContext";
 import SearchBarDialog from "@/components/original_ui/SearchBarDialog";
+import { Dashboard, LayoutBoard } from "tabler-icons-react";
 
 export const Icons = {
   search: SearchIcon,
@@ -196,6 +197,14 @@ const Navbar = () => {
                     >
                       <User className="mr-2 h-4 w-4" />
                       <span>Profile</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      className="cursor-pointer"
+                      onClick={() => navigate("/admin")}
+                    >
+                      <LayoutBoard className="mr-2 h-4 w-4" />
+                      <span>Admin</span>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem

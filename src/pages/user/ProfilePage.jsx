@@ -1,16 +1,19 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
+
 import {
   ChevronRight,
   Home,
@@ -22,9 +25,22 @@ import {
   User,
   UserCog,
 } from "lucide-react";
+
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 import React, { useContext } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserContext } from "@/contexts/user/UserContext";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 // Data for sidebar navigation items
 const sidebarNavItems = [
@@ -36,7 +52,7 @@ const sidebarNavItems = [
 
   {
     icon: ShoppingBag,
-    label: "Orders",
+    label: "History Orders",
     value: "orders",
   },
 ];
@@ -85,7 +101,7 @@ export default function ProfilePage() {
     <div className="max-w-screen-xl mx-auto px-4 mt-5">
       <div className="bg-white flex flex-row justify-center w-full">
         <div className="bg-white w-full max-w-[1440px] min-h-[1024px] relative">
-          <div className="container px-4 py-6">
+          <div className="container px-4">
             {/* Breadcrumb Navigation */}
             <Breadcrumb className="mb-8 ml-4">
               <BreadcrumbList>
@@ -124,8 +140,7 @@ export default function ProfilePage() {
                 className="w-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-8"
               >
                 <div className="col-span-1 lg:col-span-1 shadow-md rounded-lg bg-gray-50 border border-gray-100">
-                  <TabsList className="flex flex-col w-72 h-auto bg-gray-50 space-y-1 p-0">
-                    {/* User Profile Header */}
+                  <TabsList className="flex flex-col w-72 h-auto bg-gray-50 space-y-1 px-3">
                     <div className="p-6 flex items-center gap-4 w-full">
                       <Avatar className="w-[60px] h-[60px] bg-gray-50 border border-gray-100">
                         <AvatarFallback>JS</AvatarFallback>
@@ -162,7 +177,7 @@ export default function ProfilePage() {
                       </div>
 
                       {/* Personal Info Fields */}
-                      <div className="space-y-3 mt-6">
+                      <div className="space-y-3  px-6">
                         {personalInfoFields.map((field) => (
                           <Card
                             key={field.id}
@@ -174,20 +189,50 @@ export default function ProfilePage() {
                             <CardContent className="flex items-center justify-between ">
                               <div className="flex items-center gap-2">
                                 <field.icon className="w-6 h-6" />
-                                <div className="w-[296px] text-base text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">
-                                  {field.label === "Password"
-                                    ? "********"
-                                    : field.value}
-                                </div>
+                                <Input
+                                  className="md:w-auto lg:w-[296px] bg-white text-base text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap"
+                                  placeholder={
+                                    field.label === "Password"
+                                      ? "********"
+                                      : field.value
+                                  }
+                                />
+                                  {/* <div className="w-[296px] text-base text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">
+                                    {field.label === "Password"
+                                      ? "********"
+                                      : field.value}
+                                  </div> */}
                               </div>
                             </CardContent>
                           </Card>
                         ))}
+
+                        <div className="w-full flex justify-center">
+                          <Button variant="skyblue">Update Account</Button>
+                        </div>
                       </div>
                     </section>
                   </TabsContent>
                   <TabsContent value="orders">
-                    <h2>Payment & Installments Content</h2>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="w-[100px]">#</TableHead>
+                          <TableHead>Image</TableHead>
+                          <TableHead>Name</TableHead>
+                          <TableHead>Method</TableHead>
+                          <TableHead className="text-right">Amount</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell className="font-medium">INV001</TableCell>
+                          <TableCell>Paid</TableCell>
+                          <TableCell>Credit Card</TableCell>
+                          <TableCell className="text-right">$250.00</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
                   </TabsContent>
                 </div>
               </Tabs>
