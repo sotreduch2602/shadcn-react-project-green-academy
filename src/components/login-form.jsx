@@ -6,6 +6,7 @@ import { UserContext } from "@/contexts/user/UserContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export function LoginForm({ className, ...props }) {
   const navigate = useNavigate();
@@ -31,10 +32,16 @@ export function LoginForm({ className, ...props }) {
 
     if (userFound) {
       setCurrentUser(userFound);
-      alert("Login successful!");
       navigate("/");
+      toast.success("Login successful", {
+        description: "Welcome back!",
+        duration: 3000,
+      });
     } else {
-      alert("Invalid email or password");
+      toast.error("Invalid email or password", {
+        description: "Please check your email and password and try again.",
+        duration: 3000,
+      });
     }
   };
 

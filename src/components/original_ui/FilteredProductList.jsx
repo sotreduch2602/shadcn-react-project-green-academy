@@ -212,8 +212,10 @@ const FilteredProductList = () => {
                     </a>
                   </div>
                   <div className="p-3 flex flex-col gap-2">
-                    <p className="uppercase line-clamp-1 text-xs font-medium text-lightText">
-                      {item.category_id}
+                    <p className="uppercase line-clamp-1 text-xs font-medium text-sky-700">
+                      {categoriesList.find(
+                        (category) => category.category_id === item.category_id
+                      )?.name || "Unknown Category"}
                     </p>
                     <h2 className="font-semibold text-sm line-clamp-1">
                       {item.name}

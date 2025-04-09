@@ -5,7 +5,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, User, Settings, LogOut } from "lucide-react";
+import { Menu, User, LogOut } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Brand from "@/components/original_ui/brand";
 import {
@@ -27,6 +27,7 @@ import { UserContext } from "@/contexts/user/UserContext";
 import { CartContext } from "@/contexts/CartContext";
 import SearchBarDialog from "@/components/original_ui/SearchBarDialog";
 import { Dashboard, LayoutBoard } from "tabler-icons-react";
+import { toast } from "sonner";
 
 export const Icons = {
   search: SearchIcon,
@@ -42,6 +43,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     setCurrentUser(null);
     navigate("/");
+    toast.success("Logged out successfully");
   };
 
   return (

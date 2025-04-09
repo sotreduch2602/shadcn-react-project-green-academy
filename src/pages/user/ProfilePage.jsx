@@ -29,18 +29,18 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserContext } from "@/contexts/user/UserContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import axios from "axios";
 
 // Data for sidebar navigation items
 const sidebarNavItems = [
@@ -60,9 +60,46 @@ const sidebarNavItems = [
 // Data for personal information fields
 
 export default function ProfilePage() {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [user, setUser] = useState({});
 
-  console.log("currentUser", currentUser?.id);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/users")
+      .then((res) =>
+        setUser(res.data.filter((u) => u.id == currentUser.id)[0])
+      );
+  }, []);
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+
+    console.log(user);
+  };
+
+  const handleUpdateProfile = (e) => {
+    e.preventDefault();
+    const updatedUser = {
+      ...user,
+      [e.target.name]: e.target.value,
+    };
+
+    try {
+      setCurrentUser(updatedUser);
+
+      axios
+        .put(`http://localhost:3000/users/${user.id}`, updatedUser)
+        .then(() => {
+          console.log("User updated successfully!");
+        });
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
 
   const personalInfoFields = [
     {
@@ -190,25 +227,28 @@ export default function ProfilePage() {
                               <div className="flex items-center gap-2">
                                 <field.icon className="w-6 h-6" />
                                 <Input
+                                  onChange={handleOnChange}
                                   className="md:w-auto lg:w-[296px] bg-white text-base text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap"
+                                  name={field.id}
                                   placeholder={
                                     field.label === "Password"
                                       ? "********"
                                       : field.value
                                   }
                                 />
-                                  {/* <div className="w-[296px] text-base text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap">
-                                    {field.label === "Password"
-                                      ? "********"
-                                      : field.value}
-                                  </div> */}
                               </div>
                             </CardContent>
                           </Card>
                         ))}
 
                         <div className="w-full flex justify-center">
-                          <Button variant="skyblue">Update Account</Button>
+                          <Button
+                            variant="skyblue"
+                            type="button"
+                            onClick={handleUpdateProfile}
+                          >
+                            Update Account
+                          </Button>
                         </div>
                       </div>
                     </section>

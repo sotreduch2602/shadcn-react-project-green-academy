@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from "react";
+import { toast } from "sonner";
 
 const addCartItem = (cartItems, productToAdd, numQuantity) => {
+  toast.success("Item added to cart",{ variant: "destructive"});
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.product_id === productToAdd.product_id
   );
