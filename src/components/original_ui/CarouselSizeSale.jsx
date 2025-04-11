@@ -7,13 +7,12 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import ProductCard from "./ProductCard";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ProductsContext } from "@/contexts/ProductContext";
 import axios from "axios";
 
-const CarouselSizeSale = ({ images, className, products }) => {
-  const { ProductLists, setProductLists, setSelectProduct, selectProduct } =
-    useContext(ProductsContext);
+const CarouselSizeSale = ({ className }) => {
+  const { ProductLists, setProductLists } = useContext(ProductsContext);
 
   useEffect(() => {
     axios
@@ -37,7 +36,7 @@ const CarouselSizeSale = ({ images, className, products }) => {
           {filterSaleProductsList.map((product, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div>
-                <ProductCard
+                <ProductCard  
                   image={product.images[0]}
                   title={product.name}
                   description={product.description}

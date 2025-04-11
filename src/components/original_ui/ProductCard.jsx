@@ -48,7 +48,7 @@ const ProductCard = ({
 
       <CardContent className="flex flex-col items-center justify-center p-2 gap-2">
         <h3 className="font-semibold text-base text-center">{title}</h3>
-        <CardDescription className={"text-center"}>
+        <CardDescription className={"text-center h-[60px]"}>
           {description}
         </CardDescription>
 
