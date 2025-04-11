@@ -17,7 +17,6 @@ import { CartProvider } from "./contexts/CartContext";
 import CartList from "./pages/CartList";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import AdminPage from "./pages/admin/AdminPage";
-import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function App() {
   return (
@@ -47,10 +46,9 @@ function App() {
 
                       <Route
                         path="admin"
-                        element={<ProtectedRoute requiredRole="admin" />}
+                        // element={<ProtectedRoute requiredRole="admin" />}
                       >
                         <Route index element={<AdminPage />} />
-                        <Route path="dashboard" element={<AdminDashboard />} />
                       </Route>
 
                       <Route path="blog" element={<Blogpage />} />
