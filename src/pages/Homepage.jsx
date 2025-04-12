@@ -49,10 +49,11 @@ const Homepage = () => {
     <>
       <section className="max-w-screen mx-auto relative">
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4">
-          <h2 className="text-7xl font-black text-white drop-shadow-lg">
-            Tech Shop
+          <h2 className="text-7xl font-black text-orange-500 drop-shadow-lg">
+            Tech
+            <span className="text-sky-700">Shop</span>
           </h2>
-          <span className="text-3xl font-medium text-white drop-shadow-md">
+          <span className="text-3xl font-medium text-sky-700 drop-shadow-md">
             "Join the
             <span className="text-orange-400"> digital revolution"</span>
           </span>
