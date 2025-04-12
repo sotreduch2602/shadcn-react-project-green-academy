@@ -18,11 +18,40 @@ import {
 } from "@/components/ui/table";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const ProductManagement = () => {
+  const [updateButton, setUpdateButton] = useState(false);
   const [productsList, setProductsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const [brandsList, setBrandsList] = useState([]);
+  const [inputFields, setInputFields] = useState({});
+
+  const handleOnChange = (e, name = null, value = null) => {
+    if (name && value !== null) {
+      // Handle Select component changes
+      setInputFields((prev) => ({ ...prev, [name]: value }));
+    } else {
+      // Handle regular input changes
+      setInputFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    }
+    console.log(inputFields);
+  };
+
+  const handleEdit = (product) => {
+    setUpdateButton(true);
+    setInputFields((prev) => product);
+  };
 
   useEffect(() => {
     axios
@@ -48,15 +77,26 @@ const ProductManagement = () => {
       <div className="col-span-1 bg-amber-100 p-4 rounded-2xl shadow-md">
         <div className="flex flex-col gap-2">
           <div className="gap-2">
-            <div className="">
+            <div>
               <div>
                 Product Name
-                <Input type={"text"} className={"w-full"} name={"name"} />
+                <Input
+                  type={"text"}
+                  className={"w-full"}
+                  name={"name"}
+                  value={inputFields.name || ""}
+                  onChange={handleOnChange}
+                />
               </div>
 
               <div>
                 Category
-                <Select>
+                <Select
+                  value={inputFields.category_id}
+                  onValueChange={(value) =>
+                    handleOnChange(null, "category_id", value)
+                  }
+                >
                   <SelectTrigger className="w-full">
                     <SelectValue />
                   </SelectTrigger>
@@ -75,7 +115,12 @@ const ProductManagement = () => {
 
               <div>
                 Brand
-                <Select>
+                <Select
+                  value={inputFields.brand_id}
+                  onValueChange={(value) =>
+                    handleOnChange(null, "brand_id", value)
+                  }
+                >
                   <SelectTrigger className="w-full">
                     <SelectValue />
                   </SelectTrigger>
@@ -91,7 +136,13 @@ const ProductManagement = () => {
 
               <div>
                 Description
-                <Input type={"text"} className={"w-full"} name={"name"} />
+                <Input
+                  type={"text"}
+                  className={"w-full"}
+                  name={"description"}
+                  value={inputFields.description || ""}
+                  onChange={handleOnChange}
+                />
               </div>
 
               <div>
@@ -101,6 +152,8 @@ const ProductManagement = () => {
                   min="1"
                   className={"w-full"}
                   name={"price"}
+                  value={inputFields.price || ""}
+                  onChange={handleOnChange}
                 />
               </div>
 
@@ -111,12 +164,14 @@ const ProductManagement = () => {
                   min="1"
                   className={"w-full"}
                   name={"stock"}
+                  value={inputFields.stock || ""}
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
             <div className="flex flex-col gap-2 mt-2">
               <Button variant="skyblue">Create</Button>
-              <Button variant="yellow">Update</Button>
+              {updateButton && <Button variant="yellow">Update</Button>}
             </div>
           </div>
         </div>
@@ -173,15 +228,112 @@ const ProductManagement = () => {
                   <TableCell>${item.price}</TableCell>
                   <TableCell>{item.stock}</TableCell>
                   <TableCell className={"flex gap-2 justify-end"}>
-                    <Button variant="skyblue" className="cursor-pointer">
-                      <Info />
-                    </Button>
-                    <Button variant="yellow" className="cursor-pointer">
+                    <AlertDialog className="information">
+                      <AlertDialogTrigger asChild>
+                        <Button variant="skyblue" className="cursor-pointer">
+                          <Info />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Information Product
+                          </AlertDialogTitle>
+                          <AlertDialogDescription className="space-y-2">
+                            <div className="flex gap-4">
+                              <div className="w-1/3">
+                                <div className="aspect-square rounded-lg overflow-hidden">
+                                  <img
+                                    src={item.images[0]}
+                                    alt={item.name}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="w-2/3 grid grid-cols-2 gap-2">
+                                <div className="font-semibold">
+                                  Product Name:
+                                </div>
+                                <div>{item.name}</div>
+
+                                <div className="font-semibold">Category:</div>
+                                <div>
+                                  {
+                                    categoriesList.find(
+                                      (category) =>
+                                        category.category_id == item.category_id
+                                    )?.name
+                                  }
+                                </div>
+
+                                <div className="font-semibold">Brand:</div>
+                                <div>
+                                  {
+                                    brandsList.find(
+                                      (brand) => brand.brand_id == item.brand_id
+                                    )?.name
+                                  }
+                                </div>
+
+                                <div className="font-semibold">
+                                  Description:
+                                </div>
+                                <div className="break-words">
+                                  {item.description}
+                                </div>
+
+                                <div className="font-semibold">Price:</div>
+                                <div>${item.price}</div>
+
+                                <div className="font-semibold">Stock:</div>
+                                <div>{item.stock} units</div>
+                              </div>
+                            </div>
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction>Continue</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+
+                    <Button
+                      variant="yellow"
+                      className="cursor-pointer"
+                      onClick={() => handleEdit(item)}
+                    >
                       <Pen />
                     </Button>
-                    <Button variant="destructive" className="cursor-pointer">
-                      <Trash />
-                    </Button>
+
+                    <AlertDialog className="delete">
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="destructive"
+                          className="cursor-pointer"
+                        >
+                          <Trash />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Are you absolutely sure?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently
+                            remove your data from our servers.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction className={"bg-red-500"}>
+                            Delete
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </TableCell>
                 </TableRow>
               ))}
