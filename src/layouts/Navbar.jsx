@@ -41,8 +41,8 @@ const Navbar = () => {
   const { cartCount } = useContext(CartContext);
 
   const handleLogOut = () => {
-    setCurrentUser(null);
-    navigate("/");
+    setCurrentUser(null); // This will remove from localStorage
+    navigate("/login");
     toast.success("Logged out successfully");
   };
 

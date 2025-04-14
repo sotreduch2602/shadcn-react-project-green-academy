@@ -31,7 +31,7 @@ export function LoginForm({ className, ...props }) {
     );
 
     if (userFound) {
-      setCurrentUser(userFound);
+      setCurrentUser(userFound); // This will trigger the localStorage update
       navigate("/");
       toast.success("Login successful", {
         description: "Welcome back!",

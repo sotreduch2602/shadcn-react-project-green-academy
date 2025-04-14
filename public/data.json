@@ -4,7 +4,7 @@
       "user_id": 1,
       "username": "admin",
       "password": "12345",
-      "fullname": "asdasdsad",
+      "fullname": "123",
       "email": "sotreduch12@gmail.com",
       "date_of_birth": "1/1/1990",
       "phone": "0921260230",
@@ -149,43 +149,6 @@
   ],
   "products": [
     {
-      "product_id": 1,
-      "name": "iPhone 15 Pro",
-      "category_id": 1,
-      "brand_id": 1,
-      "description": "Apple's latest flagship smartphone with advanced features",
-      "price": 999.99,
-      "salePrice": 49.99,
-      "isNewProduct": 1,
-      "isBestSellerProduct": 0,
-      "stock": "47",
-      "images": [
-        "https://img.lazcdn.com/g/p/9951cd21504b3fa9fcc370367518ee39.png_720x720q80.png_.webp",
-        "https://img.lazcdn.com/g/p/60ca40637446944b0fe4d3675ddf099d.jpg_720x720q80.jpg_.webp"
-      ],
-      "created_at": "2024-01-01 08:00:00",
-      "id": "263e"
-    },
-    {
-      "product_id": 2,
-      "name": "Samsung Galaxy S24",
-      "category_id": 1,
-      "brand_id": 2,
-      "description": "Premium Android smartphone with AI capabilities",
-      "price": 899.99,
-      "salePrice": null,
-      "isNewProduct": 0,
-      "isBestSellerProduct": 0,
-      "stock": 45,
-      "images": [
-        "https://img.lazcdn.com/g/ff/kf/Sbd47103074b741c3a906d00bc691b18ey.jpg_720x720q80.jpg_.webp",
-        "https://img.lazcdn.com/g/ff/kf/S9894a79e195245e2b102421f8a2e0c43H.jpg_720x720q80.jpg_.webp",
-        "https://img.lazcdn.com/g/ff/kf/Sedfd50ff0c5a45d18a02142a1566da04K.jpg_720x720q80.jpg_.webp"
-      ],
-      "created_at": "2024-01-01 08:30:00",
-      "id": "93e0"
-    },
-    {
       "product_id": 3,
       "name": "MacBook Pro M3",
       "category_id": 2,
@@ -232,9 +195,9 @@
       "isBestSellerProduct": 1,
       "stock": 40,
       "images": [
-        "https://www.sony.com.vn/image/8fd8d952b5aceeb8555636623627a735?fmt=pjpeg&wid=768&hei=300&bgcolor=F1F5F9&bgc=F1F5F9",
-        "https://www.sony.com.vn/image/54073b77e082d6396295a1287d1cf430?fmt=pjpeg&wid=768&hei=300&bgcolor=F1F5F9&bgc=F1F5F9",
-        "https://www.sony.com.vn/image/f4b4580f439b31bd31ad70c393983cd1?fmt=pjpeg&wid=768&hei=300&bgcolor=F1F5F9&bgc=F1F5F9"
+        "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg",
+        "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg",
+        "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg"
       ],
       "created_at": "2024-01-02 09:00:00",
       "id": "cd7c"
@@ -268,7 +231,8 @@
       "isBestSellerProduct": 0,
       "stock": 25,
       "images": [
-        "https://www.lenovo.com/medias/lenovo-laptop-thinkpad-x1-carbon-gen-10-14-intel-hero.png?context=bWFzdGVyfHJvb3R8MzE1NjI4fGltYWdlL3BuZ3xoOWEvaGE5LzEzMjU1MTI0OTg3OTM0LnBuZ3wzZjU1YzNmYmMzZDgxOTI3NTNiNmUyMDNiNjU4MWVjYjg3ZDZhMzFiNzE2YzdiMjM5YjI4NjE5NjQ5ZGE4ZGQ2"
+        "https://i.ebayimg.com/images/g/tZwAAOSwrr5n4vRu/s-l500.webp",
+        "https://i.ebayimg.com/images/g/myoAAOSwny5n4vPl/s-l140.webp"
       ],
       "created_at": "2024-01-03 11:00:00",
       "id": "gh9e"
@@ -285,7 +249,8 @@
       "isBestSellerProduct": 0,
       "stock": 35,
       "images": [
-        "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/plp/wearables/watch-gt4-rubber.png"
+        "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4/list/41mm-green.png",
+        "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4/list/46mm-green.png"
       ],
       "created_at": "2024-01-03 12:00:00",
       "id": "ij0f"
@@ -302,7 +267,9 @@
       "isBestSellerProduct": 1,
       "stock": 20,
       "images": [
-        "https://electronics.sony.com/image/5d02da5df552836db894cead8bb0902f/Homepage_A7IV_Mobile.png"
+        "https://mayanh24h.com/upload/assets/thumb/2025/0111/ar/a7iv-qua.jpg",
+        "https://mayanh24h.com/upload/assets/2021/1022/ar/sony-a7-iv-11.jpg",
+        "https://mayanh24h.com/upload/assets/catalog/san-pham/may-anh-mirrorless/sony/sony-a7r-m4/sony-a7r-mark-iv-10.jpg;"
       ],
       "created_at": "2024-01-04 09:00:00",
       "id": "kl1g"
@@ -319,7 +286,8 @@
       "isBestSellerProduct": 1,
       "stock": 30,
       "images": [
-        "https://images.samsung.com/is/image/samsung/p6pim/levant/2307/gallery/levant-galaxy-watch6-classic-470928-sm-r955fzsamen-thumb-537241069"
+        "https://cdn.hoanghamobile.com/i/previewV2/Uploads/2023/07/26/classic-den.png",
+        "https://cdn.hoanghamobile.com/i/previewV2/Uploads/2023/07/26/classic-bac.png"
       ],
       "created_at": "2024-01-04 10:00:00",
       "id": "mn2h"
@@ -336,7 +304,9 @@
       "isBestSellerProduct": 0,
       "stock": 25,
       "images": [
-        "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-12-11-select-202310?wid=545&hei=550&fmt=png-alpha&.v=1697913356268"
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-2022-12-9-inch-m2_5.png",
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-13-select-wifi-silver-202210-01_3_3_1_2.jpg",
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-13-select-202210_3_3_1_2.png"
       ],
       "created_at": "2024-01-05 09:00:00",
       "id": "op3i"
@@ -353,7 +323,9 @@
       "isBestSellerProduct": 0,
       "stock": 20,
       "images": [
-        "https://www.lenovo.com/medias/lenovo-laptop-legion-7-gen-7-16-amd-hero.png?context=bWFzdGVyfHJvb3R8MjM1NjY4fGltYWdlL3BuZ3xoMjAvaGRkLzEzMjU1MTI0NTkwNjIyLnBuZ3wzZjU1YzNmYmMzZDgxOTI3NTNiNmUyMDNiNjU4MWVjYjg3ZDZhMzFiNzE2YzdiMjM5YjI4NjE5NjQ5ZGE4ZGQ2"
+        "https://cdn.tgdd.vn/Products/Images/44/326495/lenovo-legion-pro-7-16irx9h-i9-83de001mvn-1-750x500.jpg",
+        "https://cdn.tgdd.vn/Products/Images/44/326495/lenovo-legion-pro-7-16irx9h-i9-83de001mvn-2-750x500.jpg",
+        "https://cdn.tgdd.vn/Products/Images/44/326495/lenovo-legion-pro-7-16irx9h-i9-83de001mvn-3-750x500.jpg"
       ],
       "created_at": "2024-01-05 10:00:00",
       "id": "qr4j"
@@ -370,7 +342,9 @@
       "isBestSellerProduct": 1,
       "stock": 15,
       "images": [
-        "https://asia.canon/media/image/2019/05/14/b4d1b0a580a24e0b859b7d6f85f91937_RF24-70mm+f2.8+L+IS+USM+Front+Slant.png"
+        "https://cdn.vjshop.vn/ong-kinh/mirrorless/canon/ong-kinh-canon-rf-24-70mm-f2-8l-is-usm/canon-rf-24-70mm-f28l-is-usm-500x500.jpg",
+        "https://cdn.vjshop.vn/ong-kinh/mirrorless/canon/ong-kinh-canon-rf-24-70mm-f2-8l-is-usm/canon-rf-24-70mm-f28l-is-usm-8-500x500.jpg",
+        "https://cdn.vjshop.vn/ong-kinh/mirrorless/canon/ong-kinh-canon-rf-24-70mm-f2-8l-is-usm/canon-rf-24-70mm-f28l-is-usm-8-500x500.jpg"
       ],
       "created_at": "2024-01-06 09:00:00",
       "id": "st5k"
@@ -387,7 +361,9 @@
       "isBestSellerProduct": 1,
       "stock": 40,
       "images": [
-        "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQD83?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1660803972361"
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/1/_/1_264.jpg",
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/2/_/2_253.jpg",
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/3/_/3_237.jpg"
       ],
       "created_at": "2024-01-06 10:00:00",
       "id": "uv6l"

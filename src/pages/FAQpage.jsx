@@ -78,7 +78,7 @@ export default function DesktopFaqs() {
         </nav>
 
         {/* Hero banner */}
-        <div className="w-full max-w-[1016px] h-[300px] sm:h-[426px] mx-auto mt-8 sm:mt-16 rounded-lg overflow-hidden bg-gradient-to-r from-blue-600/20 to-transparent">
+        <div className="w-full max-w-[1016px] h-[300px] sm:h-[426px] mx-auto mt-8 sm:mt-2 rounded-lg overflow-hidden bg-gradient-to-r from-blue-600/20 to-transparent">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-[150px] sm:mt-[211px] mx-4 sm:ml-10">
             Frequently Asked Questions
           </h1>
