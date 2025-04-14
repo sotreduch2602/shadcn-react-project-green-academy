@@ -32,6 +32,7 @@ import {
 
 const ProductManagement = () => {
   const [updateButton, setUpdateButton] = useState(false);
+  const [createButton, setCreateButton] = useState(false);
   const [productsList, setProductsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const [brandsList, setBrandsList] = useState([]);
@@ -45,12 +46,28 @@ const ProductManagement = () => {
       // Handle regular input changes
       setInputFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
-    console.log(inputFields);
   };
 
-  const handleEdit = (product) => {
+  const handleEdit = async (product) => {
     setUpdateButton(true);
-    setInputFields((prev) => product);
+    setInputFields(product);
+  };
+
+  const handleUpdateButton = async (e) => {
+    if (e) e.preventDefault(); // Add event parameter and prevent default
+    try {
+      await axios.put(
+        `http://localhost:3000/products/${inputFields.id}`,
+        inputFields
+      );
+
+      setInputFields({});
+      setUpdateButton(false);
+      const { data } = await axios.get("http://localhost:3000/products");
+      setProductsList(data);
+    } catch (error) {
+      console.error("Update Failed:", error);
+    }
   };
 
   useEffect(() => {
@@ -170,8 +187,18 @@ const ProductManagement = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2 mt-2">
-              <Button variant="skyblue">Create</Button>
-              {updateButton && <Button variant="yellow">Update</Button>}
+              <Button type="button" variant="skyblue">
+                Create
+              </Button>
+              {updateButton && (
+                <Button
+                  type="button" // Add this
+                  variant="yellow"
+                  onClick={(e) => handleUpdateButton(e)} // Modify this
+                >
+                  Update
+                </Button>
+              )}
             </div>
           </div>
         </div>

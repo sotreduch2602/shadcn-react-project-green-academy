@@ -36,7 +36,7 @@ const CarouselSizeSale = ({ className }) => {
           {filterSaleProductsList.map((product, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div>
-                <ProductCard  
+                <ProductCard
                   image={product.images[0]}
                   title={product.name}
                   description={product.description}

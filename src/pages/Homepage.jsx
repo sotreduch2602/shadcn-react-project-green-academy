@@ -116,7 +116,7 @@ const Homepage = () => {
 
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
-          {filterNewProductsList.map((item) => (
+          {filterNewProductsList.slice(0,4).map((item) => (
             <a
               key={item.product_id}
               onClick={() => navigate(`/products/detail/${item.product_id}`)}
@@ -151,7 +151,7 @@ const Homepage = () => {
 
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
-          {filterBestProductsList.map((item) => (
+          {filterBestProductsList.slice(0,4).map((item) => (
             <a
               key={item.product_id}
               onClick={() => navigate(`/products/detail/${item.product_id}`)}
