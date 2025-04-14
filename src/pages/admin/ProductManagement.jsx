@@ -1,4 +1,4 @@
-import { ChevronRight, Info, Pen, Trash } from "lucide-react";
+import { Info, Pen, Trash } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -32,7 +32,6 @@ import {
 
 const ProductManagement = () => {
   const [updateButton, setUpdateButton] = useState(false);
-  const [createButton, setCreateButton] = useState(false);
   const [productsList, setProductsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const [brandsList, setBrandsList] = useState([]);
@@ -53,8 +52,45 @@ const ProductManagement = () => {
     setInputFields(product);
   };
 
+  const handleDelete = async (product) => {
+    try {
+      await axios.delete(`http://localhost:3000/products/${product.id}`);
+      const { data } = axios.get("http://localhost:3000/products");
+      setProductsList(data);
+    } catch {
+      console.error("Delete Failed", error);
+    }
+  };
+
+  const handleCreateButton = async (e, index) => {
+    e.preventDefault();
+
+    const NewProductData = {
+      product_id: productsList.length + 1,
+      name: inputFields.name,
+      category_id: inputFields.category_id,
+      brand_id: inputFields.brand_id,
+      description: inputFields.description,
+      price: inputFields.price,
+      salePrice: null,
+      isNewProduct: 0,
+      isBestSellerProduct: 0,
+      stock: inputFields.stock,
+      images: [],
+      created_at: new Date().toISOString(),
+    };
+
+    try {
+      await axios.post("http://localhost:3000/products", NewProductData);
+      setProductsList((prev) => [...prev, inputFields]);
+      setInputFields({});
+    } catch (error) {
+      console.error("Create Failed:", error);
+    }
+  };
+
   const handleUpdateButton = async (e) => {
-    if (e) e.preventDefault(); // Add event parameter and prevent default
+    e.preventDefault(); // Add event parameter and prevent default
     try {
       await axios.put(
         `http://localhost:3000/products/${inputFields.id}`,
@@ -187,7 +223,11 @@ const ProductManagement = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2 mt-2">
-              <Button type="button" variant="skyblue">
+              <Button
+                type="button"
+                variant="skyblue"
+                onClick={(e) => handleCreateButton(e)}
+              >
                 Create
               </Button>
               {updateButton && (
@@ -220,11 +260,9 @@ const ProductManagement = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {productsList.map((item) => (
+              {productsList.map((item, index) => (
                 <TableRow key={item.id}>
-                  <TableCell className="font-medium">
-                    {item.product_id}
-                  </TableCell>
+                  <TableCell className="font-medium">{index + 1}</TableCell>
                   <TableCell>
                     <img
                       src={item.images[0]}
@@ -355,7 +393,10 @@ const ProductManagement = () => {
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction className={"bg-red-500"}>
+                          <AlertDialogAction
+                            className={"bg-red-500"}
+                            onClick={() => handleDelete(item)}
+                          >
                             Delete
                           </AlertDialogAction>
                         </AlertDialogFooter>
