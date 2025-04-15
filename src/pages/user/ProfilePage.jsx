@@ -42,7 +42,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 
-// Data for sidebar navigation items
 const sidebarNavItems = [
   {
     icon: UserCog,
@@ -56,8 +55,6 @@ const sidebarNavItems = [
     value: "orders",
   },
 ];
-
-// Data for personal information fields
 
 export default function ProfilePage() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -139,7 +136,6 @@ export default function ProfilePage() {
       <div className="bg-white flex flex-row justify-center w-full">
         <div className="bg-white w-full max-w-[1440px] min-h-[1024px] relative">
           <div className="container px-4">
-            {/* Breadcrumb Navigation */}
             <Breadcrumb className="mb-8 ml-4">
               <BreadcrumbList>
                 <BreadcrumbItem>
@@ -213,7 +209,6 @@ export default function ProfilePage() {
                         </h2>
                       </div>
 
-                      {/* Personal Info Fields */}
                       <div className="space-y-3  px-6">
                         {personalInfoFields.map((field) => (
                           <Card

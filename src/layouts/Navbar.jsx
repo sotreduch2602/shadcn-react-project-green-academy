@@ -201,14 +201,18 @@ const Navbar = () => {
                       <span>Profile</span>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      className="cursor-pointer"
-                      onClick={() => navigate("/admin")}
-                    >
-                      <LayoutBoard className="mr-2 h-4 w-4" />
-                      <span>Admin</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
+                    {currentUser.role == "admin" && (
+                      <>
+                        <DropdownMenuItem
+                          className="cursor-pointer"
+                          onClick={() => navigate("/admin")}
+                        >
+                          <LayoutBoard className="mr-2 h-4 w-4" />
+                          <span>Admin Dashboard</span>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                      </>
+                    )}
                     <DropdownMenuItem
                       className="cursor-pointer text-red-600"
                       onClick={handleLogOut}

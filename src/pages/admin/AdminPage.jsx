@@ -7,6 +7,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChevronRight } from "lucide-react";
 import ProductManagement from "./ProductManagement";
+import UserManagement from "./UserManagement";
 
 export default function AdminPage() {
   return (
@@ -51,7 +52,7 @@ export default function AdminPage() {
                 Change your password here.
               </TabsContent>
               <TabsContent value="users">
-                Change your password here.
+                <UserManagement />
               </TabsContent>
             </Tabs>
           </div>
