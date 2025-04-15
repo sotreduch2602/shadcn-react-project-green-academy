@@ -126,7 +126,7 @@ const ProductManagement = () => {
   }, []);
 
   return (
-    <div className={"w-full lg:grid lg:grid-cols-4 gap-4"}>
+    <div className={"w-full grid grid-cols-4 gap-4"}>
       <div className="col-span-1 bg-amber-100 p-4 rounded-2xl shadow-md">
         <div className="flex flex-col gap-2">
           <div className="gap-2">
@@ -135,7 +135,7 @@ const ProductManagement = () => {
                 Product Name
                 <Input
                   type={"text"}
-                  className={"w-full bg-white"}
+                  className={"w-full"}
                   name={"name"}
                   value={inputFields.name || ""}
                   onChange={handleOnChange}
@@ -150,7 +150,7 @@ const ProductManagement = () => {
                     handleOnChange(null, "category_id", value)
                   }
                 >
-                  <SelectTrigger className="w-full bg-white">
+                  <SelectTrigger className="w-full">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -174,7 +174,7 @@ const ProductManagement = () => {
                     handleOnChange(null, "brand_id", value)
                   }
                 >
-                  <SelectTrigger className="w-full bg-white">
+                  <SelectTrigger className="w-full">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -191,7 +191,7 @@ const ProductManagement = () => {
                 Description
                 <Input
                   type={"text"}
-                  className={"w-full bg-white"}
+                  className={"w-full"}
                   name={"description"}
                   value={inputFields.description || ""}
                   onChange={handleOnChange}
@@ -203,7 +203,7 @@ const ProductManagement = () => {
                 <Input
                   type={"number"}
                   min="1"
-                  className={"w-full bg-white"}
+                  className={"w-full"}
                   name={"price"}
                   value={inputFields.price || ""}
                   onChange={handleOnChange}
@@ -215,7 +215,7 @@ const ProductManagement = () => {
                 <Input
                   type={"number"}
                   min="1"
-                  className={"w-full bg-white"}
+                  className={"w-full"}
                   name={"stock"}
                   value={inputFields.stock || ""}
                   onChange={handleOnChange}
@@ -232,9 +232,9 @@ const ProductManagement = () => {
               </Button>
               {updateButton && (
                 <Button
-                  type="button"
+                  type="button" // Add this
                   variant="yellow"
-                  onClick={(e) => handleUpdateButton(e)}
+                  onClick={(e) => handleUpdateButton(e)} // Modify this
                 >
                   Update
                 </Button>
@@ -244,7 +244,7 @@ const ProductManagement = () => {
         </div>
       </div>
       <div className="col-span-3">
-        <div className="max-h-screen overflow-y-auto border rounded-lg">
+        <div className="max-h-[600px] overflow-y-auto border rounded-lg">
           <Table>
             <TableHeader className="sticky top-0 bg-white">
               <TableRow>
@@ -358,7 +358,8 @@ const ProductManagement = () => {
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogAction className={'bg-sky-700'}>Close</AlertDialogAction>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction>Continue</AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>

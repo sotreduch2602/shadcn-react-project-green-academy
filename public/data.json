@@ -1,18 +1,17 @@
 {
   "users": [
     {
-      "user_id": 1,
+      "user_id": "fa66",
       "username": "admin",
       "password": "12345",
       "fullname": "123",
       "email": "sotreduch12@gmail.com",
-      "date_of_birth": "1/1/1990",
+      "date_of_birth": "29/4/2025",
       "phone": "0921260230",
       "role": "admin",
       "address": "asdadasd",
-      "created_at": "2024-01-01 00:00:00",
-      "id": "fa66",
-      "": ""
+      "created_at": "2025-04-15T12:36:27.176Z",
+      "id": "fa66"
     },
     {
       "user_id": 2,
