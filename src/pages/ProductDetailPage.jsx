@@ -14,32 +14,62 @@ import {
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
 import { CartContext } from "@/contexts/CartContext";
+import { UserContext } from "@/contexts/user/UserContext";
 
 const ProductDetailPage = () => {
   let { id } = useParams();
+  const { currentUser } = useContext(UserContext);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [productSelected, setProductSelected] = useState();
   const [reviewsList, setReviewsList] = useState([]);
   const { addItemToCart } = useContext(CartContext);
+  const [inputFields, setInputFields] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3000/products`).then((res) => {
-      // console.log(res.data.find((p) => p.product_id == id));
       setProductSelected(res.data.find((p) => p.product_id == id));
     });
   }, [id]);
 
   useEffect(() => {
     axios.get(`http://localhost:3000/reviews`).then((res) => {
-      // console.log(res.data.filter((r) => r.product_id == id));
       setReviewsList(res.data.filter((r) => r.product_id == id));
     });
   }, [id]);
 
   const handleAddToCart = () => {
     if (productSelected) {
-      addItemToCart(productSelected,quantity)
+      addItemToCart(productSelected, quantity);
+    }
+  };
+
+  const handleChangeStar = (e) => {
+    const { name, value } = e.target;
+    setInputFields({ ...inputFields, [name]: value });
+    console.log(inputFields);
+  };
+
+  const handleSubmitReview = async () => {
+    const newReview = {
+      review_id: reviewsList.length + 1,
+      user: {
+        user_id: currentUser.user_id,
+        username: currentUser.fullname,
+      },
+      product_id: id,
+      rating: inputFields.rating,
+      comment: inputFields.comment,
+      created_at: new Date().toISOString(),
+    };
+
+    try {
+      await axios.post("http://localhost:3000/reviews", newReview);
+
+      const { data } = await axios.get("http://localhost:3000/reviews");
+      setReviewsList(data);
+    } catch (error) {
+      console.error("Post Failed", error);
     }
   };
 
@@ -274,14 +304,30 @@ const ProductDetailPage = () => {
                 <form className="space-y-4">
                   <div className="flex items-center gap-3">
                     <label>Rating 1-5</label>
-                    <Input type="number" min="1" max="5" className="w-24" />
+                    <Input
+                      type="number"
+                      min="1"
+                      max="5"
+                      className="w-24"
+                      name="rating"
+                      onChange={handleChangeStar}
+                      value={inputFields.rating || ""}
+                    />
                   </div>
                   <textarea
                     rows={4}
                     placeholder="Your Review"
+                    name="comment"
                     className="w-full p-2 border rounded-md resize-none"
+                    value={inputFields.comment || ""}
+                    onChange={handleChangeStar}
                   ></textarea>
-                  <Button variant="skyblue" effect="ringHoverSky">
+                  <Button
+                    type="button"
+                    variant="skyblue"
+                    effect="ringHoverSky"
+                    onClick={handleSubmitReview}
+                  >
                     Submit Review
                   </Button>
                 </form>
