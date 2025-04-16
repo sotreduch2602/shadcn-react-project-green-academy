@@ -17,6 +17,7 @@ import {
 import {
   ChevronRight,
   Home,
+  Info,
   Key,
   LogOut,
   Mail,
@@ -41,6 +42,7 @@ import { UserContext } from "@/contexts/user/UserContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 const sidebarNavItems = [
   {
@@ -252,19 +254,96 @@ export default function ProfilePage() {
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="w-[100px]">#</TableHead>
-                          <TableHead>Image</TableHead>
-                          <TableHead>Name</TableHead>
-                          <TableHead>Method</TableHead>
-                          <TableHead className="text-right">Amount</TableHead>
+                          <TableHead className="w-[10px]">#</TableHead>
+                          <TableHead>Order ID</TableHead>
+                          <TableHead>Total Quantity</TableHead>
+                          <TableHead>Total Price</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead className="text-right">Action</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         <TableRow>
-                          <TableCell className="font-medium">INV001</TableCell>
-                          <TableCell>Paid</TableCell>
-                          <TableCell>Credit Card</TableCell>
-                          <TableCell className="text-right">$250.00</TableCell>
+                          <TableCell className="font-medium">1</TableCell>
+                          <TableCell className="font-medium">1</TableCell>
+                          <TableCell>123</TableCell>
+                          <TableCell>123</TableCell>
+                          <TableCell>delivered</TableCell>
+                          <TableCell className="text-right">
+                            <AlertDialog className="information">
+                              <AlertDialogTrigger asChild>
+                                <Button
+                                  variant="skyblue"
+                                  className="cursor-pointer"
+                                >
+                                  <Info />
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>
+                                    Information Product
+                                  </AlertDialogTitle>
+                                  <AlertDialogDescription className="space-y-2">
+                                    <div className="flex gap-4">
+                                      <div className="w-1/3">
+                                        <div className="aspect-square rounded-lg overflow-hidden">
+                                          <img
+                                            src={''}
+                                            alt={''}
+                                            className="w-full h-full object-cover"
+                                          />
+                                        </div>
+                                      </div>
+
+                                      <div className="w-2/3 grid grid-cols-2 gap-2">
+                                        <div className="font-semibold">
+                                          Product Name:
+                                        </div>
+                                        <div>{''}</div>
+
+                                        <div className="font-semibold">
+                                          Category:
+                                        </div>
+                                        <div>
+                                        </div>
+
+                                        <div className="font-semibold">
+                                          Brand:
+                                        </div>
+                                        <div>
+   
+                                        </div>
+
+                                        <div className="font-semibold">
+                                          Description:
+                                        </div>
+                                        <div className="break-words">
+                                      
+                                        </div>
+
+                                        <div className="font-semibold">
+                                          Price:
+                                        </div>
+                                        <div></div>
+
+                                        <div className="font-semibold">
+                                          Stock:
+                                        </div>
+                                        <div>units</div>
+                                      </div>
+                                    </div>
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                  <AlertDialogAction>
+                                    Continue
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
