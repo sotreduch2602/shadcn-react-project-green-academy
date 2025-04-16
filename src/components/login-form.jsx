@@ -74,12 +74,6 @@ export function LoginForm({ className, ...props }) {
             <Label className={"text-sky-700"} htmlFor="password">
               Password
             </Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
           </div>
           <Input
             id="password"
