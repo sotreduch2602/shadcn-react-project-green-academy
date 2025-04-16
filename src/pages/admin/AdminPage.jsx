@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChevronRight } from "lucide-react";
 import ProductManagement from "./ProductManagement";
 import UserManagement from "./UserManagement";
+import OrderManagement from "./OrderManagement";
 
 export default function AdminPage() {
   return (
@@ -46,7 +47,7 @@ export default function AdminPage() {
                 <ProductManagement />
               </TabsContent>
               <TabsContent value="orders">
-                <UserManagement />
+                <OrderManagement />
               </TabsContent>
             </Tabs>
           </div>

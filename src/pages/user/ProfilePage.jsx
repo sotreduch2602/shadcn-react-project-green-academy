@@ -19,7 +19,6 @@ import {
   Home,
   Info,
   Key,
-  LogOut,
   Mail,
   Phone,
   ShoppingBag,
@@ -123,9 +122,13 @@ export default function ProfilePage() {
 
   const handleDeleteOrder = (orderId) => {
     try {
-      axios.delete(`http://localhost:3000/orders/${orderId}`).then(() => {
-        setOrderUser(orderUser.filter((order) => order.id !== orderId));
-      });
+      axios
+        .patch(`http://localhost:3000/orders/${orderId}`, {
+          status: "cancelled",
+        })
+        .then(() => {
+          setOrderUser(orderUser.filter((order) => order.id !== orderId));
+        });
     } catch (error) {
       console.error("Error deleting order:", error);
     }
@@ -209,7 +212,9 @@ export default function ProfilePage() {
                   <TabsList className="flex flex-col w-72 h-auto bg-gray-50 space-y-1 px-3">
                     <div className="p-6 flex items-center gap-4 w-full">
                       <Avatar className="w-[60px] h-[60px] bg-gray-50 border border-gray-100">
-                        <AvatarFallback><User2/></AvatarFallback>
+                        <AvatarFallback>
+                          <User2 />
+                        </AvatarFallback>
                       </Avatar>
                       <div className="text-lg font-medium text-black">
                         {currentUser.fullname}
@@ -290,7 +295,7 @@ export default function ProfilePage() {
                           <TableHead>Items</TableHead>
                           <TableHead>Total Amount</TableHead>
                           <TableHead>Status</TableHead>
-                          <TableHead className="text-right">Action</TableHead>
+                          <TableHead className="text-left">Action</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -315,13 +320,15 @@ export default function ProfilePage() {
                                     ? "bg-green-100 text-green-800"
                                     : order.status === "pending"
                                     ? "bg-yellow-100 text-yellow-800"
+                                    : order.status === "cancelled"
+                                    ? "bg-red-100 text-red-800"
                                     : "bg-gray-100 text-gray-800"
                                 }`}
                               >
                                 {order.status}
                               </span>
                             </TableCell>
-                            <TableCell className="text-right">
+                            <TableCell className="w-[150px] flex justify-start gap-2">
                               <AlertDialog className="information">
                                 <AlertDialogTrigger asChild>
                                   <Button

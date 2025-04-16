@@ -90,11 +90,37 @@ const ProductManagement = () => {
   };
 
   const handleUpdateButton = async (e) => {
-    e.preventDefault(); // Add event parameter and prevent default
+    e.preventDefault();
+
+    // Find the previous product data
+    const previousProduct = productsList.find(
+      (product) => product.id === inputFields.id
+    );
+
+    // Determine salePrice based on price comparison
+    let salePrice = null;
+    let price = null;
+    if (
+      previousProduct &&
+      Number(previousProduct.price) > Number(inputFields.price)
+    ) {
+      salePrice = inputFields.price;
+      price = previousProduct.price;
+    } else {
+      price = inputFields.price;
+    }
+
+    // Create updated product data
+    const updatedProduct = {
+      ...inputFields,
+      salePrice: salePrice,
+      price: price,
+    };
+
     try {
       await axios.put(
         `http://localhost:3000/products/${inputFields.id}`,
-        inputFields
+        updatedProduct
       );
 
       setInputFields({});
@@ -290,7 +316,9 @@ const ProductManagement = () => {
                   <TableCell className="w-[100px] truncate max-w-[100px]">
                     {item.description}
                   </TableCell>
-                  <TableCell>${item.price}</TableCell>
+                  <TableCell>
+                    ${item.salePrice ? item.salePrice : item.price}
+                  </TableCell>
                   <TableCell>{item.stock}</TableCell>
                   <TableCell className={"flex gap-2 justify-end"}>
                     <AlertDialog className="information">

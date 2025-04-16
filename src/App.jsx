@@ -17,6 +17,7 @@ import { CartProvider } from "./contexts/CartContext";
 import CartList from "./pages/CartList";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import AdminPage from "./pages/admin/AdminPage";
+import RegisterPage from "./pages/user/Registerpage";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
                     </Route>
 
                     <Route path="login" element={<LoginPage />}></Route>
+                    <Route path="register" element={<RegisterPage />}></Route>
                   </Routes>
                 </ProductsProvider>
               </BrandsProvider>
