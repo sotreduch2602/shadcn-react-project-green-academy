@@ -24,6 +24,7 @@ import {
   Phone,
   ShoppingBag,
   User,
+  User2,
   UserCog,
   X,
 } from "lucide-react";
@@ -208,10 +209,10 @@ export default function ProfilePage() {
                   <TabsList className="flex flex-col w-72 h-auto bg-gray-50 space-y-1 px-3">
                     <div className="p-6 flex items-center gap-4 w-full">
                       <Avatar className="w-[60px] h-[60px] bg-gray-50 border border-gray-100">
-                        <AvatarFallback>JS</AvatarFallback>
+                        <AvatarFallback><User2/></AvatarFallback>
                       </Avatar>
                       <div className="text-lg font-medium text-black">
-                        Jimmy smith
+                        {currentUser.fullname}
                       </div>
                     </div>
 
