@@ -25,6 +25,7 @@ import {
   ShoppingBag,
   User,
   UserCog,
+  X,
 } from "lucide-react";
 
 import {
@@ -42,7 +43,17 @@ import { UserContext } from "@/contexts/user/UserContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const sidebarNavItems = [
   {
@@ -61,6 +72,7 @@ const sidebarNavItems = [
 export default function ProfilePage() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [user, setUser] = useState({});
+  const [orderUser, setOrderUser] = useState([]);
 
   useEffect(() => {
     axios
@@ -70,14 +82,22 @@ export default function ProfilePage() {
       );
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/orders")
+      .then((res) =>
+        setOrderUser(
+          res.data.filter((order) => order.user_id == currentUser.user_id)
+        )
+      );
+  }, [currentUser.id]);
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
       ...prevUser,
       [name]: value,
     }));
-
-    console.log(user);
   };
 
   const handleUpdateProfile = (e) => {
@@ -97,6 +117,16 @@ export default function ProfilePage() {
         });
     } catch (error) {
       console.error("Error updating user:", error);
+    }
+  };
+
+  const handleDeleteOrder = (orderId) => {
+    try {
+      axios.delete(`http://localhost:3000/orders/${orderId}`).then(() => {
+        setOrderUser(orderUser.filter((order) => order.id !== orderId));
+      });
+    } catch (error) {
+      console.error("Error deleting order:", error);
     }
   };
 
@@ -256,95 +286,127 @@ export default function ProfilePage() {
                         <TableRow>
                           <TableHead className="w-[10px]">#</TableHead>
                           <TableHead>Order ID</TableHead>
-                          <TableHead>Total Quantity</TableHead>
-                          <TableHead>Total Price</TableHead>
+                          <TableHead>Items</TableHead>
+                          <TableHead>Total Amount</TableHead>
                           <TableHead>Status</TableHead>
                           <TableHead className="text-right">Action</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        <TableRow>
-                          <TableCell className="font-medium">1</TableCell>
-                          <TableCell className="font-medium">1</TableCell>
-                          <TableCell>123</TableCell>
-                          <TableCell>123</TableCell>
-                          <TableCell>delivered</TableCell>
-                          <TableCell className="text-right">
-                            <AlertDialog className="information">
-                              <AlertDialogTrigger asChild>
-                                <Button
-                                  variant="skyblue"
-                                  className="cursor-pointer"
-                                >
-                                  <Info />
-                                </Button>
-                              </AlertDialogTrigger>
-                              <AlertDialogContent>
-                                <AlertDialogHeader>
-                                  <AlertDialogTitle>
-                                    Information Product
-                                  </AlertDialogTitle>
-                                  <AlertDialogDescription className="space-y-2">
-                                    <div className="flex gap-4">
-                                      <div className="w-1/3">
-                                        <div className="aspect-square rounded-lg overflow-hidden">
-                                          <img
-                                            src={''}
-                                            alt={''}
-                                            className="w-full h-full object-cover"
-                                          />
-                                        </div>
-                                      </div>
-
-                                      <div className="w-2/3 grid grid-cols-2 gap-2">
-                                        <div className="font-semibold">
-                                          Product Name:
-                                        </div>
-                                        <div>{''}</div>
-
-                                        <div className="font-semibold">
-                                          Category:
-                                        </div>
-                                        <div>
-                                        </div>
-
-                                        <div className="font-semibold">
-                                          Brand:
-                                        </div>
-                                        <div>
-   
-                                        </div>
-
-                                        <div className="font-semibold">
-                                          Description:
-                                        </div>
-                                        <div className="break-words">
-                                      
-                                        </div>
-
-                                        <div className="font-semibold">
-                                          Price:
-                                        </div>
-                                        <div></div>
-
-                                        <div className="font-semibold">
-                                          Stock:
-                                        </div>
-                                        <div>units</div>
-                                      </div>
-                                    </div>
-                                  </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                  <AlertDialogAction>
-                                    Continue
-                                  </AlertDialogAction>
-                                </AlertDialogFooter>
-                              </AlertDialogContent>
-                            </AlertDialog>
-                          </TableCell>
-                        </TableRow>
+                        {orderUser?.map((order, index) => (
+                          <TableRow key={order.id}>
+                            <TableCell className="font-medium">
+                              {index + 1}
+                            </TableCell>
+                            <TableCell className="font-medium">
+                              #{order.id}
+                            </TableCell>
+                            <TableCell>
+                              {order.items?.length || 0} items
+                            </TableCell>
+                            <TableCell>
+                              ${order.total_amount?.toFixed(2)}
+                            </TableCell>
+                            <TableCell>
+                              <span
+                                className={`px-2 py-1 rounded-full text-xs ${
+                                  order.status === "delivered"
+                                    ? "bg-green-100 text-green-800"
+                                    : order.status === "pending"
+                                    ? "bg-yellow-100 text-yellow-800"
+                                    : "bg-gray-100 text-gray-800"
+                                }`}
+                              >
+                                {order.status}
+                              </span>
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <AlertDialog className="information">
+                                <AlertDialogTrigger asChild>
+                                  <Button
+                                    variant="skyblue"
+                                    className="cursor-pointer"
+                                  >
+                                    <Info className="h-4 w-4" />
+                                  </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                  <AlertDialogHeader>
+                                    <AlertDialogTitle>
+                                      Order Details
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription asChild>
+                                      <section className="space-y-4">
+                                        <section className="border-b pb-2">
+                                          <span className="font-semibold block mb-2">
+                                            Order Items:
+                                          </span>
+                                          {order.items?.map((item, idx) => (
+                                            <section
+                                              key={idx}
+                                              className="flex justify-between items-center py-2"
+                                            >
+                                              <span>{item.product_name}</span>
+                                              <span>
+                                                ${item.price?.toFixed(2)} x{" "}
+                                                {item.quantity}
+                                              </span>
+                                            </section>
+                                          ))}
+                                        </section>
+                                        <section className="flex justify-between font-semibold">
+                                          <span>Total Amount:</span>
+                                          <span>
+                                            ${order.total_amount?.toFixed(2)}
+                                          </span>
+                                        </section>
+                                      </section>
+                                    </AlertDialogDescription>
+                                  </AlertDialogHeader>
+                                  <AlertDialogFooter>
+                                    <AlertDialogCancel>Close</AlertDialogCancel>
+                                  </AlertDialogFooter>
+                                </AlertDialogContent>
+                              </AlertDialog>
+                              {order.status === "pending" && (
+                                <AlertDialog>
+                                  <AlertDialogTrigger asChild>
+                                    <Button
+                                      variant="destructive"
+                                      className="cursor-pointer ml-2"
+                                    >
+                                      <X className="h-4 w-4" />
+                                    </Button>
+                                  </AlertDialogTrigger>
+                                  <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                      <AlertDialogTitle>
+                                        Delete this order?
+                                      </AlertDialogTitle>
+                                      <AlertDialogDescription>
+                                        This action cannot be undone. Are you
+                                        sure you want to delete this order?
+                                      </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                      <AlertDialogCancel>
+                                        Keep Order
+                                      </AlertDialogCancel>
+                                      <AlertDialogAction
+                                        className={"bg-red-500"}
+                                        onClick={() =>
+                                          handleDeleteOrder(order.id)
+                                        }
+                                      >
+                                        Yes, Delete Order
+                                      </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                  </AlertDialogContent>
+                                </AlertDialog>
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        ))}
                       </TableBody>
                     </Table>
                   </TabsContent>

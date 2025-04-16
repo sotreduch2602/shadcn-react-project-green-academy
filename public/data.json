@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "user_id": "fa66",
+      "user_id": "1",
       "username": "admin",
       "password": "12345",
       "fullname": "123",
@@ -372,7 +372,7 @@
   "orders": [
     {
       "order_id": 1,
-      "user_id": 2,
+      "user_id": 1,
       "total_amount": 2499.98,
       "status": "delivered",
       "created_at": "2024-01-15 14:30:00",
@@ -396,7 +396,7 @@
     },
     {
       "order_id": 2,
-      "user_id": 3,
+      "user_id": 1,
       "total_amount": 899.99,
       "status": "processing",
       "created_at": "2024-02-01 11:20:00",
@@ -410,6 +410,125 @@
         }
       ],
       "id": "3a2e"
+    },
+    {
+      "order_id": 3,
+      "user_id": 2,
+      "total_amount": 3499.98,
+      "status": "pending",
+      "created_at": "2024-02-10 09:15:00",
+      "items": [
+        {
+          "product_id": 6,
+          "quantity": 1,
+          "price": 3899.99,
+          "product_name": "Canon EOS R5",
+          "product_image": "https://asia.canon/media/image/2020/07/09/d861e2557ef941a3aa2b85910366fcd3_EOS+R5_Front_BODY.png"
+        }
+      ],
+      "id": "4b3f"
+    },
+    {
+      "order_id": 4,
+      "user_id": 3,
+      "total_amount": 699.98,
+      "status": "delivered",
+      "created_at": "2024-02-12 14:20:00",
+      "items": [
+        {
+          "product_id": 5,
+          "quantity": 2,
+          "price": 349.99,
+          "product_name": "Sony WH-1000XM5",
+          "product_image": "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg"
+        }
+      ],
+      "id": "5c4g"
+    },
+    {
+      "order_id": 5,
+      "user_id": 2,
+      "total_amount": 2799.98,
+      "status": "processing",
+      "created_at": "2024-02-15 16:45:00",
+      "items": [
+        {
+          "product_id": 7,
+          "quantity": 2,
+          "price": 1399.99,
+          "product_name": "Lenovo ThinkPad X1 Carbon",
+          "product_image": "https://i.ebayimg.com/images/g/tZwAAOSwrr5n4vRu/s-l500.webp"
+        }
+      ],
+      "id": "6d5h"
+    },
+    {
+      "order_id": 6,
+      "user_id": 1,
+      "total_amount": 499.98,
+      "status": "pending",
+      "created_at": "2024-02-18 10:30:00",
+      "items": [
+        {
+          "product_id": 8,
+          "quantity": 2,
+          "price": 249.99,
+          "product_name": "Huawei Watch GT 4",
+          "product_image": "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4/list/41mm-green.png"
+        }
+      ],
+      "id": "7e6i"
+    },
+    {
+      "order_id": 7,
+      "user_id": 3,
+      "total_amount": 2499.99,
+      "status": "delivered",
+      "created_at": "2024-02-20 11:15:00",
+      "items": [
+        {
+          "product_id": 9,
+          "quantity": 1,
+          "price": 2499.99,
+          "product_name": "Sony A7 IV",
+          "product_image": "https://mayanh24h.com/upload/assets/thumb/2025/0111/ar/a7iv-qua.jpg"
+        }
+      ],
+      "id": "8f7j"
+    },
+    {
+      "order_id": 8,
+      "user_id": 2,
+      "total_amount": 599.98,
+      "status": "pending",
+      "created_at": "2024-02-22 13:40:00",
+      "items": [
+        {
+          "product_id": 10,
+          "quantity": 2,
+          "price": 299.99,
+          "product_name": "Samsung Galaxy Watch 6",
+          "product_image": "https://cdn.hoanghamobile.com/i/previewV2/Uploads/2023/07/26/classic-den.png"
+        }
+      ],
+      "id": "9g8k"
+    },
+    {
+      "order_id": 9,
+      "user_id": 1,
+      "total_amount": 3599.98,
+      "status": "processing",
+      "created_at": "2024-02-25 15:20:00",
+      "items": [
+        {
+          "product_id": 12,
+          "quantity": 2,
+          "price": 1799.99,
+          "product_name": "Lenovo Legion Pro 7",
+          "product_image": "https://cdn.tgdd.vn/Products/Images/44/326495/lenovo-legion-pro-7-16irx9h-i9-83de001mvn-1-750x500.jpg"
+        }
+      ],
+      "id": "0h9l"
     }
   ],
   "reviews": [
