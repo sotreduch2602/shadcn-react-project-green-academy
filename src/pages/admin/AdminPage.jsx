@@ -40,18 +40,12 @@ export default function AdminPage() {
             <Tabs defaultValue="products" className={"w-full"}>
               <TabsList className={"grid w-full grid-cols-2"}>
                 <TabsTrigger value="products">Products</TabsTrigger>
-                <TabsTrigger value="users">Users</TabsTrigger>
+                <TabsTrigger value="orders">Orders</TabsTrigger>
               </TabsList>
               <TabsContent value="products">
                 <ProductManagement />
               </TabsContent>
-              <TabsContent value="categories">
-                Change your password here.
-              </TabsContent>
-              <TabsContent value="brands">
-                Change your password here.
-              </TabsContent>
-              <TabsContent value="users">
+              <TabsContent value="orders">
                 <UserManagement />
               </TabsContent>
             </Tabs>

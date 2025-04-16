@@ -1,9 +1,11 @@
 import { ThreeDCardDemo } from "@/components/original_ui/3DCardDemo";
 import { Button } from "@/components/ui/button";
 import { CartContext } from "@/contexts/CartContext";
+import { UserContext } from "@/contexts/user/UserContext";
 import Footer from "@/layouts/Footer";
+import axios from "axios";
 import { Minus, Plus, ShoppingBag, Trash } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const CartList = () => {
   const {
@@ -14,6 +16,46 @@ const CartList = () => {
     addItemToCart,
     cartTotal,
   } = useContext(CartContext);
+
+  const { currentUser } = useContext(UserContext);
+
+  const [orderLists, setOrderLists] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/orders")
+      .then((res) => setOrderLists(res.data));
+  }, []);
+
+  const handleCheckout = async () => {
+    try {
+      const orderItems = cartItems.map((item) => ({
+        product_id: item.product_id,
+        quantity: item.quantity,
+        price: item.salePrice || item.price,
+        product_name: item.name,
+        product_image: item.images[0],
+      }));
+
+      const newOrderData = {
+        order_id: orderLists.length + 1,
+        user_id: currentUser.user_id,
+        total_amount: cartTotal,
+        status: "pending",
+        created_at: new Date().toISOString(),
+        items: orderItems,
+      };
+
+      await axios.post("http://localhost:3000/orders", newOrderData);
+
+      clearAllItemsFromCart();
+
+      alert("Order placed successfully!");
+    } catch (error) {
+      console.error("Error creating order:", error);
+      alert("Failed to place order. Please try again.");
+    }
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto px-4">
@@ -132,14 +174,16 @@ const CartList = () => {
                 </div>
               </div>
 
-              <Button className="w-full mt-6  text-white">
+              <Button
+                className="w-full mt-6  text-white"
+                onClick={handleCheckout}
+              >
                 Proceed to Checkout
               </Button>
             </div>
           </div>
         </div>
       )}
-
       <Footer />
     </div>
   );
