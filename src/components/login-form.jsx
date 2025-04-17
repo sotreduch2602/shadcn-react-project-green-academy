@@ -98,8 +98,8 @@ export function LoginForm({ className, ...props }) {
       <div className="text-center text-sm">
         Don't have an account?{" "}
         <a
-          href="#"
-          className="underline underline-offset-4 text-sky-700  font-medium"
+          onClick={()=>navigate('/register')}
+          className="underline underline-offset-4 text-sky-700  font-medium cursor-pointer"
         >
           Sign up
         </a>

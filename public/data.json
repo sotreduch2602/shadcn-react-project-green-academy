@@ -38,6 +38,19 @@
       "address": "789 Pine Road, Maple Hills, MH 34567",
       "created_at": "2024-01-03 15:45:00",
       "id": "b98d"
+    },
+    {
+      "id": "34aa",
+      "user_id": 4,
+      "username": "nguyen",
+      "password": "123",
+      "fullname": "",
+      "email": "sotreduch2602@gmail.com",
+      "date_of_birth": "01/04/2025",
+      "phone": "",
+      "role": "registered",
+      "address": "",
+      "created_at": "2025-04-17T02:00:01.794Z"
     }
   ],
   "categories": [
