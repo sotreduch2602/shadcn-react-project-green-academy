@@ -248,7 +248,7 @@ const OrderManagement = () => {
                       <Pen />
                     </Button>
 
-                    {order?.status !== "delivered" && (
+                    {order?.status === "pending" && (
                       <AlertDialog className="delete">
                         <AlertDialogTrigger asChild>
                           <Button
