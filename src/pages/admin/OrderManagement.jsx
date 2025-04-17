@@ -221,7 +221,7 @@ const OrderManagement = () => {
                                   >
                                     <span>{item.product_name}</span>
                                     <span>
-                                      ${item.price?.toFixed(2)} x{" "}
+                                      ${Number(item.price)?.toFixed(2)} x{" "}
                                       {item.quantity}
                                     </span>
                                   </section>

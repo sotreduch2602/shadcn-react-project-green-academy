@@ -47,13 +47,12 @@ const CartList = () => {
       };
 
       await axios.post("http://localhost:3000/orders", newOrderData);
-
+      toast.success("Order placed successfully!", {
+        duration: 3000,
+      });
       clearAllItemsFromCart();
-
-      alert("Order placed successfully!");
     } catch (error) {
       console.error("Error creating order:", error);
-      alert("Failed to place order. Please try again.");
     }
   };
 

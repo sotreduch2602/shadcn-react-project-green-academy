@@ -113,8 +113,8 @@ const ProductManagement = () => {
     // Create updated product data
     const updatedProduct = {
       ...inputFields,
-      salePrice: salePrice,
-      price: price,
+      salePrice: Number(salePrice),
+      price: Number(price),
     };
 
     try {
