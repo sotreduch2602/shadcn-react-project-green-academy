@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Navbar from "./layouts/Navbar";
-import ProductsPage from "./pages/ProductsPage";
 import { CategoriesProvider } from "./contexts/CategoriesContext";
 import { BrandsProvider } from "./contexts/BrandContext";
 import { ProductsProvider } from "./contexts/ProductContext";
@@ -18,6 +17,7 @@ import CartList from "./pages/CartList";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import AdminPage from "./pages/admin/AdminPage";
 import RegisterPage from "./pages/user/Registerpage";
+import ProductsPage from "./pages/Productspage";
 
 function App() {
   return (
