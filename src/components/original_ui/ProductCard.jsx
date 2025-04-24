@@ -17,16 +17,18 @@ const ProductCard = ({
   salePrice,
   className,
 }) => {
-  const discountPercentage = Math.round(
-    ((originalPrice - salePrice) / originalPrice) * 100
-  );
+  let discountPercentage;
 
-  console.log(discountPercentage);
+  if (salePrice) {
+    discountPercentage = Math.round(
+      ((originalPrice - salePrice) / originalPrice) * 100
+    );
+  }
 
   return (
     <Card className={cn("relative overflow-hidden", className)}>
       {/* Sale Badge */}
-      {discountPercentage != 0 && (
+      {discountPercentage && (
         <div className="absolute top-0 right-0 bg-red-500 text-white px-3 py-1 rounded-bl-lg font-bold z-10">
           -{discountPercentage}%
         </div>
@@ -34,7 +36,7 @@ const ProductCard = ({
 
       <CardHeader>
         <CardTitle className="flex items-center justify-center">
-          <div className=" flex items-center justify-center">
+          <div className=" flex items-center justify-center h-[154px]">
             <img
               src={image}
               alt={title}
@@ -46,16 +48,20 @@ const ProductCard = ({
 
       <CardContent className="flex flex-col items-center justify-center p-2 gap-2">
         <h3 className="font-semibold text-base text-center">{title}</h3>
-        <CardDescription className={"text-center"}>
+        <CardDescription className={"text-center h-[60px]"}>
           {description}
         </CardDescription>
 
         <div className="flex items-center gap-2 mt-2">
-          <span className="text-red-500 font-bold">${salePrice}</span>
-          {discountPercentage != 0 && (
-            <span className="text-gray-400 line-through text-sm">
-              ${originalPrice}
-            </span>
+          {discountPercentage ? (
+            <>
+              <span className="text-red-500 font-bold">${salePrice}</span>
+              <span className="text-gray-400 line-through text-sm">
+                ${originalPrice}
+              </span>
+            </>
+          ) : (
+            <span className="text-sky-700 font-bold">${originalPrice}</span>
           )}
         </div>
       </CardContent>

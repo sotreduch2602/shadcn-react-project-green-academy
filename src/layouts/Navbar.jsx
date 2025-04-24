@@ -1,20 +1,33 @@
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, User, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import Brand from "@/components/original_ui/brand";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 import SearchIcon from "@/assets/navbar/search.svg";
 import CartIcon from "@/assets/navbar/bag.svg";
 import UserIcon from "@/assets/navbar/profile.svg";
 import { Outlet } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { useContext } from "react";
+import { UserContext } from "@/contexts/user/UserContext";
+import { CartContext } from "@/contexts/CartContext";
+import SearchBarDialog from "@/components/original_ui/SearchBarDialog";
+import { Dashboard, LayoutBoard } from "tabler-icons-react";
+import { toast } from "sonner";
 
 export const Icons = {
   search: SearchIcon,
@@ -23,6 +36,16 @@ export const Icons = {
 };
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { cartCount } = useContext(CartContext);
+
+  const handleLogOut = () => {
+    setCurrentUser(null); // This will remove from localStorage
+    navigate("/login");
+    toast.success("Logged out successfully");
+  };
+
   return (
     <>
       <header className="sticky top-0 z-50 py-3 bg-white/70 backdrop-blur-md">
@@ -36,29 +59,34 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="left">
                 <div className="p-4">
-                  <Brand className={"ml-0"} />
+                  <Link to="/">
+                    <Brand className={"ml-0"} />
+                  </Link>
                   <NavigationMenu orientation="vertical" className="w-full">
                     <NavigationMenuList
                       className={"flex-col justify-start items-start my-4"}
                     >
                       <NavigationMenuItem>
                         <NavigationMenuLink
+                          href="/"
+                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                        >
+                          Products
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
                           href="/blog"
-                          className="font-medium"
+                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
                           Blog
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                       <NavigationMenuItem>
                         <NavigationMenuLink
-                          href="/blog"
-                          className="font-medium"
+                          href="/faq"
+                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
-                          Blog
-                        </NavigationMenuLink>
-                      </NavigationMenuItem>
-                      <NavigationMenuItem>
-                        <NavigationMenuLink href="/faq" className="font-medium">
                           FAQ
                         </NavigationMenuLink>
                       </NavigationMenuItem>
@@ -66,7 +94,7 @@ const Navbar = () => {
                       <NavigationMenuItem>
                         <NavigationMenuLink
                           href="/contact"
-                          className="font-medium"
+                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
                           Contact Us
                         </NavigationMenuLink>
@@ -78,7 +106,9 @@ const Navbar = () => {
             </Sheet>
 
             {/* Brand */}
-            <Brand />
+            <Link to="/">
+              <Brand />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -87,53 +117,26 @@ const Navbar = () => {
               <NavigationMenuList className="flex justify-center gap-8">
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    href="/"
-                    className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                    onClick={() => navigate("/")}
+                    className="font-medium cursor-pointer relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                   >
                     Home
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100">
+                  <NavigationMenuLink
+                    onClick={() => navigate("/products")}
+                    className="font-medium cursor-pointer relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                  >
                     Products
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-3 p-6 w-[450px]">
-                      <div className="flex items-center gap-4">
-                        <img
-                          src="/placeholder-image-1.jpg"
-                          alt="Product 1"
-                          className="h-16 w-16 rounded-md object-cover"
-                        />
-                        <div>
-                          <h4 className="text-sm font-medium">Product 1</h4>
-                          <p className="text-sm text-muted-foreground">
-                            Description for Product 1
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <img
-                          src="/placeholder-image-2.jpg"
-                          alt="Product 2"
-                          className="h-16 w-16 rounded-md object-cover"
-                        />
-                        <div>
-                          <h4 className="text-sm font-medium">Product 2</h4>
-                          <p className="text-sm text-muted-foreground">
-                            Description for Product 2
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </NavigationMenuContent>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    href="/blog"
-                    className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                    onClick={() => navigate("/blog")}
+                    className="font-medium cursor-pointer relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                   >
                     Blog
                   </NavigationMenuLink>
@@ -141,8 +144,8 @@ const Navbar = () => {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    href="/faq"
-                    className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                    onClick={() => navigate("/faq")}
+                    className="font-medium cursor-pointer relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                   >
                     FAQ
                   </NavigationMenuLink>
@@ -150,8 +153,8 @@ const Navbar = () => {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    href="/contact"
-                    className="font-medium whitespace-nowrap relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                    onClick={() => navigate("/contact")}
+                    className="font-medium cursor-pointer whitespace-nowrap relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                   >
                     Contact Us
                   </NavigationMenuLink>
@@ -162,21 +165,72 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="w-auto md:w-1/3 flex items-center justify-end gap-5">
-            <img
-              src={Icons.search}
-              alt="Search"
-              className="size-8 cursor-pointer"
-            />
-            <img
-              src={Icons.cart}
-              alt="Cart"
-              className="w-6 h-6 cursor-pointer"
-            />
-            <img
-              src={Icons.user}
-              alt="User"
-              className="size-9 cursor-pointer"
-            />
+            <div>
+              <SearchBarDialog icon={Icons.search} />
+            </div>
+
+            <div className="relative" onClick={() => navigate("/cart")}>
+              <img
+                src={Icons.cart}
+                alt="Cart"
+                className="w-6 h-6 cursor-pointer"
+              />
+              <Badge className=" absolute -top-2 -right-2 bg-red-500 text-white text px-1.5 py-0.5 rounded-full">
+                {cartCount}
+              </Badge>
+            </div>
+
+            <div>
+              {currentUser ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="focus:outline-none">
+                    <img
+                      src={Icons.user}
+                      alt="User"
+                      className="w-9 h-9 cursor-pointer hover:opacity-80 transition-opacity"
+                    />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-48" align="end">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      className="cursor-pointer"
+                      onClick={() => navigate("/profile")}
+                    >
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    {currentUser.role == "admin" && (
+                      <>
+                        <DropdownMenuItem
+                          className="cursor-pointer"
+                          onClick={() => navigate("/admin")}
+                        >
+                          <LayoutBoard className="mr-2 h-4 w-4" />
+                          <span>Admin Dashboard</span>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                      </>
+                    )}
+                    <DropdownMenuItem
+                      className="cursor-pointer text-red-600"
+                      onClick={handleLogOut}
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  to="/login"
+                  className="pb-2 font-medium whitespace-nowrap relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                >
+                  Sign In
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </header>

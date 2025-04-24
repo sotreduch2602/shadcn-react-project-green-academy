@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -5,23 +6,35 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { CategoriesContext } from "@/contexts/CategoriesContext";
+import { useNavigate } from "react-router-dom";
 
-const CategoryCarousel = ({ images }) => {
+const CategoryCarousel = () => {
+  const navigate = useNavigate();
+  const { categoriesList, selectCategory, setSelectCategory } =
+    useContext(CategoriesContext);
+
+  const MoveToFilteredCategories = (category) => {
+    setSelectCategory(category);
+    navigate("/products");
+  };
+
   return (
     <>
-      {images.map((i, index) => (
+      {categoriesList.map((category) => (
         <Card
-          key={index}
+          onClick={() => MoveToFilteredCategories(category)}
+          key={category.category_id}
           className={
-            "mx-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 hover:scale-105"
+            "m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 hover:scale-105"
           }
         >
           <CardHeader>
             <CardTitle className="flex items-center justify-center">
               <div className="size-[112px] flex items-center justify-center">
                 <img
-                  src={i}
-                  alt={"title"}
+                  src={category.imageURL}
+                  alt={category.name}
                   className="max-w-full max-h-full object-contain h-auto"
                 />
               </div>
@@ -29,9 +42,11 @@ const CategoryCarousel = ({ images }) => {
           </CardHeader>
 
           <CardContent className="flex flex-col items-center justify-center gap-2">
-            <h3 className="font-semibold text-base text-center">{"title"}</h3>
+            <h3 className="font-semibold text-base text-center">
+              {category.name}
+            </h3>
             <CardDescription className={"text-center"}>
-              {"description"}
+              {category.description}
             </CardDescription>
           </CardContent>
         </Card>

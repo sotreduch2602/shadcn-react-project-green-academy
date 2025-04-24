@@ -1,26 +1,30 @@
 {
   "users": [
     {
-      "user_id": 1,
+      "user_id": "1",
       "username": "admin",
-      "password": "hashed_password_123",
+      "password": "12345",
       "fullname": "Admin",
-      "email": "admin@example.com",
-      "date_of_birth": "1/1/1990",
-      "phone": "1-555-0100",
+      "email": "sotreduch12@gmail.com",
+      "date_of_birth": "29/4/2025",
+      "phone": "0921260230",
       "role": "admin",
-      "created_at": "2024-01-01 00:00:00"
+      "address": "asdadasd",
+      "created_at": "2025-04-15T12:36:27.176Z",
+      "id": "fa66"
     },
     {
       "user_id": 2,
       "username": "john_doe",
-      "password": "hashed_password_456",
+      "password": "456",
       "fullname": "John Doe",
       "email": "john@example.com",
       "date_of_birth": "1/1/1990",
       "phone": "1-555-0101",
       "role": "registered",
-      "created_at": "2024-01-02 10:30:00"
+      "address": "456 Oak Avenue, Spring Valley, SV 67890",
+      "created_at": "2024-01-02 10:30:00",
+      "id": "c1bc"
     },
     {
       "user_id": 3,
@@ -31,21 +35,92 @@
       "date_of_birth": "1/1/1990",
       "phone": "1-555-0102",
       "role": "registered",
-      "created_at": "2024-01-03 15:45:00"
+      "address": "789 Pine Road, Maple Hills, MH 34567",
+      "created_at": "2024-01-03 15:45:00",
+      "id": "b98d"
+    },
+    {
+      "id": "34aa",
+      "user_id": 4,
+      "username": "nguyen",
+      "password": "123",
+      "fullname": "",
+      "email": "sotreduch2602@gmail.com",
+      "date_of_birth": "01/04/2025",
+      "phone": "",
+      "role": "registered",
+      "address": "",
+      "created_at": "2025-04-17T02:00:01.794Z"
+    },
+    {
+      "id": "416f",
+      "user_id": 5,
+      "username": "van",
+      "password": "12345",
+      "fullname": "Nguyen Le Van",
+      "email": "van@gmail.com",
+      "date_of_birth": "01/04/2025",
+      "phone": "0862089248",
+      "role": "registered",
+      "address": "Ly Thuong Kiet P14",
+      "created_at": "2025-04-17T04:20:15.425Z",
+      "": ""
     }
   ],
   "categories": [
     {
       "category_id": 1,
-      "name": "Smartphones",
+      "name": "Phones",
       "description": "Mobile phones and accessories",
-      "created_at": "2024-01-01 00:00:00"
+      "icon": "Smartphone",
+      "imageURL": "/assets/images/categories/phones2.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "b5f7"
     },
     {
       "category_id": 2,
       "name": "Laptops",
       "description": "Notebooks and laptop computers",
-      "created_at": "2024-01-01 00:00:00"
+      "icon": "Laptop",
+      "imageURL": "/assets/images/categories/laptops.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "15ce"
+    },
+    {
+      "category_id": 3,
+      "name": "Cameras",
+      "description": "Digital cameras and photography equipment",
+      "icon": "Camera",
+      "imageURL": "/assets/images/categories/cameras.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "42f9"
+    },
+    {
+      "category_id": 4,
+      "name": "Headphones",
+      "description": "Audio headphones and earbuds",
+      "icon": "Headphones",
+      "imageURL": "/assets/images/categories/headphones.jpg",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "2f75"
+    },
+    {
+      "category_id": 5,
+      "name": "Watches",
+      "description": "Smart watches and wearables",
+      "icon": "Watch",
+      "imageURL": "/assets/images/categories/watches.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "1e0a"
+    },
+    {
+      "category_id": 6,
+      "name": "Accessories",
+      "description": "Various tech accessories and gadgets",
+      "icon": "Briefcase",
+      "imageURL": "/assets/images/categories/accessories2.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "f132"
     }
   ],
   "brands": [
@@ -53,110 +128,289 @@
       "brand_id": 1,
       "name": "Apple",
       "description": "Premium technology products and services",
-      "logo": "apple-logo.png",
-      "created_at": "2024-01-01 00:00:00"
+      "logo": "/assets/images/brand_devices/apple.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "dd9e"
     },
     {
       "brand_id": 2,
       "name": "Samsung",
       "description": "Leading electronics manufacturer",
-      "logo": "samsung-logo.png",
-      "created_at": "2024-01-01 00:00:00"
+      "logo": "/assets/images/brand_devices/samsung.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "8a65"
+    },
+    {
+      "brand_id": 3,
+      "name": "Lenovo",
+      "description": "Innovative computing and smart devices",
+      "logo": "/assets/images/brand_devices/lenovo.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "5f64"
+    },
+    {
+      "brand_id": 4,
+      "name": "Canon",
+      "description": "Advanced imaging and optical products",
+      "logo": "/assets/images/brand_devices/canon.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "c084"
+    },
+    {
+      "brand_id": 5,
+      "name": "Sony",
+      "description": "Entertainment, gaming, and electronics leader",
+      "logo": "/assets/images/brand_devices/sony.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "cd33"
+    },
+    {
+      "brand_id": 6,
+      "name": "Huawei",
+      "description": "Global technology and telecommunications solutions",
+      "logo": "/assets/images/brand_devices/huawei.png",
+      "created_at": "2024-01-01 00:00:00",
+      "id": "9192"
     }
   ],
   "products": [
-    {
-      "product_id": 1,
-      "name": "iPhone 15 Pro",
-      "category_id": 1,
-      "brand_id": 1,
-      "description": "Apple's latest flagship smartphone with advanced features",
-      "price": 999.99,
-      "stock": 50,
-      "images": [
-        "iphone-15-pro.jpg",
-        "iphone-15-pro-side.jpg",
-        "iphone-15-pro-back.jpg"
-      ],
-      "created_at": "2024-01-01 08:00:00"
-    },
-    {
-      "product_id": 2,
-      "name": "Samsung Galaxy S24",
-      "category_id": 1,
-      "brand_id": 2,
-      "description": "Premium Android smartphone with AI capabilities",
-      "price": 899.99,
-      "stock": 45,
-      "images": [
-        "samsung-s24.jpg",
-        "samsung-s24-side.jpg",
-        "samsung-s24-back.jpg"
-      ],
-      "created_at": "2024-01-01 08:30:00"
-    },
     {
       "product_id": 3,
       "name": "MacBook Pro M3",
       "category_id": 2,
       "brand_id": 1,
       "description": "Powerful laptop for professionals",
-      "price": 1499.99,
+      "price": 1000,
+      "salePrice": 800,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 1,
       "stock": 30,
       "images": [
-        "macbook-pro-m3.jpg",
-        "macbook-pro-m3-open.jpg",
-        "macbook-pro-m3-side.jpg"
+        "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7lfdji5d@resize_w450_nl",
+        "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7ldyz27d@resize_w450_nl",
+        "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7lgs3yd7"
       ],
-      "created_at": "2024-01-01 09:00:00"
-    }
-  ],
-  "carts": [
-    {
-      "cart_id": 1,
-      "user_id": 2,
-      "created_at": "2024-01-15 10:30:00",
-      "updated_at": "2024-01-15 10:30:00",
-      "items": [
-        {
-          "product_id": 1,
-          "quantity": 1,
-          "price": 999.99,
-          "product_name": "iPhone 15 Pro",
-          "product_image": "iphone-15-pro.jpg",
-          "added_at": "2024-01-15 10:30:00"
-        },
-        {
-          "product_id": 3,
-          "quantity": 1,
-          "price": 1499.99,
-          "product_name": "MacBook Pro M3",
-          "product_image": "macbook-pro-m3.jpg",
-          "added_at": "2024-01-15 10:35:00"
-        }
-      ]
+      "created_at": "2024-01-01 09:00:00",
+      "id": "e8aa"
     },
     {
-      "cart_id": 2,
-      "user_id": 3,
-      "created_at": "2024-02-01 09:20:00",
-      "updated_at": "2024-02-01 09:20:00",
-      "items": [
-        {
-          "product_id": 2,
-          "quantity": 2,
-          "price": 899.99,
-          "product_name": "Samsung Galaxy S24",
-          "product_image": "samsung-s24.jpg",
-          "added_at": "2024-02-01 09:20:00"
-        }
-      ]
+      "product_id": 4,
+      "name": "Samsung 65-inch 4K Smart TV",
+      "category_id": 6,
+      "brand_id": 2,
+      "description": "Ultra HD 4K Smart TV with HDR and built-in streaming apps",
+      "price": 1199.99,
+      "isNewProduct": 1,
+      "isBestSellerProduct": 1,
+      "stock": 25,
+      "images": [
+        "https://cdn.sanity.io/images/oe6m9gg8/production/1a4548882b7288ab4e9eebd38123cb18e704c701-500x500.png?rect=0,34,500,433&w=900&h=780&auto=format"
+      ],
+      "created_at": "2024-01-01 10:00:00",
+      "id": "cd6b"
+    },
+    {
+      "product_id": 5,
+      "name": "Sony WH-1000XM5",
+      "category_id": 4,
+      "brand_id": 5,
+      "description": "Premium noise-cancelling wireless headphones",
+      "price": 399.99,
+      "salePrice": 349.99,
+      "isNewProduct": 1,
+      "isBestSellerProduct": 1,
+      "stock": 40,
+      "images": [
+        "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg",
+        "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg",
+        "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg"
+      ],
+      "created_at": "2024-01-02 09:00:00",
+      "id": "cd7c"
+    },
+    {
+      "product_id": 6,
+      "name": "Canon EOS R5",
+      "category_id": 3,
+      "brand_id": 4,
+      "description": "Professional mirrorless camera with 8K video",
+      "price": 3899.99,
+      "salePrice": null,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 1,
+      "stock": 15,
+      "images": [
+        "https://asia.canon/media/image/2020/07/09/d861e2557ef941a3aa2b85910366fcd3_EOS+R5_Front_BODY.png"
+      ],
+      "created_at": "2024-01-02 10:00:00",
+      "id": "ef8d"
+    },
+    {
+      "product_id": 7,
+      "name": "Lenovo ThinkPad X1 Carbon",
+      "category_id": 2,
+      "brand_id": 3,
+      "description": "Ultra-lightweight business laptop",
+      "price": 1599.99,
+      "salePrice": 1399.99,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 0,
+      "stock": 25,
+      "images": [
+        "https://i.ebayimg.com/images/g/tZwAAOSwrr5n4vRu/s-l500.webp",
+        "https://i.ebayimg.com/images/g/myoAAOSwny5n4vPl/s-l140.webp"
+      ],
+      "created_at": "2024-01-03 11:00:00",
+      "id": "gh9e"
+    },
+    {
+      "product_id": 8,
+      "name": "Huawei Watch GT 4",
+      "category_id": 5,
+      "brand_id": 6,
+      "description": "Advanced fitness tracking smartwatch",
+      "price": 299.99,
+      "salePrice": 249.99,
+      "isNewProduct": 1,
+      "isBestSellerProduct": 0,
+      "stock": 35,
+      "images": [
+        "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4/list/41mm-green.png",
+        "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4/list/46mm-green.png"
+      ],
+      "created_at": "2024-01-03 12:00:00",
+      "id": "ij0f"
+    },
+    {
+      "product_id": 9,
+      "name": "Sony A7 IV",
+      "category_id": 3,
+      "brand_id": 5,
+      "description": "Full-frame mirrorless camera for creators",
+      "price": 2499.99,
+      "salePrice": null,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 1,
+      "stock": 20,
+      "images": [
+        "https://mayanh24h.com/upload/assets/thumb/2025/0111/ar/a7iv-qua.jpg",
+        "https://mayanh24h.com/upload/assets/2021/1022/ar/sony-a7-iv-11.jpg",
+        "https://mayanh24h.com/upload/assets/catalog/san-pham/may-anh-mirrorless/sony/sony-a7r-m4/sony-a7r-mark-iv-10.jpg;"
+      ],
+      "created_at": "2024-01-04 09:00:00",
+      "id": "kl1g"
+    },
+    {
+      "product_id": 10,
+      "name": "Samsung Galaxy Watch 6",
+      "category_id": 5,
+      "brand_id": 2,
+      "description": "Advanced health monitoring smartwatch",
+      "price": 349.99,
+      "salePrice": 299.99,
+      "isNewProduct": 1,
+      "isBestSellerProduct": 1,
+      "stock": 30,
+      "images": [
+        "https://cdn.hoanghamobile.com/i/previewV2/Uploads/2023/07/26/classic-den.png",
+        "https://cdn.hoanghamobile.com/i/previewV2/Uploads/2023/07/26/classic-bac.png"
+      ],
+      "created_at": "2024-01-04 10:00:00",
+      "id": "mn2h"
+    },
+    {
+      "product_id": 11,
+      "name": "iPad Pro 12.9",
+      "category_id": 6,
+      "brand_id": 1,
+      "description": "Powerful tablet for professionals",
+      "price": 1099.99,
+      "salePrice": null,
+      "isNewProduct": 1,
+      "isBestSellerProduct": 0,
+      "stock": 25,
+      "images": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-2022-12-9-inch-m2_5.png",
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-13-select-wifi-silver-202210-01_3_3_1_2.jpg",
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-13-select-202210_3_3_1_2.png"
+      ],
+      "created_at": "2024-01-05 09:00:00",
+      "id": "op3i"
+    },
+    {
+      "product_id": 12,
+      "name": "Lenovo Legion Pro 7",
+      "category_id": 2,
+      "brand_id": 3,
+      "description": "High-performance gaming laptop",
+      "price": 1999.99,
+      "salePrice": 1799.99,
+      "isNewProduct": 1,
+      "isBestSellerProduct": 0,
+      "stock": 20,
+      "images": [
+        "https://cdn.tgdd.vn/Products/Images/44/326495/lenovo-legion-pro-7-16irx9h-i9-83de001mvn-1-750x500.jpg",
+        "https://cdn.tgdd.vn/Products/Images/44/326495/lenovo-legion-pro-7-16irx9h-i9-83de001mvn-2-750x500.jpg",
+        "https://cdn.tgdd.vn/Products/Images/44/326495/lenovo-legion-pro-7-16irx9h-i9-83de001mvn-3-750x500.jpg"
+      ],
+      "created_at": "2024-01-05 10:00:00",
+      "id": "qr4j"
+    },
+    {
+      "product_id": 13,
+      "name": "Canon RF 24-70mm f/2.8",
+      "category_id": 3,
+      "brand_id": 4,
+      "description": "Professional zoom lens for Canon RF mount",
+      "price": 2399.99,
+      "salePrice": null,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 1,
+      "stock": 15,
+      "images": [
+        "https://cdn.vjshop.vn/ong-kinh/mirrorless/canon/ong-kinh-canon-rf-24-70mm-f2-8l-is-usm/canon-rf-24-70mm-f28l-is-usm-500x500.jpg",
+        "https://cdn.vjshop.vn/ong-kinh/mirrorless/canon/ong-kinh-canon-rf-24-70mm-f2-8l-is-usm/canon-rf-24-70mm-f28l-is-usm-8-500x500.jpg",
+        "https://cdn.vjshop.vn/ong-kinh/mirrorless/canon/ong-kinh-canon-rf-24-70mm-f2-8l-is-usm/canon-rf-24-70mm-f28l-is-usm-8-500x500.jpg"
+      ],
+      "created_at": "2024-01-06 09:00:00",
+      "id": "st5k"
+    },
+    {
+      "id": "846b",
+      "product_id": 13,
+      "name": "Bàn phím cơ không dây AULA F75",
+      "category_id": 6,
+      "brand_id": 2,
+      "description": "Mới, đầy đủ phụ kiện từ nhà sản xuất",
+      "price": "50",
+      "salePrice": null,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 0,
+      "stock": "100",
+      "images": [],
+      "created_at": "2025-04-16T12:50:39.325Z"
+    },
+    {
+      "id": "1db1",
+      "product_id": 14,
+      "name": "Iphone 15",
+      "category_id": 1,
+      "brand_id": 1,
+      "description": "Apple phone",
+      "price": 1000,
+      "salePrice": 500,
+      "isNewProduct": 0,
+      "isBestSellerProduct": 0,
+      "stock": "11",
+      "images": [],
+      "created_at": "2025-04-16T13:47:07.259Z"
     }
   ],
+  "carts": [],
   "orders": [
     {
       "order_id": 1,
-      "user_id": 2,
+      "user_id": 1,
       "total_amount": 2499.98,
       "status": "delivered",
       "created_at": "2024-01-15 14:30:00",
@@ -175,11 +429,12 @@
           "product_name": "MacBook Pro M3",
           "product_image": "macbook-pro-m3.jpg"
         }
-      ]
+      ],
+      "id": "fca0"
     },
     {
       "order_id": 2,
-      "user_id": 3,
+      "user_id": 1,
       "total_amount": 899.99,
       "status": "processing",
       "created_at": "2024-02-01 11:20:00",
@@ -190,6 +445,236 @@
           "price": 899.99,
           "product_name": "Samsung Galaxy S24",
           "product_image": "samsung-s24.jpg"
+        }
+      ],
+      "id": "3a2e"
+    },
+    {
+      "order_id": 3,
+      "user_id": 2,
+      "total_amount": 3499.98,
+      "status": "cancelled",
+      "created_at": "2024-02-10 09:15:00",
+      "items": [
+        {
+          "product_id": 6,
+          "quantity": 1,
+          "price": 3899.99,
+          "product_name": "Canon EOS R5",
+          "product_image": "https://asia.canon/media/image/2020/07/09/d861e2557ef941a3aa2b85910366fcd3_EOS+R5_Front_BODY.png"
+        }
+      ],
+      "id": "4b3f"
+    },
+    {
+      "order_id": 4,
+      "user_id": 3,
+      "total_amount": 699.98,
+      "status": "delivered",
+      "created_at": "2024-02-12 14:20:00",
+      "items": [
+        {
+          "product_id": 5,
+          "quantity": 2,
+          "price": 349.99,
+          "product_name": "Sony WH-1000XM5",
+          "product_image": "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg"
+        }
+      ],
+      "id": "5c4g"
+    },
+    {
+      "order_id": 5,
+      "user_id": 2,
+      "total_amount": 2799.98,
+      "status": "processing",
+      "created_at": "2024-02-15 16:45:00",
+      "items": [
+        {
+          "product_id": 7,
+          "quantity": 2,
+          "price": 1399.99,
+          "product_name": "Lenovo ThinkPad X1 Carbon",
+          "product_image": "https://i.ebayimg.com/images/g/tZwAAOSwrr5n4vRu/s-l500.webp"
+        }
+      ],
+      "id": "6d5h"
+    },
+    {
+      "order_id": 6,
+      "user_id": 1,
+      "total_amount": 499.98,
+      "status": "processing",
+      "created_at": "2024-02-18 10:30:00",
+      "items": [
+        {
+          "product_id": 8,
+          "quantity": 2,
+          "price": 249.99,
+          "product_name": "Huawei Watch GT 4",
+          "product_image": "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4/list/41mm-green.png"
+        }
+      ],
+      "id": "7e6i"
+    },
+    {
+      "order_id": 7,
+      "user_id": 3,
+      "total_amount": 2499.99,
+      "status": "delivered",
+      "created_at": "2024-02-20 11:15:00",
+      "items": [
+        {
+          "product_id": 9,
+          "quantity": 1,
+          "price": 2499.99,
+          "product_name": "Sony A7 IV",
+          "product_image": "https://mayanh24h.com/upload/assets/thumb/2025/0111/ar/a7iv-qua.jpg"
+        }
+      ],
+      "id": "8f7j"
+    },
+    {
+      "order_id": 8,
+      "user_id": 2,
+      "total_amount": 599.98,
+      "status": "pending",
+      "created_at": "2024-02-22 13:40:00",
+      "items": [
+        {
+          "product_id": 10,
+          "quantity": 2,
+          "price": 299.99,
+          "product_name": "Samsung Galaxy Watch 6",
+          "product_image": "https://cdn.hoanghamobile.com/i/previewV2/Uploads/2023/07/26/classic-den.png"
+        }
+      ],
+      "id": "9g8k"
+    },
+    {
+      "order_id": 9,
+      "user_id": 1,
+      "total_amount": 3599.98,
+      "status": "processing",
+      "created_at": "2024-02-25 15:20:00",
+      "items": [
+        {
+          "product_id": 12,
+          "quantity": 2,
+          "price": 1799.99,
+          "product_name": "Lenovo Legion Pro 7",
+          "product_image": "https://cdn.tgdd.vn/Products/Images/44/326495/lenovo-legion-pro-7-16irx9h-i9-83de001mvn-1-750x500.jpg"
+        }
+      ],
+      "id": "0h9l"
+    },
+    {
+      "id": "2699",
+      "order_id": 10,
+      "user_id": "1",
+      "total_amount": 2299.92,
+      "status": "pending",
+      "created_at": "2025-04-16T13:51:29.547Z",
+      "items": [
+        {
+          "product_id": 5,
+          "quantity": 1,
+          "price": 349.99,
+          "product_name": "Sony WH-1000XM5",
+          "product_image": "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg"
+        },
+        {
+          "product_id": 8,
+          "quantity": 3,
+          "price": 249.99,
+          "product_name": "Huawei Watch GT 4",
+          "product_image": "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4/list/41mm-green.png"
+        },
+        {
+          "product_id": 14,
+          "quantity": 4,
+          "price": 199.99,
+          "product_name": "Apple AirPods Pro 2",
+          "product_image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/1/_/1_264.jpg"
+        }
+      ]
+    },
+    {
+      "id": "5156",
+      "order_id": 11,
+      "user_id": "1",
+      "total_amount": 2799.98,
+      "status": "pending",
+      "created_at": "2025-04-17T04:05:07.895Z",
+      "items": [
+        {
+          "product_id": 3,
+          "quantity": 2,
+          "price": 500,
+          "product_name": "MacBook Pro M3",
+          "product_image": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7lfdji5d@resize_w450_nl"
+        },
+        {
+          "product_id": 5,
+          "quantity": 2,
+          "price": 349.99,
+          "product_name": "Sony WH-1000XM5",
+          "product_image": "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg"
+        }
+      ]
+    },
+    {
+      "id": "9141",
+      "order_id": 12,
+      "user_id": "1",
+      "total_amount": 3199.9700000000003,
+      "status": "cancelled",
+      "created_at": "2025-04-17T04:15:17.749Z",
+      "items": [
+        {
+          "product_id": 3,
+          "quantity": 2,
+          "price": 800,
+          "product_name": "MacBook Pro M3",
+          "product_image": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7lfdji5d@resize_w450_nl"
+        },
+        {
+          "product_id": 5,
+          "quantity": 3,
+          "price": 349.99,
+          "product_name": "Sony WH-1000XM5",
+          "product_image": "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg"
+        }
+      ]
+    },
+    {
+      "id": "e9d2",
+      "order_id": 13,
+      "user_id": 5,
+      "total_amount": 1699.98,
+      "status": "pending",
+      "created_at": "2025-04-17T04:21:25.347Z",
+      "items": [
+        {
+          "product_id": 3,
+          "quantity": 1,
+          "price": 800,
+          "product_name": "MacBook Pro M3",
+          "product_image": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loxw2u7lfdji5d@resize_w450_nl"
+        },
+        {
+          "product_id": 5,
+          "quantity": 1,
+          "price": 349.99,
+          "product_name": "Sony WH-1000XM5",
+          "product_image": "https://hdradio.vn/upload/hinhanh/tai-nghe/alpha-works/flex-680/flex-680-avt.jpg"
+        },
+        {
+          "product_id": 8,
+          "quantity": 1,
+          "price": 249.99,
+          "product_name": "Huawei Watch GT 4",
+          "product_image": "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4/list/41mm-green.png"
         }
       ]
     }
@@ -202,9 +687,10 @@
         "username": "John Doe"
       },
       "product_id": 1,
-      "rating": 5,
+      "rating": 3,
       "comment": "Excellent phone! The camera quality is amazing.",
-      "created_at": "2024-01-20 16:45:00"
+      "created_at": "2024-01-20 16:45:00",
+      "id": "1194"
     },
     {
       "review_id": 2,
@@ -215,7 +701,8 @@
       "product_id": 2,
       "rating": 4,
       "comment": "Great phone, but battery life could be better.",
-      "created_at": "2024-02-05 09:15:00"
+      "created_at": "2024-02-05 09:15:00",
+      "id": "d427"
     },
     {
       "review_id": 3,
@@ -226,7 +713,8 @@
       "product_id": 3,
       "rating": 5,
       "comment": "Perfect for my development work. Super fast!",
-      "created_at": "2024-01-25 13:20:00"
+      "created_at": "2024-01-25 13:20:00",
+      "id": "8b50"
     }
   ]
 }

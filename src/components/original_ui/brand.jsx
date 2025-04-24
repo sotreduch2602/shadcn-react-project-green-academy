@@ -10,9 +10,9 @@ const Brand = ({ className }) => {
       )}
     >
       <img src={logo} alt="Brand Logo" className="size-10" />
-      <h2 className="text-2xl text-green font-black tracking-wider uppercase group font-sans transition-colors duration-300">
+      <h2 className="text-2xl text-orange-600 font-black tracking-wider uppercase group font-sans hover:text-sky-900 transition-colors duration-300">
         Tech
-        <span className="text-green group-hover:text-green transition-colors duration-300">
+        <span className="text-sky-900 group-hover:text-green transition-colors duration-300">
           Shop
         </span>
       </h2>

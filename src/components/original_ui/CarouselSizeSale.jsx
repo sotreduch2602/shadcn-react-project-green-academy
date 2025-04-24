@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import {
   Carousel,
   CarouselContent,
@@ -9,18 +7,23 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import ProductCard from "./ProductCard";
+import { useContext, useEffect } from "react";
+import { ProductsContext } from "@/contexts/ProductContext";
+import axios from "axios";
 
-const CarouselSizeSale = ({ images, className, products }) => {
-  const defaultProducts = [
-    {
-      title: "Logitech G502 Gaming Mouse",
-      description: "Logitech G502 Gaming Mouse",
-      originalPrice: 79.99,
-      salePrice: 49.99,
-    },
-  ];
+const CarouselSizeSale = ({ className }) => {
+  const { ProductLists, setProductLists } = useContext(ProductsContext);
 
-  const items = products || images.map(() => defaultProducts[0]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/products")
+      .then((res) => setProductLists(res.data));
+  }, []);
+
+  const filterSaleProductsList = ProductLists.filter(
+    (product) => product.salePrice
+  );
+
   return (
     <div className={cn("", className)}>
       <Carousel
@@ -30,15 +33,15 @@ const CarouselSizeSale = ({ images, className, products }) => {
         className="w-full"
       >
         <CarouselContent>
-          {images.map((image, index) => (
+          {filterSaleProductsList.map((product, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div>
                 <ProductCard
-                  image={image}
-                  title={items[index].title}
-                  description={items[index].description}
-                  originalPrice={items[index].originalPrice}
-                  salePrice={items[index].salePrice}
+                  image={product.images[0]}
+                  title={product.name}
+                  description={product.description}
+                  originalPrice={product.price}
+                  salePrice={product.salePrice}
                 />
               </div>
             </CarouselItem>

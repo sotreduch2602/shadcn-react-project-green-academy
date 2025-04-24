@@ -2,45 +2,65 @@ import { ThreeDMarqueeDemo } from "@/components/original_ui/3DMarquee";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
-  GitCompareArrowsIcon,
-  HeadsetIcon,
+  Clock12Icon,
+  LucideComputer,
+  MapPin,
   ShieldCheckIcon,
   TruckIcon,
 } from "lucide-react";
 
-import image1 from "@/assets/images/image-1.png";
-import image2 from "@/assets/images/image-2.png";
-import image3 from "@/assets/images/image-3.png";
-import image4 from "@/assets/images/image-4.png";
-import image5 from "@/assets/images/image-5.png";
-import image from "@/assets/images/image.png";
-import frame from "@/assets/images/Frame 26086938.png";
-
-import { BrandImages } from "@/assets/brand_devices";
-
 import CategoryCarousel from "@/components/original_ui/CategoryCarousel";
 import CarouselSizeSale from "@/components/original_ui/CarouselSizeSale";
 import ProductCard from "@/components/original_ui/ProductCard";
-
-const ImagesList = [image1, image2, image3, image4, image5, image, frame];
-const CategoriesList = [image1, image2, image3, image4, image5];
-const NewProductList = [image1, image2, image3, image4];
+import ShopByBrandIcon from "@/components/original_ui/ShopByBrandIcon";
+import BlogCard from "@/components/original_ui/BlogCard";
+import Footer from "@/layouts/Footer";
+import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { BrandsContext } from "@/contexts/BrandContext";
+import { ProductsContext } from "@/contexts/ProductContext";
+import axios from "axios";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+  const { BrandLists, setSelectBrand } = useContext(BrandsContext);
+  const { ProductLists, setProductLists } = useContext(ProductsContext);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/products")
+      .then((res) => setProductLists(res.data));
+  }, []);
+
+  function MoveToProductsPageWithBrand(brand) {
+    setSelectBrand(brand);
+    navigate("/products");
+  }
+
+  const filterNewProductsList = ProductLists.filter(
+    (product) => product.isNewProduct === 1
+  );
+
+  const filterBestProductsList = ProductLists.filter(
+    (product) => product.isBestSellerProduct === 1
+  );
+
   return (
     <>
       <section className="max-w-screen mx-auto relative">
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4">
-          <h2 className="text-7xl font-black text-white drop-shadow-lg">
-            Tech Shop
+          <h2 className="text-7xl font-black text-orange-500 drop-shadow-lg">
+            Tech
+            <span className="text-sky-700">Shop</span>
           </h2>
-          <span className="text-3xl font-medium text-white drop-shadow-md">
+          <span className="text-3xl font-medium text-sky-700 drop-shadow-md">
             "Join the
             <span className="text-orange-400"> digital revolution"</span>
           </span>
           <Button
             effect="shineHover"
-            className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500"
+            className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500 cursor-pointer"
+            onClick={() => navigate("/products")} // Replaced "as={Link}" with "onClick"
           >
             Explore more
           </Button>
@@ -51,8 +71,8 @@ const Homepage = () => {
       </section>
 
       <section className="max-w-screen-xl mx-auto px-4 my-6">
-        <div className="grid grid-cols-2 lg:grid-cols-5">
-          <CategoryCarousel images={CategoriesList} />
+        <div className="grid grid-cols-3 lg:grid-cols-6">
+          <CategoryCarousel />
         </div>
       </section>
 
@@ -65,24 +85,25 @@ const Homepage = () => {
             </div>
 
             <Button
-              className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500 mt-12 text-md"
+              className="bg-orange-500 backdrop-blur-sm hover:bg-orange-500 mt-12 text-md cursor-pointer"
               effect="expandIcon"
               icon={ArrowRight}
               iconPlacement="right"
+              onClick={() => navigate("/products")}
             >
               Explore more
             </Button>
           </div>
 
           <div className="col-span-2">
-            <CarouselSizeSale className="px-13" images={ImagesList} />
+            <CarouselSizeSale className="px-13" />
           </div>
         </div>
       </section>
 
       <section className="max-w-screen-xl mx-auto  my-6">
         <div className="flex items-center justify-between border-b-2 pb-6">
-          <h2 className="text-4xl font-medium">New Product</h2>
+          <h2 className="text-3xl font-medium">New Product</h2>
           <Button
             variant="ghost1"
             effect="expandIcon"
@@ -95,47 +116,55 @@ const Homepage = () => {
 
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
-          {NewProductList.map((item, index) => (
-            <ProductCard
-              key={index}
-              className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
-              image={item}
-              title={"title"}
-              description={"items[index].description"}
-              salePrice={123}
-              originalPrice={123}
-            />
+          {filterNewProductsList.slice(0,4).map((item) => (
+            <a
+              key={item.product_id}
+              onClick={() => navigate(`/products/detail/${item.product_id}`)}
+            >
+              <ProductCard
+                className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
+                image={item.images[0]}
+                title={item.name}
+                description={item.description}
+                salePrice={item.salePrice}
+                originalPrice={item.price}
+              />
+            </a>
           ))}
         </div>
       </section>
 
       <section className="max-w-screen-xl mx-auto  my-6">
         <div className="flex items-center justify-between border-b-2 pb-6">
-          <h2 className="text-4xl font-medium">Best Sellers</h2>
+          <h2 className="text-3xl font-medium">Best Sellers</h2>
           <Button
             variant="ghost1"
             effect="expandIcon"
             icon={ArrowRight}
             iconPlacement="right"
+            onClick={() => navigate("/products")}
+            className="cursor-pointer"
           >
             View all
           </Button>
         </div>
 
         {/* ! Remember create component NewProductList */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4  mx-10 mt-3">
-          {NewProductList.map((item, index) => (
-            <ProductCard
-              className={
-                "m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
-              }
-              key={index}
-              image={item}
-              title={"title"}
-              description={"items[index].description"}
-              salePrice={123}
-              originalPrice={123}
-            />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
+          {filterBestProductsList.slice(0,4).map((item) => (
+            <a
+              key={item.product_id}
+              onClick={() => navigate(`/products/detail/${item.product_id}`)}
+            >
+              <ProductCard
+                className="m-2 group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105"
+                image={item.images[0]}
+                title={item.name}
+                description={item.description}
+                salePrice={item.salePrice}
+                originalPrice={item.price}
+              />
+            </a>
           ))}
         </div>
       </section>
@@ -148,19 +177,24 @@ const Homepage = () => {
             effect="expandIcon"
             icon={ArrowRight}
             iconPlacement="right"
-            className="text-sm font-semibold tracking-wide"
+            className="text-sm font-semibold tracking-wide cursor-pointer"
+            onClick={() => navigate("/products")}
           >
             View all
           </Button>
         </div>
 
-        <div className="flex items-center gap-2.5 justify-between">
-          {BrandImages.map((i, index) => (
-            <div key={index}>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2.5 justify-between">
+          {BrandLists.map((brand, index) => (
+            <div
+              key={index}
+              className="col-span-1 flex justify-center cursor-pointer"
+              onClick={() => MoveToProductsPageWithBrand(brand)}
+            >
               <a className="bg-white w-48 h-24 flex items-center justify-center rounded-md overflow-hidden group cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl">
                 <img
                   alt="brandImage"
-                  src={i}
+                  src={brand.logo}
                   className="max-w-[80%] h-auto transition-transform duration-300 ease-in-out group-hover:scale-110"
                 />
               </a>
@@ -169,63 +203,31 @@ const Homepage = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16 p-2 shadow-sm shadow-shop_light_green/20 py-5">
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
-            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
-              <TruckIcon className="size-10" />
-            </span>
-            <div className="text-md">
-              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
-                Free Delivery
-              </p>
-              <p className="text-sky-700 font-medium transition-colors duration-300">
-                Free shipping over $100
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
-            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
-              <GitCompareArrowsIcon className="size-10" />
-            </span>
-            <div className="text-md">
-              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
-                Easy Returns
-              </p>
-              <p className="text-sky-700 font-medium transition-colors duration-300">
-                Easy return policy
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 group text-black hover:text-sky-600 transition-colors duration-300">
-            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
-              <HeadsetIcon className="size-10" />
-            </span>
-            <div className="text-md">
-              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
-                Customer Support
-              </p>
-              <p className="text-sky-700 font-medium transition-colors duration-300">
-                Friendly 24/7 customer support
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 group text-lightColor hover:text-sky-600 transition-colors duration-300">
-            <span className="inline-flex scale-100 group-hover:scale-90 transition-transform duration-300 ease-in-out">
-              <ShieldCheckIcon className="size-10" />
-            </span>
-            <div className="text-sm">
-              <p className="text-black/80 font-bold capitalize transition-colors duration-300">
-                Money Back guarantee
-              </p>
-              <p className="text-sky-700 font-medium transition-colors duration-300">
-                Quality checked by our team
-              </p>
-            </div>
-          </div>
+          <ShopByBrandIcon></ShopByBrandIcon>
         </div>
       </section>
+
+      <section className="max-w-screen-xl mx-auto my-6">
+        <div className="flex items-center justify-between border-b-2 pb-6">
+          <h2 className="text-3xl font-medium">Our Blog</h2>
+          <Button
+            variant="ghost1"
+            effect="expandIcon"
+            icon={ArrowRight}
+            iconPlacement="right"
+            onClick={() => navigate("/products")}
+            className="cursor-pointer"
+          >
+            View all
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+          <BlogCard className="cursor-pointer"></BlogCard>
+        </div>
+      </section>
+
+      <Footer></Footer>
     </>
   );
 };

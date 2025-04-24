@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-white hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary:
@@ -18,11 +18,15 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         ghost1: "hover:transparent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        skyblue: "bg-sky-700 text-white hover:bg-sky-700/90",
+        yellow: "bg-yellow-500 text-white hover:bg-yellow-500/90",
       },
       effect: {
         expandIcon: "group gap-0 relative",
         ringHover:
           "transition-all duration-300 hover:ring-2 hover:ring-primary/90 hover:ring-offset-2",
+        ringHoverSky:
+          "transition-all duration-300 hover:ring-2 hover:ring-sky-700/90 hover:ring-offset-2",
         shine:
           "before:animate-shine relative overflow-hidden before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.5)_50%,transparent_75%,transparent_100%)] before:bg-[length:250%_250%,100%_100%] before:bg-no-repeat background-position_0s_ease",
         shineHover:
