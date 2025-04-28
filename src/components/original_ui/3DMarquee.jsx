@@ -53,7 +53,7 @@ export const ThreeDMarqueeDemo = () => {
 
   return (
     <>
-      <div className="mx-auto bg-gray-950/5 ring ring-neutral-700/10 dark:bg-neutral-800">
+      <div className="mx-auto bg-sky-800/90 ring ring-neutral-700/10 dark:bg-neutral-800 py-4">
         <ThreeDMarquee images={images} />
       </div>
     </>
