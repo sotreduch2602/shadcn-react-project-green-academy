@@ -31,11 +31,11 @@ const CategoryCarousel = () => {
         >
           <CardHeader>
             <CardTitle className="flex items-center justify-center">
-              <div className="size-[112px] flex items-center justify-center">
+              <div className="flex items-center justify-center">
                 <img
                   src={category.imageURL}
                   alt={category.name}
-                  className="max-w-full max-h-full object-contain h-auto"
+                  className="max-w-full max-h-full object-cover h-auto"
                 />
               </div>
             </CardTitle>
