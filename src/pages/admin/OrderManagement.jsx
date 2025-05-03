@@ -52,9 +52,12 @@ const OrderManagement = () => {
   const handleCancel = async (e, order) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3000/orders/${order.id}`, {
-        status: "cancelled",
-      });
+      await axios.patch(
+        `https://my-green-api-iugw.onrender.com/orders/${order.id}`,
+        {
+          status: "cancelled",
+        }
+      );
     } catch (err) {
       console.error("Patch Failed", err);
     }
@@ -63,9 +66,12 @@ const OrderManagement = () => {
   const handleUpdateButton = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3000/orders/${inputFields.id}`, {
-        status: inputFields.status,
-      });
+      await axios.patch(
+        `https://my-green-api-iugw.onrender.com/orders/${inputFields.id}`,
+        {
+          status: inputFields.status,
+        }
+      );
     } catch (err) {
       console.error("Patch Failed", err);
     }
@@ -74,8 +80,8 @@ const OrderManagement = () => {
   useEffect(() => {
     axios
       .all([
-        axios.get("http://localhost:3000/orders"),
-        axios.get("http://localhost:3000/users"),
+        axios.get("https://my-green-api-iugw.onrender.com/orders"),
+        axios.get("https://my-green-api-iugw.onrender.com/users"),
       ])
       .then(
         axios.spread((OrdersRes, UsersRes) => {

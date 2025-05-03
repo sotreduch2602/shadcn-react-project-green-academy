@@ -50,7 +50,7 @@ const UserManagement = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://my-green-api-iugw.onrender.com/users")
       .then((res) => setUsersList(res.data));
   }, []);
 
@@ -70,8 +70,8 @@ const UserManagement = () => {
 
   const handleDelete = async (user) => {
     try {
-      await axios.delete(`http://localhost:3000/users/${user.id}`);
-      const { data } = axios.get("http://localhost:3000/users");
+      await axios.delete(`https://my-green-api-iugw.onrender.com/users/${user.id}`);
+      const { data } = axios.get("https://my-green-api-iugw.onrender.com/users");
       setUsersList(data);
     } catch {
       console.error("Delete Failed", error);
@@ -95,7 +95,7 @@ const UserManagement = () => {
     };
 
     try {
-      await axios.post("http://localhost:3000/users", NewUserData);
+      await axios.post("https://my-green-api-iugw.onrender.com/users", NewUserData);
       setProductsList((prev) => [...prev, inputFields]);
       setInputFields({});
     } catch (error) {
@@ -121,13 +121,13 @@ const UserManagement = () => {
 
     try {
       await axios.put(
-        `http://localhost:3000/users/${inputFields.id}`,
+        `https://my-green-api-iugw.onrender.com/users/${inputFields.id}`,
         NewUserData
       );
 
       setInputFields({});
       setUpdateButton(false);
-      const { data } = await axios.get("http://localhost:3000/users");
+      const { data } = await axios.get("https://my-green-api-iugw.onrender.com/users");
       setUsersList(data);
     } catch (error) {
       console.error("Update Failed:", error);

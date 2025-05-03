@@ -39,8 +39,8 @@ const FilteredProductList = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:3000/categories"),
-      axios.get("http://localhost:3000/brands"),
+      axios.get("https://my-green-api-iugw.onrender.com/categories"),
+      axios.get("https://my-green-api-iugw.onrender.com/brands"),
     ])
       .then(([categoriesRes, brandsRes]) => {
         setCategoriesList(categoriesRes.data);

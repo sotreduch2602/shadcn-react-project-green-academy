@@ -11,7 +11,7 @@ export const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products/")
+      .get("https://my-green-api-iugw.onrender.com/products/")
       .then((res) => setProductLists(res.data));
   }, []);
 
