@@ -11,7 +11,7 @@ export const BrandsProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/brands/")
+      .get("https://my-green-api-iugw.onrender.com/brands/")
       .then((res) => setBrandLists(res.data));
   }, []);
 

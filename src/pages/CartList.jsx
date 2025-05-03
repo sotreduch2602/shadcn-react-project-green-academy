@@ -23,7 +23,7 @@ const CartList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/orders")
+      .get("https://my-green-api-iugw.onrender.com/orders")
       .then((res) => setOrderLists(res.data));
   }, []);
 
@@ -46,7 +46,7 @@ const CartList = () => {
         items: orderItems,
       };
 
-      await axios.post("http://localhost:3000/orders", newOrderData);
+      await axios.post("https://my-green-api-iugw.onrender.com/orders", newOrderData);
       toast.success("Order placed successfully!", {
         duration: 3000,
       });

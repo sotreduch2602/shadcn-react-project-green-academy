@@ -25,7 +25,7 @@ const SearchBarDialog = ({ icon }) => {
   const { addItemToCart } = useContext(CartContext);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/products").then((res) => {
+    axios.get("https://my-green-api-iugw.onrender.com/products").then((res) => {
       setProductsList(res.data);
       setFilteredProducts(res.data);
     });

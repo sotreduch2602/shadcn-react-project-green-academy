@@ -11,7 +11,7 @@ export const CategoriesProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/categories/")
+      .get("https://my-green-api-iugw.onrender.com/categories/")
       .then((res) => setCategoriesList(res.data));
   }, []);
 

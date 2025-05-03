@@ -27,13 +27,13 @@ const ProductDetailPage = () => {
   const [inputFields, setInputFields] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/products`).then((res) => {
+    axios.get(`https://my-green-api-iugw.onrender.com/products`).then((res) => {
       setProductSelected(res.data.find((p) => p.product_id == id));
     });
   }, [id]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/reviews`).then((res) => {
+    axios.get(`https://my-green-api-iugw.onrender.com/reviews`).then((res) => {
       setReviewsList(res.data.filter((r) => r.product_id == id));
     });
   }, [id]);
@@ -64,9 +64,9 @@ const ProductDetailPage = () => {
     };
 
     try {
-      await axios.post("http://localhost:3000/reviews", newReview);
+      await axios.post("https://my-green-api-iugw.onrender.com/reviews", newReview);
 
-      const { data } = await axios.get("http://localhost:3000/reviews");
+      const { data } = await axios.get("https://my-green-api-iugw.onrender.com/reviews");
       setReviewsList(data);
     } catch (error) {
       console.error("Post Failed", error);

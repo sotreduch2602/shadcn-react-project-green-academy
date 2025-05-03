@@ -54,8 +54,12 @@ const ProductManagement = () => {
 
   const handleDelete = async (product) => {
     try {
-      await axios.delete(`http://localhost:3000/products/${product.id}`);
-      const { data } = axios.get("http://localhost:3000/products");
+      await axios.delete(
+        `https://my-green-api-iugw.onrender.com/${product.id}`
+      );
+      const { data } = axios.get(
+        "https://my-green-api-iugw.onrender.com/products"
+      );
       setProductsList(data);
     } catch {
       console.error("Delete Failed", error);
@@ -81,7 +85,10 @@ const ProductManagement = () => {
     };
 
     try {
-      await axios.post("http://localhost:3000/products", NewProductData);
+      await axios.post(
+        "https://my-green-api-iugw.onrender.com/products",
+        NewProductData
+      );
       setProductsList((prev) => [...prev, inputFields]);
       setInputFields({});
     } catch (error) {
@@ -119,13 +126,15 @@ const ProductManagement = () => {
 
     try {
       await axios.put(
-        `http://localhost:3000/products/${inputFields.id}`,
+        `https://my-green-api-iugw.onrender.com/${inputFields.id}`,
         updatedProduct
       );
 
       setInputFields({});
       setUpdateButton(false);
-      const { data } = await axios.get("http://localhost:3000/products");
+      const { data } = await axios.get(
+        "https://my-green-api-iugw.onrender.com/products"
+      );
       setProductsList(data);
     } catch (error) {
       console.error("Update Failed:", error);
@@ -135,9 +144,9 @@ const ProductManagement = () => {
   useEffect(() => {
     axios
       .all([
-        axios.get("http://localhost:3000/products"),
-        axios.get("http://localhost:3000/categories"),
-        axios.get("http://localhost:3000/brands"),
+        axios.get("https://my-green-api-iugw.onrender.com/products"),
+        axios.get("https://my-green-api-iugw.onrender.com/categories"),
+        axios.get("https://my-green-api-iugw.onrender.com/brands"),
       ])
       .then(
         axios.spread((productsRes, categoriesRes, brandsRes) => {

@@ -15,7 +15,7 @@ export function LoginForm({ className, ...props }) {
   const [user, setUser] = useState({ email: "", password: "" });
 
   useEffect(() => {
-    axios.get("http://localhost:3000/users").then((res) => {
+    axios.get("https://my-green-api-iugw.onrender.com/users").then((res) => {
       setUserLists(res.data);
     });
   }, []);

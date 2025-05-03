@@ -23,7 +23,7 @@ export function RegisterForm({ className, ...props }) {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:3000/users").then((res) => {
+    axios.get("https://my-green-api-iugw.onrender.com/users").then((res) => {
       setUserLists(res.data);
     });
   }, []);
@@ -61,7 +61,7 @@ export function RegisterForm({ className, ...props }) {
     };
 
     try {
-      await axios.post("http://localhost:3000/users", newUserData);
+      await axios.post("https://my-green-api-iugw.onrender.com/users", newUserData);
       navigate("/login");
       toast.success("Register successful", {
         duration: 3000,
