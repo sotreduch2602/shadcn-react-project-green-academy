@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Truck, RotateCcw, ChevronRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import {
   Breadcrumb,
   BreadcrumbItem,

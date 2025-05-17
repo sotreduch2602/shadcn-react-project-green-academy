@@ -1,9 +1,9 @@
+import axiosInstance from "@/api/axios";
 import { ThreeDCardDemo } from "@/components/original_ui/3DCardDemo";
 import { Button } from "@/components/ui/button";
 import { CartContext } from "@/contexts/CartContext";
 import { UserContext } from "@/contexts/user/UserContext";
 import Footer from "@/layouts/Footer";
-import axios from "axios";
 import { Minus, Plus, ShoppingBag, Trash } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 
@@ -22,8 +22,8 @@ const CartList = () => {
   const [orderLists, setOrderLists] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://my-green-api-iugw.onrender.com/orders")
+    axiosInstance
+      .get("/orders")
       .then((res) => setOrderLists(res.data));
   }, []);
 
@@ -46,7 +46,7 @@ const CartList = () => {
         items: orderItems,
       };
 
-      await axios.post("https://my-green-api-iugw.onrender.com/orders", newOrderData);
+      await axiosInstance.post("/orders", newOrderData);
       toast.success("Order placed successfully!", {
         duration: 3000,
       });
