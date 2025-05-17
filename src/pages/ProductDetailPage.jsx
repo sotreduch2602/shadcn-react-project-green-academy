@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { CartContext } from "@/contexts/CartContext";
 import { UserContext } from "@/contexts/user/UserContext";
+import axiosInstance from "@/api/axios";
 
 const ProductDetailPage = () => {
   let { id } = useParams();
@@ -27,13 +28,13 @@ const ProductDetailPage = () => {
   const [inputFields, setInputFields] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://my-green-api-iugw.onrender.com/products`).then((res) => {
+    axiosInstance.get(`/products`).then((res) => {
       setProductSelected(res.data.find((p) => p.product_id == id));
     });
   }, [id]);
 
   useEffect(() => {
-    axios.get(`https://my-green-api-iugw.onrender.com/reviews`).then((res) => {
+    axiosInstance.get(`/reviews`).then((res) => {
       setReviewsList(res.data.filter((r) => r.product_id == id));
     });
   }, [id]);
@@ -64,9 +65,8 @@ const ProductDetailPage = () => {
     };
 
     try {
-      await axios.post("https://my-green-api-iugw.onrender.com/reviews", newReview);
-
-      const { data } = await axios.get("https://my-green-api-iugw.onrender.com/reviews");
+      await axiosInstance.post("/reviews", newReview);
+      const { data } = await axiosInstance.get("/reviews");
       setReviewsList(data);
     } catch (error) {
       console.error("Post Failed", error);

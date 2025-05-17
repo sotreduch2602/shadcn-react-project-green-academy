@@ -28,7 +28,7 @@ const iconComponents = {
 
 const FilteredProductList = () => {
   const navigate = useNavigate();
-  const [priceRange, setPriceRange] = useState([0, 999]);
+  const [priceRange, setPriceRange] = useState([0, 4000]); // Changed from [0, 999]
   const [categoriesList, setCategoriesList] = useState([]);
   const [brandsList, setBrandsList] = useState([]);
   const { selectCategory, setSelectCategory } = useContext(CategoriesContext);
@@ -74,6 +74,9 @@ const FilteredProductList = () => {
       );
     }
   }, [selectCategory, selectBrand, priceRange, ProductLists]);
+
+  console.log("Product List:", ProductLists);
+  console.log("Filtered Product List:", filteredProductList);
 
   const renderIcon = (iconName) => {
     const IconComponent = iconComponents[iconName];
@@ -160,8 +163,8 @@ const FilteredProductList = () => {
           <div className="grid gap-2 mt-2">
             <Slider
               defaultValue={priceRange}
-              max={2000}
-              step={1}
+              max={4000} // Changed from 2000
+              step={100} // Added step for better increments
               onValueChange={setPriceRange}
             />
             <div className="flex justify-between text-sm text-gray-600">

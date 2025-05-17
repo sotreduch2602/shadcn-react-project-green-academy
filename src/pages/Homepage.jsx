@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { BrandsContext } from "@/contexts/BrandContext";
 import { ProductsContext } from "@/contexts/ProductContext";
-import axios from "axios";
+import axiosInstance from "@/api/axios";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -27,8 +27,8 @@ const Homepage = () => {
   const { ProductLists, setProductLists } = useContext(ProductsContext);
 
   useEffect(() => {
-    axios
-      .get("https://my-green-api-iugw.onrender.com/products")
+    axiosInstance
+      .get("/products")
       .then((res) => setProductLists(res.data));
   }, []);
 

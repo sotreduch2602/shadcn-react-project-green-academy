@@ -11,10 +11,9 @@ export const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     axiosInstance
-      .get("/products/")
+      .get("/products")
       .then((res) => setProductLists(res.data));
   }, []);
-
 
   const value = {
     ProductLists,
