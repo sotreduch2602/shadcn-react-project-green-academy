@@ -4,9 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UserContext } from "@/contexts/user/UserContext";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import axiosInstance from "@/api/axios";
 
 export function LoginForm({ className, ...props }) {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export function LoginForm({ className, ...props }) {
   const [user, setUser] = useState({ email: "", password: "" });
 
   useEffect(() => {
-    axios.get("https://my-green-api-iugw.onrender.com/users").then((res) => {
+    axiosInstance.get("/users").then((res) => {
       setUserLists(res.data);
     });
   }, []);

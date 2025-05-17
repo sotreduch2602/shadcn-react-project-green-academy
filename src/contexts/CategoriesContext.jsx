@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "@/api/axios";
 import { createContext, useEffect, useState } from "react";
 
 export const CategoriesContext = createContext({
@@ -10,8 +10,8 @@ export const CategoriesProvider = ({ children }) => {
   const [selectCategory, setSelectCategory] = useState({});
 
   useEffect(() => {
-    axios
-      .get("https://my-green-api-iugw.onrender.com/categories/")
+    axiosInstance
+      .get("/categories/")
       .then((res) => setCategoriesList(res.data));
   }, []);
 

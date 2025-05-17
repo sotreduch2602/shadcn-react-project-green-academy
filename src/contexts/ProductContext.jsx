@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "@/api/axios";
 import { createContext, useEffect, useState } from "react";
 
 export const ProductsContext = createContext({
@@ -10,8 +10,8 @@ export const ProductsProvider = ({ children }) => {
   const [selectProduct, setSelectProduct] = useState({});
 
   useEffect(() => {
-    axios
-      .get("https://my-green-api-iugw.onrender.com/products/")
+    axiosInstance
+      .get("/products/")
       .then((res) => setProductLists(res.data));
   }, []);
 

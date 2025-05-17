@@ -2,21 +2,18 @@ import { createContext, useState, useEffect } from "react";
 import { toast } from "sonner";
 
 const addCartItem = (cartItems, productToAdd, numQuantity) => {
-  toast.success("Item added to cart",{ variant: "destructive"});
+  toast.success("Item added to cart", { variant: "destructive" });
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.product_id === productToAdd.product_id
   );
 
   if (existingCartItem) {
-    console.log("existingCartItem", existingCartItem);
-
     return cartItems.map((cartItem) =>
       cartItem.product_id === productToAdd.product_id
         ? { ...cartItem, quantity: cartItem.quantity + numQuantity }
         : cartItem
     );
   }
-  console.log("Not existingCartItem");
 
   return [...cartItems, { ...productToAdd, quantity: numQuantity }];
 };

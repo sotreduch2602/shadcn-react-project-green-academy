@@ -10,12 +10,12 @@ import {
   Briefcase,
   ShoppingBag,
 } from "lucide-react";
-import axios from "axios";
 import { CategoriesContext } from "@/contexts/CategoriesContext";
 import { BrandsContext } from "@/contexts/BrandContext";
 import { ProductsContext } from "@/contexts/ProductContext";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "@/contexts/CartContext";
+import axiosInstance from "@/api/axios";
 
 const iconComponents = {
   Laptop: Laptop,
@@ -39,8 +39,8 @@ const FilteredProductList = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get("https://my-green-api-iugw.onrender.com/categories"),
-      axios.get("https://my-green-api-iugw.onrender.com/brands"),
+      axiosInstance.get("/categories"),
+      axiosInstance.get("/brands"),
     ])
       .then(([categoriesRes, brandsRes]) => {
         setCategoriesList(categoriesRes.data);
