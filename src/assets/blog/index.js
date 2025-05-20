@@ -1,8 +1,3 @@
-export const BlogImages = [
-  "src/assets/blog/image.png",
-  "src/assets/blog/image.png",
-  "src/assets/blog/image.png",
-  "src/assets/blog/image.png",
-];
+import Image1 from "@/assets/blog/image.png";
 
-export default BlogImages;
+export const BlogImages = [Image1, Image1, Image1,Image1];

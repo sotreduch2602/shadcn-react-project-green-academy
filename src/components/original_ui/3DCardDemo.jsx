@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 import { Button } from "../ui/button";
+import emptyCart from "@/assets/images/emptyCart.webp";
 
 export function ThreeDCardDemo() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export function ThreeDCardDemo() {
         </CardItem>
         <CardItem translateZ="100" className="mx-auto mt-4">
           <img
-            src="../../../public/assets/images/emptyCart.webp"
+            src={emptyCart}
             className="h-60 w-full object-contain rounded-xl group-hover/card:shadow-xl"
             alt="thumbnail"
           />
