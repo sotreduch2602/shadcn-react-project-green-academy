@@ -68,24 +68,24 @@ const Navbar = () => {
                     >
                       <NavigationMenuItem>
                         <NavigationMenuLink
-                          href="/"
-                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                          onClick={() => navigate("/products")}
+                          className="cursor-pointer font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
                           Products
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                       <NavigationMenuItem>
                         <NavigationMenuLink
-                          href="/blog"
-                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                          onClick={() => navigate("/blog")}
+                          className="cursor-pointer font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
                           Blog
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                       <NavigationMenuItem>
                         <NavigationMenuLink
-                          href="/faq"
-                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                          onClick={() => navigate("/faq")}
+                          className="cursor-pointer font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
                           FAQ
                         </NavigationMenuLink>
@@ -93,8 +93,8 @@ const Navbar = () => {
 
                       <NavigationMenuItem>
                         <NavigationMenuLink
-                          href="/contact"
-                          className="font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+                          onClick={() => navigate("/contact")}
+                          className="cursor-pointer font-medium relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-sky-800 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
                         >
                           Contact Us
                         </NavigationMenuLink>

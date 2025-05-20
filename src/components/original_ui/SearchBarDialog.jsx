@@ -1,21 +1,17 @@
 import {
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Search, ShoppingBag, X } from "lucide-react";
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "@/api/axios";
 
 const SearchBarDialog = ({ icon }) => {
   const navigate = useNavigate();
@@ -25,7 +21,7 @@ const SearchBarDialog = ({ icon }) => {
   const { addItemToCart } = useContext(CartContext);
 
   useEffect(() => {
-    axios.get("https://my-green-api-iugw.onrender.com/products").then((res) => {
+    axiosInstance.get("/products").then((res) => {
       setProductsList(res.data);
       setFilteredProducts(res.data);
     });

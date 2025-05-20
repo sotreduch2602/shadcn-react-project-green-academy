@@ -2,15 +2,14 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { UserContext } from "@/contexts/user/UserContext";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
 import { format } from "date-fns";
+import axiosInstance from "@/api/axios";
 
 export function RegisterForm({ className, ...props }) {
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ export function RegisterForm({ className, ...props }) {
   });
 
   useEffect(() => {
-    axios.get("https://my-green-api-iugw.onrender.com/users").then((res) => {
+    axiosInstance.get("/users").then((res) => {
       setUserLists(res.data);
     });
   }, []);
@@ -61,7 +60,7 @@ export function RegisterForm({ className, ...props }) {
     };
 
     try {
-      await axios.post("https://my-green-api-iugw.onrender.com/users", newUserData);
+      await axiosInstance.post("/users", newUserData);
       navigate("/login");
       toast.success("Register successful", {
         duration: 3000,

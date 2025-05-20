@@ -9,15 +9,16 @@ import { cn } from "@/lib/utils";
 import ProductCard from "./ProductCard";
 import { useContext, useEffect } from "react";
 import { ProductsContext } from "@/contexts/ProductContext";
-import axios from "axios";
+import axiosInstance from "@/api/axios";
 
 const CarouselSizeSale = ({ className }) => {
   const { ProductLists, setProductLists } = useContext(ProductsContext);
 
   useEffect(() => {
-    axios
-      .get("https://my-green-api-iugw.onrender.com/products")
-      .then((res) => setProductLists(res.data));
+    axiosInstance
+      .get("/products")
+      .then((res) => setProductLists(res.data))
+      .catch((error) => console.error("Error fetching products:", error));
   }, []);
 
   const filterSaleProductsList = ProductLists.filter(

@@ -240,7 +240,7 @@
       "isBestSellerProduct": 1,
       "stock": 15,
       "images": [
-        "https://asia.canon/media/image/2020/07/09/d861e2557ef941a3aa2b85910366fcd3_EOS+R5_Front_BODY.png"
+        "https://cdn.vjshop.vn/may-anh/mirrorless/canon/canon-eos-r5/canon-eos-r5-1-500x500.jpg"
       ],
       "created_at": "2024-01-02 10:00:00",
       "id": "ef8d"
@@ -377,7 +377,7 @@
     },
     {
       "id": "846b",
-      "product_id": 13,
+      "product_id": 14,
       "name": "Bàn phím cơ không dây AULA F75",
       "category_id": 6,
       "brand_id": 2,
@@ -392,7 +392,7 @@
     },
     {
       "id": "1db1",
-      "product_id": 14,
+      "product_id": 15,
       "name": "Iphone 15",
       "category_id": 1,
       "brand_id": 1,
@@ -461,7 +461,7 @@
           "quantity": 1,
           "price": 3899.99,
           "product_name": "Canon EOS R5",
-          "product_image": "https://asia.canon/media/image/2020/07/09/d861e2557ef941a3aa2b85910366fcd3_EOS+R5_Front_BODY.png"
+          "product_image": "https://cdn.vjshop.vn/may-anh/mirrorless/canon/canon-eos-r5/canon-eos-r5-1-500x500.jpg"
         }
       ],
       "id": "4b3f"
