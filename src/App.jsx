@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import Navbar from "./layouts/Navbar";
+import RootLayout from "./layouts/RootLayout";
 import { CategoriesProvider } from "./contexts/CategoriesContext";
 import { BrandsProvider } from "./contexts/BrandContext";
 import { ProductsProvider } from "./contexts/ProductContext";
@@ -30,7 +30,7 @@ function App() {
                 <ProductsProvider>
                   <ScrollToTop />
                   <Routes>
-                    <Route path="/" element={<Navbar />}>
+                    <Route path="/" element={<RootLayout />}>
                       <Route index element={<Homepage />} />
                       <Route path="products">
                         <Route index element={<ProductsPage />} />

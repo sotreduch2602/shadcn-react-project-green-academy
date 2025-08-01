@@ -5,7 +5,6 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
-import Footer from "@/layouts/Footer";
 import { ChevronRight } from "lucide-react";
 
 const ProductsPage = () => {
@@ -16,19 +15,13 @@ const ProductsPage = () => {
           <Breadcrumb className="mb-8 ml-4">
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink
-                  href="#"
-                  className=""
-                >
+                <BreadcrumbLink href="#" className="">
                   Home
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <ChevronRight className="h-4 w-4 " />
               <BreadcrumbItem>
-                <BreadcrumbLink
-                  href="#"
-                  className=""
-                >
+                <BreadcrumbLink href="#" className="">
                   Products
                 </BreadcrumbLink>
               </BreadcrumbItem>
@@ -45,8 +38,6 @@ const ProductsPage = () => {
           <FilteredProductList />
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };

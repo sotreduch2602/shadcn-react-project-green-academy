@@ -1,6 +1,5 @@
 import BlogCard from "@/components/original_ui/BlogCard";
 import { Button } from "@/components/ui/button";
-import Footer from "@/layouts/Footer";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import {
   Breadcrumb,
@@ -8,8 +7,10 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
+import { useNavigate } from "react-router-dom";
 
 const Blogpage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="max-w-screen-xl mx-auto my-6">
@@ -49,8 +50,6 @@ const Blogpage = () => {
           <BlogCard className="cursor-pointer"></BlogCard>
         </div>
       </section>
-
-      <Footer></Footer>
     </>
   );
 };

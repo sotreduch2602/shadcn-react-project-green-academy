@@ -3,9 +3,9 @@ import { ThreeDCardDemo } from "@/components/original_ui/3DCardDemo";
 import { Button } from "@/components/ui/button";
 import { CartContext } from "@/contexts/CartContext";
 import { UserContext } from "@/contexts/user/UserContext";
-import Footer from "@/layouts/Footer";
 import { Minus, Plus, ShoppingBag, Trash } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const CartList = () => {
   const {
@@ -22,9 +22,7 @@ const CartList = () => {
   const [orderLists, setOrderLists] = useState([]);
 
   useEffect(() => {
-    axiosInstance
-      .get("/orders")
-      .then((res) => setOrderLists(res.data));
+    axiosInstance.get("/orders").then((res) => setOrderLists(res.data));
   }, []);
 
   const handleCheckout = async () => {
@@ -183,7 +181,6 @@ const CartList = () => {
           </div>
         </div>
       )}
-      <Footer />
     </div>
   );
 };

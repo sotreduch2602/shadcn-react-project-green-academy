@@ -11,7 +11,6 @@ import {
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
 import { Card, CardContent } from "@/components/ui/card";
-import Footer from "@/layouts/Footer";
 import { ChevronRight } from "lucide-react";
 import React from "react";
 
@@ -131,7 +130,6 @@ export default function DesktopFaqs() {
             </CardContent>
           </Card>
         </div>
-        <Footer />
       </section>
     </div>
   );

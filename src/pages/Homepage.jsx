@@ -14,9 +14,8 @@ import CarouselSizeSale from "@/components/original_ui/CarouselSizeSale";
 import ProductCard from "@/components/original_ui/ProductCard";
 import ShopByBrandIcon from "@/components/original_ui/ShopByBrandIcon";
 import BlogCard from "@/components/original_ui/BlogCard";
-import Footer from "@/layouts/Footer";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { BrandsContext } from "@/contexts/BrandContext";
 import { ProductsContext } from "@/contexts/ProductContext";
 import axiosInstance from "@/api/axios";
@@ -27,9 +26,7 @@ const Homepage = () => {
   const { ProductLists, setProductLists } = useContext(ProductsContext);
 
   useEffect(() => {
-    axiosInstance
-      .get("/products")
-      .then((res) => setProductLists(res.data));
+    axiosInstance.get("/products").then((res) => setProductLists(res.data));
   }, []);
 
   function MoveToProductsPageWithBrand(brand) {
@@ -116,7 +113,7 @@ const Homepage = () => {
 
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
-          {filterNewProductsList.slice(0,4).map((item) => (
+          {filterNewProductsList.slice(0, 4).map((item) => (
             <a
               key={item.product_id}
               onClick={() => navigate(`/products/detail/${item.product_id}`)}
@@ -151,7 +148,7 @@ const Homepage = () => {
 
         {/* ! Remember create component NewProductList */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-10 mt-3">
-          {filterBestProductsList.slice(0,4).map((item) => (
+          {filterBestProductsList.slice(0, 4).map((item) => (
             <a
               key={item.product_id}
               onClick={() => navigate(`/products/detail/${item.product_id}`)}
@@ -226,8 +223,6 @@ const Homepage = () => {
           <BlogCard className="cursor-pointer"></BlogCard>
         </div>
       </section>
-
-      <Footer></Footer>
     </>
   );
 };

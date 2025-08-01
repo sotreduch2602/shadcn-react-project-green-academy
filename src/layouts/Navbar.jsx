@@ -20,7 +20,6 @@ import {
 import SearchIcon from "@/assets/navbar/search.svg";
 import CartIcon from "@/assets/navbar/bag.svg";
 import UserIcon from "@/assets/navbar/profile.svg";
-import { Outlet } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { useContext } from "react";
 import { UserContext } from "@/contexts/user/UserContext";
@@ -234,7 +233,6 @@ const Navbar = () => {
           </div>
         </div>
       </header>
-      <Outlet />
     </>
   );
 };
