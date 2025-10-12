@@ -54,12 +54,8 @@ const ProductManagement = () => {
 
   const handleDelete = async (product) => {
     try {
-      await axios.delete(
-        `https://my-green-api-iugw.onrender.com/${product.id}`
-      );
-      const { data } = axios.get(
-        "https://my-green-api-iugw.onrender.com/products"
-      );
+      await axios.delete(`http://localhost:3000/${product.id}`);
+      const { data } = axios.get("http://localhost:3000/products");
       setProductsList(data);
     } catch {
       console.error("Delete Failed", error);
@@ -85,10 +81,7 @@ const ProductManagement = () => {
     };
 
     try {
-      await axios.post(
-        "https://my-green-api-iugw.onrender.com/products",
-        NewProductData
-      );
+      await axios.post("http://localhost:3000/products", NewProductData);
       setProductsList((prev) => [...prev, inputFields]);
       setInputFields({});
     } catch (error) {
@@ -126,15 +119,13 @@ const ProductManagement = () => {
 
     try {
       await axios.put(
-        `https://my-green-api-iugw.onrender.com/${inputFields.id}`,
+        `http://localhost:3000/${inputFields.id}`,
         updatedProduct
       );
 
       setInputFields({});
       setUpdateButton(false);
-      const { data } = await axios.get(
-        "https://my-green-api-iugw.onrender.com/products"
-      );
+      const { data } = await axios.get("http://localhost:3000/products");
       setProductsList(data);
     } catch (error) {
       console.error("Update Failed:", error);
@@ -144,9 +135,9 @@ const ProductManagement = () => {
   useEffect(() => {
     axios
       .all([
-        axios.get("https://my-green-api-iugw.onrender.com/products"),
-        axios.get("https://my-green-api-iugw.onrender.com/categories"),
-        axios.get("https://my-green-api-iugw.onrender.com/brands"),
+        axios.get("http://localhost:3000/products"),
+        axios.get("http://localhost:3000/categories"),
+        axios.get("http://localhost:3000/brands"),
       ])
       .then(
         axios.spread((productsRes, categoriesRes, brandsRes) => {
